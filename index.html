@@ -3,26 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mi Portafolio de Desarrollador</title>
+    <title>SQL a Excel - Diseño Profesional Oscuro</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css"
     />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js"></script>
     <style>
-      @keyframes neonPulse {
+         @keyframes neonPulse {
         0%,
-        50% {
-          text-shadow: 0 0 7px #58a6ff, 0 0 10px #58a6ff, 0 0 21px #58a6ff;
+        100% {
+          text-shadow: 0 0 1px #58a6ff, 0 0 2px #58a6ff, 0 0 2px #58a6ff;
         }
         50% {
-          text-shadow: 0 0 5px #58a6ff, 0 0 7px #58a6ff, 0 0 15px #58a6ff;
+          text-shadow: 0 0 2px #58a6ff, 0 0 5px #58a6ff, 0 0 3px #58a6ff;
         }
       }
       .neon-text {
         animation: neonPulse 1.5s infinite alternate;
       }
+      
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -49,261 +51,500 @@
           opacity: 0;
         }
       }
-      .floating-shapes {
-        position: fixed; /* Para que esté siempre en el fondo */
+      body {
+        background-color: #0f172a;
+      }
+      #galaxy-bg {
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        height: 100vh; /* Asegura que cubra toda la altura de la ventana */
-        pointer-events: none; /* Para evitar que interfiera con otros elementos interactivos */
-        z-index: -1; /* Debajo de todo el contenido */
+        height: 100%;
+        z-index: -1;
+      }
+ 
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .hero-bg {
+            background: linear-gradient(-45deg, #0f172a, #1e3a8a, #0e7490, #0f766e);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        .typing-effect::after {
+            content: "|";
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .projects {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
       }
 
-      .floating-shapes div {
-        position: absolute;
-        background-color: #00ffff; /* Cian neón */
-        opacity: 0.3;
-        border-radius: 50%;
-      }
-      .bg-matrix {
-        background-color: #000000;
-        background-image: linear-gradient(
-            rgba(0, 255, 0, 0.03) 2px,
-            transparent 2px
-          ),
-          linear-gradient(90deg, rgba(0, 255, 0, 0.03) 2px, transparent 2px);
-        background-size: 50px 50px;
-      }
-      .terminal-window {
-        background-color: #0c0c0c;
-        border: 1px solid #00ff00;
-        box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-      }
+      .project {
+  background-color: #1e293b; /* Un tono más oscuro de azul */
+  border-radius: 5px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  border: 1px solid #38bdf8; /* Borde de cian claro */
+}
+
+.project:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(56, 189, 248, 0.3); /* Sombra azul cian */
+}
+
+.project h3 {
+  /* color: #38bdf8; */
+  margin-bottom: 10px;
+}
+
+.project img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project img:hover {
+  transform: scale(1.05); /* Aumenta ligeramente el tamaño al hacer hover */
+}
+
+/* Estilos para el botón "Ver" */
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.view-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: white;
+  font-size: 1.25rem;
+  background-color: rgba(56, 189, 248, 0.7); /* Fondo semitransparente */
+}
+
+.image-container:hover .view-button {
+  opacity: 1; /* El botón aparece al hacer hover */
+}
+
+.btn {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #0ea5e9; /* Botón azul cian */
+  color: #0f172a; /* Texto oscuro */
+  text-decoration: none;
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}
+.btn:hover {
+  background-color: #38bdf8; /* Cambio a cian más claro */
+}
+
     </style>
   </head>
-  <body class="bg-gray-900 text-gray-300 min-h-screen font-mono">
-    <nav class="bg-gray-800 p-4 sticky top-0 z-10">
-      <div class="container mx-auto flex justify-between items-center">
-        <h1 class="text-2xl font-bold neon-text text-blue-400">
-          &lt;MiPortfolio /&gt;
-        </h1>
-        <ul class="flex space-x-4">
-          <li>
-            <a
-              href="#proyectos"
-              class="hover:text-blue-400 transition duration-300"
-              >&lt;Proyectos /&gt;</a
-            >
-          </li>
-          <li>
-            <a
-              href="#sobre-mi"
-              class="hover:text-blue-400 transition duration-300"
-              >&lt;SobreMi /&gt;</a
-            >
-          </li>
-          <li>
-            <a
-              href="#contacto"
-              class="hover:text-blue-400 transition duration-300"
-              >&lt;Contacto /&gt;</a
-            >
-          </li>
-        </ul>
-      </div>
-    </nav>
+  <body class="min-h-screen  text-cyan-300 font-mono">
+    <canvas id="galaxy-bg"></canvas>
+    <div class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden">
+      <!-- Animated background elements -->
+      <svg class="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+              <filter id="glow">
+                  <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
+                  <feMerge>
+                      <feMergeNode in="coloredBlur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+              </filter>
+          </defs>
+          <g filter="url(#glow)">
+              <circle class="pulse" cx="5%" cy="50%" r="2" fill="#4fd1c5"/>
+              <circle class="pulse" cx="95%" cy="30%" r="3" fill="#63b3ed"/>
+              <circle class="pulse" cx="80%" cy="70%" r="2" fill="#f6ad55"/>
+              <circle class="pulse" cx="10%" cy="10%" r="4" fill="#f687b3"/>
+              <circle class="pulse" cx="50%" cy="60%" r="3" fill="#68d391"/>
+          </g>
+      </svg>
 
-    <header class="text-center py-20 bg-gray-800">
-      <h2
-        class="text-5xl font-bold mb-4 neon-text text-blue-400 typing-effect"
-        id="typing-header"
-      >
-        Desarrollador Full Stack
-      </h2>
-      <p class="text-xl">
-        $Todo lo que siempre has querido esta al otro lado del medio.
-      </p>
-    </header>
-    <div class="floating-shapes"></div>
-    <main class="container mx-auto mt-12 p-4">
-      <section id="sobre-mi" class="py-16">
-        <div class="container mx-auto px-4">
-          <h3
-            class="text-3xl font-bold mb-12 neon-text text-blue-400 text-center"
-          >
-            &lt;Sobre Mí /&gt;
-          </h3>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div class="flex justify-center">
-              <div class="photo-border rounded-full">
-                <img
-                  src="tu-foto.png"
-                  alt="Tu Nombre"
-                  class="w-64 h-64 rounded-full object-cover border-4 border-gray-900"
-                />
-              </div>
-            </div>
-            <div class="bg-gray-900 p-8 rounded-lg shadow-lg">
-              <h4 class="text-2xl font-bold mb-4 text-blue-400">
-                Hola, soy <span class="neon-text">Brayan Rojas Freyre</span>
-              </h4>
-              <p class="mb-6 text-lg">
-                Desarrollador Full Stack apasionado por crear soluciones
-                innovadoras y escalables. Con más de 2 años de experiencia,
-                disfruto enfrentando nuevos desafíos y aprendiendo
-                constantemente.
+      <!-- Hero content -->
+      <div class="relative z-10 text-center px-4">
+          <h1 class="text-5xl font-bold mb-4 text-white typing-effect" id="typing-header">
+                 Todo lo que siempre has querido está al otro lado del miedo.</h1>
+          <h2 class="text-3xl font-semibold mb-6 text-cyan-300">
+               Brayan Rojas Freyre
+          </h2>
+          <p class="text-xl mb-8 text-gray-200 max-w-2xl mx-auto">
+            Desarrollador Full Stack 🚀
+          </p>
+          <div class="bg-gray-900 bg-opacity-60 p-8 rounded-lg shadow-xl border border-cyan-600 max-w-2xl mx-auto backdrop-filter backdrop-blur-sm">
+              <p class="mb-6 text-lg text-gray-300">
+                Desarrollador especializado en la creación de soluciones tecnológicas eficientes y escalables. Con más de dos años de experiencia, afronto cada desafío con un enfoque analítico y un compromiso constante con la mejora profesional. Actualmente, trabajo con Vue, Python, Quasar, SQL, Firebase en tiempo real y aplico técnicas de machine learning.
               </p>
-              <div class="mb-6">
-                <h5 class="text-xl font-semibold mb-2 text-blue-400">
-                  Mis habilidades incluyen:
-                </h5>
-                <ul class="grid grid-cols-2 gap-2">
-                  <li>
-                    <i class="fas fa-check text-green-500 mr-2"></i>JavaScript
-                  </li>
-                  <li>
-                    <i class="fas fa-check text-green-500 mr-2"></i>Python
-                  </li>
-                  <li><i class="fas fa-check text-green-500 mr-2"></i>React</li>
-                  <li>
-                    <i class="fas fa-check text-green-500 mr-2"></i>Node.js
-                  </li>
-                  <li><i class="fas fa-check text-green-500 mr-2"></i>SQL</li>
-                  <li><i class="fas fa-check text-green-500 mr-2"></i>Git</li>
-                </ul>
-              </div>
               <div>
-                <h5 class="text-xl font-semibold mb-2 text-blue-400">
-                  Datos curiosos:
-                </h5>
-                <ul class="space-y-2">
-                  <li>
-                    <i class="fas fa-coffee text-yellow-600 mr-2"></i>Adicto al
-                    café
-                  </li>
-                  <li>
-                    <i class="fas fa-book text-indigo-400 mr-2"></i>Lector ávido
-                    de ciencia ficción
-                  </li>
-                  <li>
-                    <i class="fas fa-gamepad text-red-500 mr-2"></i>Gamer en mis
-                    tiempos libres
-                  </li>
-                </ul>
+                  <h5 class="text-xl font-semibold mb-2 text-cyan-300">
+                      Sobre mi:
+                  </h5>
+                  <ul class="space-y-2 text-gray-200">
+                      <li class="flex items-center justify-center">
+                          <i class="fas fa-coffee text-yellow-400 mr-2"></i>Adicto al café
+                      </li>
+                      <li class="flex items-center justify-center">
+                          <i class="fas fa-book text-indigo-400 mr-2"></i>Lector ávido de ciencia ficción
+                      </li>
+                      <li class="flex items-center justify-center">
+                          <i class="fas fa-gamepad text-red-400 mr-2"></i>Gamer en mis tiempos libres
+                      </li>
+                  </ul>
               </div>
-            </div>
           </div>
-        </div>
-      </section>
-      <section id="proyectos" class="mb-16">
-        <h3 class="text-3xl font-bold mb-8 neon-text text-blue-400">
-          &lt;Mis Proyectos /&gt;
-        </h3>
+          <div class="mt-8">
+              <a href="#proyectos" class="bg-cyan-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-cyan-500 transition duration-300 inline-block">
+                  Ver Proyectos
+              </a>
+          </div>
+      </div>
 
-        <div class="hidden flex justify-center mt-4">
-          <button
-            id="prevBtn"
-            class="hidden bg-blue-600 text-gray-900 py-2 px-4 rounded mr-2 hover:bg-blue-500 transition duration-300"
-          >
-            &lt; Anterior
-          </button>
-          <button
-            id="nextBtn"
-            class="hidden bg-blue-600 text-gray-900 py-2 px-4 rounded hover:bg-blue-500 transition duration-300"
-          >
-            Siguiente &gt;
-          </button>
+      <!-- Floating elements -->
+      <div class="absolute bottom-10 left-10 floating">
+          <svg class="w-16 h-16 text-cyan-300 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+      </div>
+      <div class="absolute top-10 right-10 floating" style="animation-delay: -2s;">
+          <svg class="w-16 h-16 text-blue-300 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
+      </div>
+  </div>
+  <!-- PROYECTOS -->
+ 
+  <main class="container mx-auto px-6 pt-20 min-h-screen" id ="proyectos">
+    <!-- Sección de programación con pestañas -->
+    <div class=" rounded-lg overflow-hidden border border-cyan-500">
+        <div class="bg-gray-800 p-2 flex" id="tab-buttons">
+            <button class="px-2 py-1 bg-cyan-600 text-white text-xs rounded mr-2" data-tab="portfolio">portfolio.py</button>
+            <button class="px-2 py-1 bg-gray-700 text-gray-300 text-xs rounded mr-2" data-tab="skills">skills.py</button>
+            <button class="px-2 py-1 bg-gray-700 text-gray-300 text-xs rounded mr-2" data-tab="contactame">contactame.py</button>
+            <!-- Puedes añadir más botones de pestañas aquí -->
         </div>
-      </section>
-      <div
-        class="mb-12 bg-gray-900 rounded-lg overflow-hidden shadow-lg border border-indigo-500"
-      >
-        <div class="bg-gray-800 p-2 flex justify-between items-center">
-          <div class="flex space-x-2">
-            <span class="px-2 py-1 bg-indigo-600 text-white text-xs rounded"
-              >portfolio.py</span
-            >
-            <span class="px-2 py-1 bg-gray-700 text-gray-300 text-xs rounded"
-              >skills.py</span
-            >
-          </div>
-          <div class="text-gray-400 text-sm">Python 3.9.5</div>
+        <div id="tab-content" class="container mx-auto px-4 bg-gray-800 bg-opacity-80  shadow-xl p-8 border border-cyan-600">
+            <!-- El contenido de las pestañas se cargará aquí dinámicamente -->
         </div>
-        <div class="bg-black bg-opacity-70 p-6 font-mono">
-          <p class="text-pink-400">
-            def <span class="text-yellow-300">display_projects</span>():
+    </div>
+    
+</main>
+<footer class="bg-gray-900 bg-opacity-80 border-t border-cyan-600">
+  <div class="container mx-auto px-6 py-4">
+    <div class="flex justify-between items-center">
+      <p class="text-cyan-400 text-sm">
+        &copy; 2024 DataConverter Pro. Todos los derechos reservados.
+      </p>
+      <div class="flex space-x-4">
+        <a href="#" class="text-cyan-400 hover:text-cyan-300"
+          ><i class="fab fa-twitter"></i
+        ></a>
+        <a href="#" class="text-cyan-400 hover:text-cyan-300"
+          ><i class="fab fa-linkedin"></i
+        ></a>
+        <a href="#" class="text-cyan-400 hover:text-cyan-300"
+          ><i class="fab fa-github"></i
+        ></a>
+      </div>
+    </div>
+</footer>
+</div>
+<!-- CONTACTAME -->
+   
+
+      <script>
+      
+       
+
+        // Galaxy background effect
+        const canvas = document.getElementById("galaxy-bg");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const properties = {
+          bgColor: "rgba(15, 23, 42, 1)",
+          particleColor: "rgba(0, 255, 255, 0.5)",
+          particleRadius: 3,
+          particleCount: 60,
+          particleMaxVelocity: 0.5,
+          lineLength: 150,
+          particleLife: 6,
+        };
+
+        class Particle {
+          constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.velocityX =
+              Math.random() * (properties.particleMaxVelocity * 2) -
+              properties.particleMaxVelocity;
+            this.velocityY =
+              Math.random() * (properties.particleMaxVelocity * 2) -
+              properties.particleMaxVelocity;
+            this.life = Math.random() * properties.particleLife * 60;
+          }
+          position() {
+            (this.x + this.velocityX > canvas.width && this.velocityX > 0) ||
+            (this.x + this.velocityX < 0 && this.velocityX < 0)
+              ? (this.velocityX *= -1)
+              : this.velocityX;
+            (this.y + this.velocityY > canvas.height && this.velocityY > 0) ||
+            (this.y + this.velocityY < 0 && this.velocityY < 0)
+              ? (this.velocityY *= -1)
+              : this.velocityY;
+            this.x += this.velocityX;
+            this.y += this.velocityY;
+          }
+          reDraw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, properties.particleRadius, 0, Math.PI * 2);
+            ctx.closePath();
+            ctx.fillStyle = properties.particleColor;
+            ctx.fill();
+          }
+          reCalculateLife() {
+            if (this.life < 1) {
+              this.x = Math.random() * canvas.width;
+              this.y = Math.random() * canvas.height;
+              this.velocityX =
+                Math.random() * (properties.particleMaxVelocity * 2) -
+                properties.particleMaxVelocity;
+              this.velocityY =
+                Math.random() * (properties.particleMaxVelocity * 2) -
+                properties.particleMaxVelocity;
+              this.life = Math.random() * properties.particleLife * 60;
+            }
+            this.life--;
+          }
+        }
+
+        function reDrawBackground() {
+          ctx.fillStyle = properties.bgColor;
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function drawLines() {
+          let x1, y1, x2, y2, length, opacity;
+          for (let i in particles) {
+            for (let j in particles) {
+              x1 = particles[i].x;
+              y1 = particles[i].y;
+              x2 = particles[j].x;
+              y2 = particles[j].y;
+              length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+              if (length < properties.lineLength) {
+                opacity = 1 - length / properties.lineLength;
+                ctx.lineWidth = "0.5";
+                ctx.strokeStyle = `rgba(0, 255, 255, ${opacity})`;
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.closePath();
+                ctx.stroke();
+              }
+            }
+          }
+        }
+
+        function reDrawParticles() {
+          for (let i in particles) {
+            particles[i].reCalculateLife();
+            particles[i].position();
+            particles[i].reDraw();
+          }
+        }
+
+        function loop() {
+          reDrawBackground();
+          reDrawParticles();
+          drawLines();
+          requestAnimationFrame(loop);
+        }
+
+        function init() {
+          for (let i = 0; i < properties.particleCount; i++) {
+            particles.push(new Particle());
+          }
+          loop();
+        }
+
+        init();
+
+        window.addEventListener("resize", function () {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        });
+        const header = document.getElementById("typing-header");
+      const text = header.textContent;
+      header.textContent = "";
+      let i = 0;
+      function typeWriter() {
+        if (i < text.length) {
+          header.textContent += text.charAt(i);
+          i++;
+          setTimeout(typeWriter, 100);
+        }
+      }
+      typeWriter();
+
+       // Código para las pestañas
+       const tabContent = {
+            portfolio: `
+                <p class="text-cyan-400 text-xl mb-6">
+            <span class="text-purple-400">class</span> <span class="text-cyan-300">Portfolio</span>:
           </p>
           <div class="pl-4 mt-2 space-y-4">
-            <div class="bg-gray-800 p-4 rounded">
-              <img
-                src="image.png"
-                alt="Proyecto 3"
-                class="w-full h-32 object-cover mb-2 rounded"
-              />
-              <h3 class="text-xl font-semibold mb-2 text-green-300">
-                Autonomous Drone System
-              </h3>
-              <p class="text-blue-300">
+            <p class="text-cyan-400 mb-4">
+              <span class="text-purple-400">def</span> <span class="text-cyan-300">__init__</span>(self):
+            </p>
+            <div class="pl-4">
+              <p class="text-cyan-400">self.projects = [</p>
+            </div>
+            <div class="projects grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pl-8">
+              <div class="project bg-gray-900">
+             <div class="image-container relative">
+    <img src="image.png" alt="Project Image" class="project-image" />
+    <a href="#" class="view-button absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 text-white font-semibold text-lg bg-cyan-600 bg-opacity-70">
+      Ver
+    </a>
+  </div>
+                <h3 class="text-xl font-semibold mb-2 text-green-300">Autonomous Drone System</h3>
+                
+                <div class="project-overlay">
+                  <p class="text-blue-300">
                 description =
                 <span class="text-green-300"
                   >"Natural Language Processing model for sentiment
                   analysis"</span
                 >
               </p>
-              <div class="flex space-x-2 mt-2">
-                <a
-                  href="#"
-                  class="bg-purple-600 text-white px-2 py-1 rounded text-sm hover:bg-purple-700"
-                  >README</a
-                >
-                <a
-                  href="#"
-                  class="bg-yellow-600 text-white px-2 py-1 rounded text-sm hover:bg-yellow-700"
-                  >Demo</a
-                >
+                  <div class="code-preview">
+                    <pre><code>
+def process_image(frame):
+    # AI image processing
+    return analyzed_frame
+
+def control_drone(data):
+    # Autonomous flight logic
+    return flight_commands
+                    </code></pre>
+                  </div>
+                  <a href="#" class="btn">View Full Code</a>
+                </div>
               </div>
-            </div>
-            <div class="bg-gray-800 p-4 rounded">
-              <img
-                src="image.png"
-                alt="Proyecto 4"
-                class="w-full h-32 object-cover mb-2 rounded"
-              />
-              <h3 class="text-xl font-semibold mb-2 text-green-300">
-                Autonomous Drone System
-              </h3>
-              <p class="text-blue-300">
+              <div class="project bg-gray-900">
+            <div class="image-container relative">
+    <img src="image.png" alt="Project Image" class="project-image" />
+    <a href="#" class="view-button absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 text-white font-semibold text-lg bg-cyan-600 bg-opacity-70">
+      Ver
+    </a>
+  </div>
+                <h3 class="text-xl font-semibold mb-2 text-green-300">NLP Sentiment Analyzer</h3>
+                <div class="project-overlay">
+                  <p class="text-blue-300">
                 description =
                 <span class="text-green-300"
-                  >"Object detection using YOLO algorithm"</span
+                  >"Natural Language Processing model for sentiment
+                  analysis"</span
                 >
               </p>
-              <div class="flex space-x-2 mt-2">
-                <a
-                  href="#"
-                  class="bg-purple-600 text-white px-2 py-1 rounded text-sm hover:bg-purple-700"
-                  >README</a
+                  <div class="code-preview">
+                    <pre><code>
+def preprocess_text(text):
+    # Text cleaning and tokenization
+    return processed_tokens
+
+def analyze_sentiment(tokens):
+    # ML model prediction
+    return sentiment_score
+                    </code></pre>
+                  </div>
+                  <a href="#" class="btn">View Full Code</a>
+                </div>
+              </div>
+              <div class="project bg-gray-900">
+            <div class="image-container relative">
+    <img src="image.png" alt="Project Image" class="project-image" />
+    <a href="#" class="view-button absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 text-white font-semibold text-lg bg-cyan-600 bg-opacity-70">
+      Ver
+    </a>
+  </div>
+                <h3 class="text-xl font-semibold mb-2 text-green-300">Blockchain Voting System</h3>
+                <div class="project-overlay">
+                 <p class="text-blue-300">
+                description =
+                <span class="text-green-300"
+                  >"Natural Language Processing model for sentiment
+                  analysis"</span
                 >
-                <a
-                  href="#"
-                  class="bg-yellow-600 text-white px-2 py-1 rounded text-sm hover:bg-yellow-700"
-                  >Demo</a
-                >
+              </p>
+                  <div class="code-preview">
+                    <pre><code>
+def create_ballot(voter_id, vote):
+    # Encrypt and hash the vote
+    return encrypted_ballot
+
+def add_to_blockchain(ballot):
+    # Consensus algorithm
+    return updated_chain
+                    </code></pre>
+                  </div>
+                  <a href="#" class="btn">View Full Code</a>
+                </div>
               </div>
             </div>
+            <div class="pl-4">
+              <p class="text-cyan-400">]</p>
+            </div>
           </div>
-        </div>
-      </div>
-
-      <br />
-
-      <section id="contacto" class="py-16 bg-dark">
-        <div class="container mx-auto px-4">
-          <h3
-            class="text-3xl font-bold mb-8 neon-text text-blue-400 text-center"
-          >
-            &lt;Contactame /&gt;
-          </h3>
+            `,
+            skills: `
+                <p class="text-purple-400">
+                    def <span class="text-cyan-300">display_skills</span>():
+                </p>
+                <div class="pl-4 mt-2 space-y-4">
+                    <section id="skills">
+      
+          <div class="carousel" style="overflow-x: auto">
+            <a href="https://skillicons.dev">
+              <img
+                src="https://skillicons.dev/icons?i=git,aws,vue,c,cpp,css,discord,docker,dynamodb,github,html,java,js,kotlin,firebase,linux,mysql,nextjs,nodejs,postman,py,react,tailwind,ts,vscode&perline=14"
+                alt="Skills Icons"
+                style="width: 100%; max-width: none; height: auto"
+              />
+            </a>
+          </div>
+        </section>
+                </div>
+            `,
+            contactame:`
+        <p class="text-purple-400">
+                    def <span class="text-cyan-300">contactame</span>():
+                </p>
+              <section id="contacto" class="pl-4 mt-2 bg-dark">
+        <div class="container mx-auto px-4  rounded-lg shadow-xl p-8  ">
+            
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- Formulario de contacto -->
             <div class="bg-gray-900 p-8 rounded-lg shadow-lg">
@@ -362,24 +603,27 @@
             >
               <div>
                 <h4 class="text-xl font-bold mb-4 text-blue-400">
-                  Conéctate conmigo
+                  Información
                 </h4>
                 <p class="mb-4">
-                  Estoy siempre interesado en nuevos proyectos y oportunidades.
-                  ¡No dudes en contactarme!
+                  Actualmente formo parte de INNOVAHTEC, pero siempre disponible para colaboraciones o intercambios de ideas. No dudes en contactarme para conversar o trabajar en conjunto.
                 </p>
                 <ul class="space-y-2">
                   <li class="flex items-center">
                     <i class="fas fa-envelope text-blue-400 mr-2"></i>
                     <a
-                      href="mailto:tu@email.com"
+                      href="mailto:rfreyrebrayaned@gmail.com"
                       class="hover:text-blue-400 transition duration-300"
-                      >tu@email.com</a
+                      >rfreyrebrayaned@gmail.com</a
                     >
                   </li>
                   <li class="flex items-center">
                     <i class="fas fa-map-marker-alt text-blue-400 mr-2"></i>
-                    <span>Tu Ciudad, País</span>
+                    <span>Chiclayo, Perú</span>
+                  </li>
+                  <li class="flex items-center">
+                    <i class="fas fa-phone-alt text-blue-400 mr-2"></i>
+                    <span>+51 998 511 769</span>
                   </li>
                 </ul>
               </div>
@@ -412,104 +656,31 @@
           </div>
         </div>
       </section>
-    </main>
+            `
+            // Puedes añadir más contenido de pestañas aquí
+        };
 
-    <footer class="bg-gray-800 text-center py-4 mt-12">
-      <p>&copy; 2024 MiPortfolio. Todos los derechos reservados.</p>
-    </footer>
-
-    <script>
-      // Efecto de escritura para el encabezado
-      const header = document.getElementById("typing-header");
-      const text = header.textContent;
-      header.textContent = "";
-      let i = 0;
-      function typeWriter() {
-        if (i < text.length) {
-          header.textContent += text.charAt(i);
-          i++;
-          setTimeout(typeWriter, 100);
+        function showTab(tabId) {
+            document.getElementById('tab-content').innerHTML = tabContent[tabId];
+            document.querySelectorAll('#tab-buttons button').forEach(button => {
+                if (button.dataset.tab === tabId) {
+                    button.classList.remove('bg-gray-700', 'text-gray-300');
+                    button.classList.add('bg-indigo-600', 'text-white');
+                } else {
+                    button.classList.remove('bg-indigo-600', 'text-white');
+                    button.classList.add('bg-gray-700', 'text-gray-300');
+                }
+            });
         }
-      }
-      typeWriter();
 
-      // Carrusel de proyectos
-      const carousel = document.getElementById("carousel");
-      const inner = document.getElementById("carousel-inner");
-      const prevBtn = document.getElementById("prevBtn");
-      const nextBtn = document.getElementById("nextBtn");
-      let currentIndex = 0;
-
-      function updateCarousel() {
-        inner.style.transform = `translateX(-${currentIndex * 100}%)`;
-      }
-
-      prevBtn.addEventListener("click", () => {
-        currentIndex = (currentIndex - 1 + 3) % 3;
-        updateCarousel();
-      });
-
-      nextBtn.addEventListener("click", () => {
-        currentIndex = (currentIndex + 1) % 3;
-        updateCarousel();
-      });
-
-      // Animación de entrada para los elementos
-      const animatedElements = document.querySelectorAll("section");
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("fade-in");
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-
-      animatedElements.forEach((el) => {
-        observer.observe(el);
-      });
-
-      // Smooth scroll
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          document.querySelector(this.getAttribute("href")).scrollIntoView({
-            behavior: "smooth",
-          });
+        document.querySelectorAll('#tab-buttons button').forEach(button => {
+            button.addEventListener('click', () => showTab(button.dataset.tab));
         });
-      });
 
-      // Animación de formas flotantes
-      function createFloatingShapes() {
-        const container = document.querySelector(".floating-shapes");
-        const shapes = 40;
-
-        for (let i = 0; i < shapes; i++) {
-          const shape = document.createElement("div");
-          const size = Math.random() * 50 + 10;
-          shape.style.width = `${size}px`;
-          shape.style.height = `${size}px`;
-          shape.style.left = `${Math.random() * 100}%`;
-          shape.style.top = `${Math.random() * 100}%`;
-
-          container.appendChild(shape);
-
-          gsap.to(shape, {
-            x: `random(-50, 50)`,
-            y: `random(-50, 50)`,
-            duration: `random(5, 10)`,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-          });
-        }
-      }
-
-      document.addEventListener("DOMContentLoaded", () => {
-        createFloatingShapes();
-      });
-    </script>
+        // Mostrar la primera pestaña por defecto
+        showTab('portfolio');
+      </script>
+      
+   
   </body>
 </html>
