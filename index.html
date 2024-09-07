@@ -1,69 +1,34 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Porfolio Brayan Rojas Freyre</title>
+    <title>Portfolio Brayan Rojas Freyre</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/tiny-slider.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.3/min/tiny-slider.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
     <style>
-         @keyframes neonPulse {
-        0%,
-        100% {
-          text-shadow: 0 0 1px #58a6ff, 0 0 2px #58a6ff, 0 0 2px #58a6ff;
+        @keyframes neonPulse {
+            0%, 100% { text-shadow: 0 0 1px #58a6ff, 0 0 2px #58a6ff, 0 0 2px #58a6ff; }
+            50% { text-shadow: 0 0 2px #58a6ff, 0 0 5px #58a6ff, 0 0 3px #58a6ff; }
         }
-        50% {
-          text-shadow: 0 0 2px #58a6ff, 0 0 5px #58a6ff, 0 0 3px #58a6ff;
+        .neon-text { animation: neonPulse 1.5s infinite alternate; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-      }
-      .neon-text {
-        animation: neonPulse 1.5s infinite alternate;
-      }
-      
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        
+        .typing-effect::after {
+            content: "|";
+            animation: blink 0.7s infinite;
         }
-        to {
-          opacity: 1;
-          transform: translateY(0);
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
-      }
-      .fade-in {
-        animation: fadeIn 0.5s ease-out forwards;
-      }
-      .typing-effect::after {
-        content: "|";
-        animation: blink 0.7s infinite;
-      }
-      @keyframes blink {
-        0%,
-        100% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0;
-        }
-      }
-   
-      #galaxy-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-      }
-    
+        
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -74,510 +39,161 @@
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
         }
-        .typing-effect::after {
-            content: "|";
-            animation: blink 0.7s infinite;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
+        
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
-     
-   /* Animación de flotación */
-   @keyframes float {
-        0% {
-          transform: translateY(0);
+        
+        .floating { animation: float 6s ease-in-out infinite; }
+        
+        .social-icons {
+            position: fixed;
+            top: auto;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            display: flex;
+            gap: 1rem;
         }
-        50% {
-          transform: translateY(-10px);
+        
+        @media (min-width: 768px) {
+            .social-icons {
+                top: 50%;
+                left: 21px;
+                bottom: auto;
+                transform: translateY(-50%);
+                flex-direction: column;
+            }
         }
-        100% {
-          transform: translateY(0);
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #103C50;
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            animation: float 4s ease-in-out infinite;
         }
-      }
-
-      .social-icons {
-        position: fixed;
-        top: 50%;
-        left: 21px;
-        transform: translateY(-50%);
-        z-index: 1000;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .social-icons a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 50px;
-        height: 50px;
-        background-color: #103C50;
-        color: white;
-        border-radius: 50%;
-        transition: all 0.3s ease;
-        animation: float 4s ease-in-out infinite;
-      }
-
-      /* Aplicando diferentes tiempos de animación para hacer que los íconos floten en tiempos distintos */
-      .social-icons a:nth-child(1) {
-        animation-delay: 0s;
-      }
-
-      .social-icons a:nth-child(2) {
-        animation-delay: 0.5s;
-      }
-
-      .social-icons a:nth-child(3) {
-        animation-delay: 1s;
-      }
-
-      .social-icons a:nth-child(4) {
-        animation-delay: 1.5s;
-      }
-
-      /* Hover para cambiar el color y tamaño de los íconos */
-      .social-icons a:hover {
-        background-color: #38bdf8;
-        transform: scale(1.1);
-      }
-      .greeting {
-        font-size: 2.5rem;
-        font-weight: bold;
-        margin-bottom: 1rem;
-        color: #4fd1c5; /* Cyan color */
-      }
-      
-      /* Add this for the spaceship icon */
-      .spaceship-icon {
-        font-size: 2rem;
-        color: #4fd1c5;
-        transition: all 0.3s ease;
-      }
-      
-      .spaceship-icon:hover {
-        transform: translateY(-5px) rotate(45deg);
-      }
-      .font-monos{
-        font-family: "Roboto Mono", monospace;
-        font-optical-sizing: auto;
-        font-style: normal;
-      }
-      
+        
+        .social-icons a:hover {
+            background-color: #38bdf8;
+            transform: scale(1.1);
+        }
+        
+        .greeting {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #4fd1c5;
+        }
+        
+        @media (min-width: 768px) {
+            .greeting {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+        }
+        
+        .font-monos {
+            font-family: "Roboto Mono", monospace;
+            font-optical-sizing: auto;
+            font-style: normal;
+        }
     </style>
-  </head>
-  <body class="min-h-screen  text-cyan-300 font-mono">
+</head>
+<body class="min-h-screen text-cyan-300 font-mono">
     <div class="social-icons">
-      <a href="https://twitter.com" target="_blank">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="https://linkedin.com" target="_blank">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="https://github.com" target="_blank">
-        <i class="fab fa-github"></i>
-      </a>
-      <a href="https://facebook.com" target="_blank">
-        <i class="fab fa-facebook"></i>
-      </a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
     </div>
     <div class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden">
-      <!-- Animated background elements -->
-      <svg class="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-              <filter id="glow">
-                  <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
-                  <feMerge>
-                      <feMergeNode in="coloredBlur"/>
-                      <feMergeNode in="SourceGraphic"/>
-                  </feMerge>
-              </filter>
-          </defs>
-          <g filter="url(#glow)">
-              <circle class="pulse" cx="5%" cy="50%" r="2" fill="#4fd1c5"/>
-              <circle class="pulse" cx="95%" cy="30%" r="3" fill="#63b3ed"/>
-              <circle class="pulse" cx="80%" cy="70%" r="2" fill="#f6ad55"/>
-              <circle class="pulse" cx="10%" cy="10%" r="4" fill="#f687b3"/>
-              <circle class="pulse" cx="50%" cy="60%" r="3" fill="#68d391"/>
-          </g>
-      </svg>
+        <svg class="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <filter id="glow">
+                    <feGaussianBlur stdDeviation="3.5" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+            <g filter="url(#glow)">
+                <circle class="pulse" cx="5%" cy="50%" r="2" fill="#4fd1c5"/>
+                <circle class="pulse" cx="95%" cy="30%" r="3" fill="#63b3ed"/>
+                <circle class="pulse" cx="80%" cy="70%" r="2" fill="#f6ad55"/>
+                <circle class="pulse" cx="10%" cy="10%" r="4" fill="#f687b3"/>
+                <circle class="pulse" cx="50%" cy="60%" r="3" fill="#68d391"/>
+            </g>
+        </svg>
 
-      <!-- Hero content -->
-      <div class="relative z-10 text-center px-4">
-        
-          <h2 class="greeting  font-mono mb-6 text-cyan-300">
-            Hola, soy Brayan✌
-          </h2>
-          <h2 class=" mb-8 max-w-3xl text-5xl md:text-6xl font-bold mx-auto dark:text-gray-200 text-gray-800 text-center py-2">
-            Software Developer
-          </h2>
-          <div class="bg-gray-900 bg-opacity-60 p-8 rounded-lg shadow-xl border border-cyan-600 max-w-2xl mx-auto backdrop-filter backdrop-blur-sm">
-              <p class="mb-6 text-lg text-gray-300">
-                Desarrollador especializado en la creación de soluciones tecnológicas eficientes y escalables. Con más de dos años de experiencia, afronto cada desafío con un enfoque analítico y un compromiso constante con la mejora profesional. 
+        <div class="relative z-10 text-center px-4 py-8 md:py-0">
+            <h2 class="greeting font-mono mb-4 md:mb-6 text-cyan-300">
+                Hola, soy Brayan✌
+            </h2>
+            <h2 class="mb-6 md:mb-8 text-3xl md:text-5xl lg:text-6xl font-bold mx-auto dark:text-gray-200 text-gray-800 text-center py-2">
+                Software Developer
+            </h2>
+            <div class="bg-gray-900 bg-opacity-60 p-4 md:p-8 rounded-lg shadow-xl border border-cyan-600 max-w-2xl mx-auto backdrop-filter backdrop-blur-sm">
+              <p class="mb-4 md:mb-6 text-base md:text-lg text-gray-300">
+                Ingeniero de sistemas peruano, investigador y programador, con 2 años de experiencia en el desarrollo de soluciones tecnológicas.
               </p>
-              <div>
-                  <h5 class="text-xl font-semibold mb-2 text-cyan-300">
-                      Sobre mi:
-                  </h5>
-                  <ul class="space-y-2 text-gray-200">
-                      <li class="flex items-center justify-center">
-                          <i class="fas fa-coffee text-yellow-400 mr-2"></i>Adicto al café
-                      </li>
-                      <li class="flex items-center justify-center">
-                          <i class="fas fa-book text-indigo-400 mr-2"></i>Lector ávido de ciencia ficción
-                      </li>
-                      <li class="flex items-center justify-center">
-                          <i class="fas fa-gamepad text-red-400 mr-2"></i>Gamer en mis tiempos libres
-                      </li>
-                  </ul>
-              </div>
-          </div>
-          <div class="mt-8">
-            <h3 class="text-5xl font-bold mb-4 text-white typing-effect" id="typing-header">
-                El potencial humano es infinito.</h3>
-          </div>
-      </div>
-
-      <!-- Floating elements -->
-      <div class="absolute bottom-10 left-10 floating">
-          <svg class="w-16 h-16 text-cyan-300 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-      </div>
-      <div class="absolute top-10 right-10 floating" style="animation-delay: -2s;">
-          <svg class="w-16 h-16 text-blue-300 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
-      </div>
-  </div>
-  <!-- PROYECTOS -->
- 
-
-<!-- <footer class="bg-gray-900 bg-opacity-80 border-t border-cyan-600">
-  <div class="container mx-auto px-6 py-4">
-    <div class="flex justify-between items-center">
-      <p class="text-cyan-400 text-sm">
-        &copy; 2024 BrayanRF 🚀 Todos los derechos reservados.
-      </p>
-      <div class="flex space-x-4">
-        <a href="#" class="text-cyan-400 hover:text-cyan-300"
-          ><i class="fab fa-twitter"></i
-        ></a>
-        <a href="#" class="text-cyan-400 hover:text-cyan-300"
-          ><i class="fab fa-linkedin"></i
-        ></a>
-        <a href="#" class="text-cyan-400 hover:text-cyan-300"
-          ><i class="fab fa-github"></i
-        ></a>
-      </div>
-    </div>
-</footer> -->
-</div>
-<!-- CONTACTAME -->
-   
-
-      <script>
-      
-       
-
-        // Galaxy background effect
-    
-
-        window.addEventListener("resize", function () {
-          canvas.width = window.innerWidth;
-          canvas.height = window.innerHeight;
-        });
-        const header = document.getElementById("typing-header");
-      const text = header.textContent;
-      header.textContent = "";
-      let i = 0;
-      function typeWriter() {
-        if (i < text.length) {
-          header.textContent += text.charAt(i);
-          i++;
-          setTimeout(typeWriter, 100);
-        }
-      }
-      typeWriter();
-
-       // Código para las pestañas
-       const tabContent = {
-            portfolio: `
-                <p class="text-cyan-400 text-xl mb-6">
-            <span class="text-purple-400">class</span> <span class="text-cyan-300">Portfolio</span>:
-          </p>
-          <div class="pl-4 mt-2 space-y-4">
-            <p class="text-cyan-400 mb-4">
-              <span class="text-purple-400">def</span> <span class="text-cyan-300">__init__</span>(self):
-            </p>
-            <div class="pl-4">
-              <p class="text-cyan-400">self.projects = [</p>
-            </div>
-            <div class="projects grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pl-8">
-              <div class="project bg-gray-900">
-             <div class="image-container relative">
-    <img src="image.png" alt="Project Image" class="project-image" />
-    <a href="#" class="view-button absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 text-white font-semibold text-lg bg-cyan-600 bg-opacity-70">
-      Ver
-    </a>
-  </div>
-                <h3 class="text-xl font-semibold mb-2 text-green-300">Autonomous Drone System</h3>
-                
-                <div class="project-overlay">
-                  <p class="text-blue-300">
-                description =
-                <span class="text-green-300"
-                  >"Natural Language Processing model for sentiment
-                  analysis"</span
-                >
-              </p>
-                  <div class="code-preview">
-                    <pre><code>
-def process_image(frame):
-    # AI image processing
-    return analyzed_frame
-
-def control_drone(data):
-    # Autonomous flight logic
-    return flight_commands
-                    </code></pre>
-                  </div>
-                  <a href="#" class="btn">View Full Code</a>
-                </div>
-              </div>
-              <div class="project bg-gray-900">
-            <div class="image-container relative">
-    <img src="image.png" alt="Project Image" class="project-image" />
-    <a href="#" class="view-button absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 text-white font-semibold text-lg bg-cyan-600 bg-opacity-70">
-      Ver
-    </a>
-  </div>
-                <h3 class="text-xl font-semibold mb-2 text-green-300">NLP Sentiment Analyzer</h3>
-                <div class="project-overlay">
-                  <p class="text-blue-300">
-                description =
-                <span class="text-green-300"
-                  >"Natural Language Processing model for sentiment
-                  analysis"</span
-                >
-              </p>
-                  <div class="code-preview">
-                    <pre><code>
-def preprocess_text(text):
-    # Text cleaning and tokenization
-    return processed_tokens
-
-def analyze_sentiment(tokens):
-    # ML model prediction
-    return sentiment_score
-                    </code></pre>
-                  </div>
-                  <a href="#" class="btn">View Full Code</a>
-                </div>
-              </div>
-              <div class="project bg-gray-900">
-            <div class="image-container relative">
-    <img src="image.png" alt="Project Image" class="project-image" />
-    <a href="#" class="view-button absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 text-white font-semibold text-lg bg-cyan-600 bg-opacity-70">
-      Ver
-    </a>
-  </div>
-                <h3 class="text-xl font-semibold mb-2 text-green-300">Blockchain Voting System</h3>
-                <div class="project-overlay">
-                 <p class="text-blue-300">
-                description =
-                <span class="text-green-300"
-                  >"Natural Language Processing model for sentiment
-                  analysis"</span
-                >
-              </p>
-                  <div class="code-preview">
-                    <pre><code>
-def create_ballot(voter_id, vote):
-    # Encrypt and hash the vote
-    return encrypted_ballot
-
-def add_to_blockchain(ballot):
-    # Consensus algorithm
-    return updated_chain
-                    </code></pre>
-                  </div>
-                  <a href="#" class="btn">View Full Code</a>
-                </div>
-              </div>
-            </div>
-            <div class="pl-4">
-              <p class="text-cyan-400">]</p>
-            </div>
-          </div>
-            `,
-            skills: `
-                <p class="text-purple-400">
-                    def <span class="text-cyan-300">display_skills</span>():
-                </p>
-                <div class="pl-4 mt-2 space-y-4">
-                    <section id="skills">
-      
-          <div class="carousel" style="overflow-x: auto">
-            <a href="https://skillicons.dev">
-              <img
-                src="https://skillicons.dev/icons?i=git,aws,vue,c,cpp,css,discord,docker,dynamodb,github,html,java,js,kotlin,firebase,linux,mysql,nextjs,nodejs,postman,py,react,tailwind,ts,vscode&perline=14"
-                alt="Skills Icons"
-                style="width: 100%; max-width: none; height: auto"
-              />
-            </a>
-          </div>
-        </section>
-                </div>
-            `,
-            contactame:`
-        <p class="text-purple-400">
-                    def <span class="text-cyan-300">contactame</span>():
-                </p>
-              <section id="contacto" class="pl-4 mt-2 bg-dark">
-        <div class="container mx-auto px-4  rounded-lg shadow-xl p-8  ">
+              
+              
             
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Formulario de contacto -->
-            <div class="bg-gray-900 p-8 rounded-lg shadow-lg">
-              <h4 class="text-xl font-bold mb-4 text-blue-400">
-                Envíame un mensaje
-              </h4>
-              <form id="contact-form" class="space-y-4">
                 <div>
-                  <label for="nombre" class="block text-sm font-medium mb-1"
-                    >Nombre:</label
-                  >
-                  <input
-                    type="text"
-                    id="nombre"
-                    name="nombre"
-                    class="w-full px-3 py-2 bg-gray-800 text-gray-300 rounded border border-gray-700 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition duration-300"
-                    required
-                  />
+                    <h5 class="text-lg md:text-xl font-semibold mb-2 text-cyan-300">
+                        Sobre mi:
+                    </h5>
+                    <ul class="space-y-2 text-gray-200 text-sm md:text-base">
+                        <li class="flex items-center justify-center">
+                            <i class="fas fa-cat text-yellow-400 mr-2"></i>Me gustan los gatos
+                        </li>
+                        <li class="flex items-center justify-center">
+                            <i class="fas fa-book text-indigo-400 mr-2"></i>Lector ávido de ciencia ficción
+                        </li>
+                        <li class="flex items-center justify-center">
+                            <i class="fas fa-gamepad text-red-400 mr-2"></i>Gamer en mis tiempos libres
+                        </li>
+                    </ul>
                 </div>
-                <div>
-                  <label for="email" class="block text-sm font-medium mb-1"
-                    >Email:</label
-                  >
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    class="w-full px-3 py-2 bg-gray-800 text-gray-300 rounded border border-gray-700 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition duration-300"
-                    required
-                  />
-                </div>
-                <div>
-                  <label for="mensaje" class="block text-sm font-medium mb-1"
-                    >Mensaje:</label
-                  >
-                  <textarea
-                    id="mensaje"
-                    name="mensaje"
-                    rows="4"
-                    class="w-full px-3 py-2 bg-gray-800 text-gray-300 rounded border border-gray-700 focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition duration-300"
-                    required
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  class="w-full bg-blue-600 text-gray-900 py-2 px-4 rounded hover:bg-blue-500 transition duration-300 transform hover:scale-105"
-                >
-                  Enviar mensaje
-                </button>
-              </form>
             </div>
-
-            <!-- Información de contacto y redes sociales -->
-            <div
-              class="bg-gray-900 p-8 rounded-lg shadow-lg flex flex-col justify-between"
-            >
-              <div>
-                <h4 class="text-xl font-bold mb-4 text-blue-400">
-                  Información
-                </h4>
-                <p class="mb-4">
-                  Actualmente formo parte de INNOVAHTEC, pero siempre estaré disponible para colaboraciones o intercambios de ideas. No dudes en contactarme para conversar o trabajar en conjunto.
-                </p>
-                <ul class="space-y-2">
-                  <li class="flex items-center">
-                    <i class="fas fa-envelope text-blue-400 mr-2"></i>
-                    <a
-                      href="mailto:rfreyrebrayaned@gmail.com"
-                      class="hover:text-blue-400 transition duration-300"
-                      >rfreyrebrayaned@gmail.com</a
-                    >
-                  </li>
-                  <li class="flex items-center">
-                    <i class="fas fa-map-marker-alt text-blue-400 mr-2"></i>
-                    <span>Chiclayo, Perú</span>
-                  </li>
-                  <li class="flex items-center">
-                    <i class="fas fa-phone-alt text-blue-400 mr-2"></i>
-                    <span>+51 998 511 769</span>
-                  </li>
-                </ul>
-              </div>
-              <div class="mt-8">
-                <h5 class="text-lg font-semibold mb-4 text-blue-400">
-                  Sígueme en:
-                </h5>
-                <div class="flex space-x-4">
-                  <a
-                    href="#"
-                    class="text-gray-400 hover:text-blue-400 transition duration-300 transform hover:scale-110"
-                  >
-                    <i class="fab fa-github fa-2x"></i>
-                  </a>
-                  <a
-                    href="#"
-                    class="text-gray-400 hover:text-blue-400 transition duration-300 transform hover:scale-110"
-                  >
-                    <i class="fab fa-linkedin fa-2x"></i>
-                  </a>
-                  <a
-                    href="#"
-                    class="text-gray-400 hover:text-blue-400 transition duration-300 transform hover:scale-110"
-                  >
-                    <i class="fab fa-twitter fa-2x"></i>
-                  </a>
-                </div>
-              </div>
+            <div class="mt-6 md:mt-8">
+                <h3 class="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 text-white typing-effect" id="typing-header">
+                    El potencial humano es infinito.
+                </h3>
             </div>
-          </div>
         </div>
-      </section>
-            `
-            // Puedes añadir más contenido de pestañas aquí
-        };
 
-        function showTab(tabId) {
-            document.getElementById('tab-content').innerHTML = tabContent[tabId];
-            document.querySelectorAll('#tab-buttons button').forEach(button => {
-                if (button.dataset.tab === tabId) {
-                    button.classList.remove('bg-gray-700', 'text-gray-300');
-                    button.classList.add('bg-indigo-600', 'text-white');
-                } else {
-                    button.classList.remove('bg-indigo-600', 'text-white');
-                    button.classList.add('bg-gray-700', 'text-gray-300');
-                }
-            });
+        <div class="absolute bottom-5 left-2 floating hidden md:block">
+            <svg class="text-2xl md:text-4xl lg:text-5xl w-12 h-12 md:w-16 md:h-16 text-cyan-300 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+        </div>
+        <div class="absolute top-5 right-2 floating hidden md:block" style="animation-delay: -2s;">
+            <svg class="text-2xl md:text-4xl lg:text-5xl w-12 h-12 md:w-16 md:h-16 text-blue-300 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
+        </div>
+    </div>
+
+    <script>
+        const header = document.getElementById("typing-header");
+        const text = header.textContent;
+        header.textContent = "";
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                header.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
         }
-
-        document.querySelectorAll('#tab-buttons button').forEach(button => {
-            button.addEventListener('click', () => showTab(button.dataset.tab));
-        });
-
-        // Mostrar la primera pestaña por defecto
-        showTab('portfolio');
-      </script>
-      
-   
-  </body>
+        typeWriter();
+    </script>
+</body>
 </html>
