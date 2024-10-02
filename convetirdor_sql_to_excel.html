@@ -210,36 +210,33 @@ CREATE TABLE usuarios (
             formData.append("file", fileInput.files[0]);
 
             fetch("https://backportfolio.pythonanywhere.com/upload-sql", {
-              method: "POST",
-              body: formData,
-            })
-              .then((response) => {
-                if (!response.ok) {
-                  return response.json().then((err) => {
-                    throw err;
-                  });
-                }
-                return response.blob();
-              })
-              .then((blob) => {
-                var url = window.URL.createObjectURL(blob);
-                var a = document.createElement("a");
-                a.href = url;
-                a.download = "diccionario_datos_avanzado.xlsx";
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-                document.getElementById("message").innerHTML =
-                  '<p class="text-green-400">¡Conversión exitosa! Descargando archivo Excel...</p>';
-              })
-              .catch((error) => {
-                console.error("Error:", error);
-                document.getElementById(
-                  "message"
-                ).innerHTML = `<p class="text-red-400">Error: ${
-                  error.error || "Ocurrió un error durante la conversión."
-                }</p>`;
-              });
+  method: "POST",
+  body: formData,
+})
+  .then((response) => {
+    if (!response.ok) {
+      return response.text().then(text => {
+        throw new Error(text || response.statusText);
+      });
+    }
+    return response.blob();
+  })
+  .then((blob) => {
+    var url = window.URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "diccionario_datos_avanzado.xlsx";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    document.getElementById("message").innerHTML =
+      '<p class="text-green-400">¡Conversión exitosa! Descargando archivo Excel...</p>';
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+    document.getElementById("message").innerHTML = 
+      `<p class="text-red-400">Error: ${error.message || "Ocurrió un error durante la conversión."}</p>`;
+  });
           });
 
         // Galaxy background effect
