@@ -29,7 +29,6 @@ const ProjectsHeader = () => {
               { icon: FaHome, text: 'Inicio', path: '/' },
               { icon: FaFolder, text: 'Proyectos', path: '/projects' },
               { icon: FaUser, text: 'Sobre Mí', path: '/about' },
-              { icon: FaEnvelope, text: 'Contacto', path: '/contact' },
             ].map((item, index) => (
               <motion.li key={item.text} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
                 <Link to={item.path} className="flex items-center text-gray-300 hover:text-cyan-400 transition-colors">

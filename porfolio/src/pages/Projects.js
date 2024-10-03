@@ -1,20 +1,28 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
-import ProjectCard from '../components/ProjectCard';
 
+import ProjectCard from '../components/ProjectCard';
+import projectImage from '../images/image.png';
 const projects = [
   {
     id: 1,
-    title: "Proyecto Innovador 1",
-    description: "Una aplicación revolucionaria que transforma la manera en que interactuamos con la tecnología.",
-    image: "https://source.unsplash.com/random/800x600?tech",
+    title: "Generador de Datos",
+    description: "Herramienta que genera automáticamente inserciones optimizadas para diferentes tipos de bases de datos (MySQL, PostgreSQL, MongoDB, etc.), facilitando la carga y el manejo de grandes volúmenes de datos.",
+    image: projectImage,
     github: "https://github.com",
     demo: "https://demo.com"
   },
-  // ... Añade más proyectos aquí
+  {
+    id: 2,
+    title: "Clasificación de Imágenes con Machine Learning",
+    description: "Sistema basado en Machine Learning para clasificar grandes conjuntos de imágenes, empleando técnicas avanzadas de aprendizaje supervisado y redes neuronales.",
+    image: projectImage,
+    github: "https://github.com",
+    demo: "https://demo.com"
+  },
 ];
+
 
 const Projects = () => {
   return (
