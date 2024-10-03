@@ -8,7 +8,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/portfolio" element={<Home />} />
         <Route element={<Layout />}>
           <Route path="/projects" element={<Projects />} />
           {/* Agrega aquí más rutas para páginas internas */}
