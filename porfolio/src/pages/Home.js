@@ -1,177 +1,345 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./Home.css"; // Asegúrate de crear este archivo para los estilos personalizados
-import { FaInstagram, FaLinkedin, FaGithub, FaTiktok, FaCat, FaBook, FaGamepad } from 'react-icons/fa';
+import { motion } from "framer-motion";
+import { 
+  FaGithub, 
+  FaLinkedin, 
+  FaInstagram, 
+  FaTiktok,
+  FaMapMarkerAlt,
+  FaClock,
+  FaCode,
+  FaArrowRight,
+  FaDownload,
+  FaEnvelope
+} from 'react-icons/fa';
+
 function Home() {
-  const [typedText, setTypedText] = useState("");
-  const fullText = "El potencial humano es infinito.";
+  const [currentTime, setCurrentTime] = useState(new Date());
+  
+  // Configuración de disponibilidad - Cambiar solo este valor
+  const isAvailable = false; // Cambiar a false cuando esté bajo contrato
+
+  // Cálculo automático de años de experiencia
+  const startYear = 2022;
+  const currentYear = new Date().getFullYear();
+  const yearsOfExperience = currentYear - startYear;
 
   useEffect(() => {
-    let i = 0;
-    const typeWriter = () => {
-      if (i < fullText.length) {
-        setTypedText(fullText.slice(0, i + 1));
-        i++;
-        setTimeout(typeWriter, 100);
-      }
-    };
-    typeWriter();
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(timer);
   }, []);
 
+  const socialLinks = [
+    { 
+      platform: "GitHub", 
+      handle: "@BryanRF", 
+      url: "https://github.com/BryanRF", 
+      icon: FaGithub 
+    },
+    { 
+      platform: "LinkedIn", 
+      handle: "Brayan Rojas", 
+      url: "https://www.linkedin.com/in/brayan-eduardo-rojas-freyre-41255414a/", 
+      icon: FaLinkedin 
+    },
+    { 
+      platform: "Instagram", 
+      handle: "@bryan.rfr", 
+      url: "https://www.instagram.com/bryan.rfr/", 
+      icon: FaInstagram 
+    },
+    { 
+      platform: "TikTok", 
+      handle: "@edu_rf", 
+      url: "https://www.tiktok.com/@edu_rf", 
+      icon: FaTiktok 
+    }
+  ];
+
+  const stats = [
+    { label: "Años de experiencia", value: `${yearsOfExperience}+` },
+    { label: "Proyectos completados", value: "15+" },
+    { label: "Tecnologías dominadas", value: "10+" },
+    { label: "Tazas de café", value: "∞" }
+  ];
+
+  // Disponibilidad dinámica basada en el estado
+  const availability = {
+    status: isAvailable ? "Disponible para proyectos" : "Actualmente bajo contrato",
+    nextAvailable: isAvailable ? "Inmediato" : "A consultar",
+    responseTime: "< 24h",
+    canParticipate: isAvailable
+  };
+
   return (
-    <div className="min-h-screen text-cyan-300 font-mono">
-      <div className="social-icons">
-        <a
-          href="https://www.instagram.com/bryan.rfr/"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="min-h-screen bg-black text-white">
+      {/* Main Container */}
+      <div className="max-w-4xl mx-auto px-6 py-12 md:py-20">
+        
+        {/* Header Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
         >
-          <FaInstagram className="w-6 h-6" />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/brayan-eduardo-rojas-freyre-41255414a/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-           <FaLinkedin className="w-6 h-6" />
-        </a>
-        <a
-          href="https://github.com/BryanRF"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-           <FaGithub className="w-6 h-6" />
-        </a>
-        <a
-          href="https://www.tiktok.com/@edu_rf"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-         <FaTiktok className="w-6 h-6" />
-        </a>
-      </div>
-      <div className="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden">
-        <svg
-          className="absolute w-full h-full"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <filter id="glow">
-              <feGaussianBlur stdDeviation="3.5" result="coloredBlur" />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-          <g filter="url(#glow)">
-            <circle className="pulse" cx="5%" cy="50%" r="2" fill="#4fd1c5" />
-            <circle className="pulse" cx="95%" cy="30%" r="3" fill="#63b3ed" />
-            <circle className="pulse" cx="80%" cy="70%" r="2" fill="#f6ad55" />
-            <circle className="pulse" cx="10%" cy="10%" r="4" fill="#f687b3" />
-          </g>
-        </svg>
+          {/* Status Badge */}
+          <div className="flex items-center mb-8">
+            <div className={`w-3 h-3 rounded-full mr-3 animate-pulse ${
+              isAvailable ? 'bg-green-500' : 'bg-red-500'
+            }`}></div>
+            <span className="text-sm text-gray-400">{availability.status}</span>
+          </div>
 
-        <div className="relative z-10 text-center px-4 py-8 md:py-0">
-          <h2 className="greeting font-mono mb-4 md:mb-6 text-white">
-            Hola, <span className="text-cyan-300">soy Brayan ✌</span>
+          {/* Main Intro */}
+          <h1 className="text-4xl md:text-6xl font-light mb-6 tracking-tight">
+            Hola, soy <span className="font-normal">Brayan</span>
+          </h1>
+          
+          <h2 className="text-xl md:text-2xl text-gray-400 mb-8 font-light">
+            Software Developer & System Engineer
           </h2>
 
-          <h2 className="mb-6 md:mb-8 text-3xl md:text-5xl lg:text-6xl font-bold mx-auto dark:text-gray-200 text-gray-800 text-center py-2">
-            Software Developer
-          </h2>
-          <div className="bg-gray-900 bg-opacity-60 p-4 md:p-8 rounded-lg shadow-xl border border-cyan-600 max-w-2xl mx-auto backdrop-filter backdrop-blur-sm">
-            <p className="mb-4 md:mb-6 text-base md:text-lg text-gray-300">
-              Ingeniero de sistemas, con 2 años de experiencia en el desarrollo
-              de soluciones tecnológicas.
-            </p>
+          <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-3xl mb-12">
+            Ingeniero de sistemas con {yearsOfExperience} años de experiencia creando soluciones tecnológicas. 
+            Me especializo en desarrollo full-stack, machine learning y arquitecturas escalables.  
+            {isAvailable ? 
+              " Actualmente disponible para nuevos proyectos y colaboraciones." : 
+              " Actualmente trabajando."
+            }
+          </p>
 
-            <div className="">
-              <h5 className="text-lg md:text-xl font-semibold mb-2 text-cyan-300">
-                Sobre mi:
-              </h5>
-              <ul className="mb-4 md:mb-6 space-y-2 text-gray-200 text-sm md:text-base">
-                <li className="flex items-center justify-center">
-                  <i className="fas fa-cat text-yellow-400 mr-2"></i>Me gustan
-                  los gatos
-                </li>
-                <li className="flex items-center justify-center">
-                  <i className="fas fa-book text-indigo-400 mr-2"></i>Lector
-                  ávido de ciencia ficción
-                </li>
-                <li className="flex items-center justify-center">
-                  <i className="fas fa-gamepad text-red-400 mr-2"></i>Gamer en
-                  mis tiempos libres
-                </li>
-              </ul>
-              <h5 className="text-lg md:text-xl font-semibold mb-2 text-cyan-300">
-                Skills:
-              </h5>
-              <span align="center" className="mb-2">
-                <a href="https://skillicons.dev">
-                  <img
-                    src="https://skillicons.dev/icons?i=git,aws,vue,firebase,java,firebase,linux,nextjs,py,react,php&perline=14"
-                    alt="Skills"
-                  />
-                </a>
-              </span>
-              <br />
-              <div className="container mt-2">
-                <Link to="/projects" className="button type--C">
-                  <div className="button__line"></div>
-                  <div className="button__line"></div>
-                  <span className="button__text">Mis proyectos</span>
-                  <div className="button__drow1"></div>
-                  <div className="button__drow2"></div>
-                </Link>
+          {/* Quick Actions */}
+          <div className="flex flex-col sm:flex-row gap-4 mb-16">
+            <Link
+              to="/projects"
+              className="inline-flex items-center justify-center px-6 py-3 bg-white text-black font-medium hover:bg-gray-200 transition-colors duration-200"
+            >
+              Ver mi trabajo
+              <FaArrowRight className="ml-2 text-sm" />
+            </Link>
+            
+            <a
+              href="mailto:brayan@ejemplo.com"
+              className="inline-flex items-center justify-center px-6 py-3 border border-gray-600 text-white hover:border-gray-400 transition-colors duration-200"
+            >
+              <FaEnvelope className="mr-2 text-sm" />
+              Contactar
+            </a>
+            
+            {isAvailable && (
+              <button className="inline-flex items-center justify-center px-6 py-3 border border-green-600 text-green-400 hover:border-green-400 hover:bg-green-500/10 transition-colors duration-200">
+                <FaDownload className="mr-2 text-sm" />
+                Disponible para contratar
+              </button>
+            )}
+            
+            {!isAvailable && (
+              <button className="inline-flex items-center justify-center px-6 py-3 border border-gray-600 text-gray-500 cursor-not-allowed opacity-60">
+                <FaDownload className="mr-2 text-sm" />
+                Actualmente ocupado
+              </button>
+            )}
+          </div>
+        </motion.div>
+
+        {/* Stats Grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 pb-16 border-b border-gray-800"
+        >
+          {stats.map((stat, index) => (
+            <div key={index} className="text-center">
+              <div className="text-2xl md:text-3xl font-light mb-2">{stat.value}</div>
+              <div className="text-sm text-gray-500">{stat.label}</div>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Location & Time */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex flex-col sm:flex-row sm:items-center justify-between mb-16 pb-16 border-b border-gray-800"
+        >
+          <div className="flex items-center mb-4 sm:mb-0">
+            <FaMapMarkerAlt className="text-gray-500 mr-3" />
+            <span className="text-gray-300">Chiclayo, Perú</span>
+          </div>
+          
+          <div className="flex items-center">
+            <FaClock className="text-gray-500 mr-3" />
+            <span className="text-gray-300">
+              {currentTime.toLocaleTimeString('es-PE', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                timeZone: 'America/Lima'
+              })} PET
+            </span>
+          </div>
+        </motion.div>
+
+        {/* Current Focus
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mb-16"
+        >
+          <h3 className="text-2xl font-light mb-8">Proyectos Personales</h3>
+          
+          <div className="space-y-6">
+            <div className="border border-gray-800 p-6 hover:border-gray-600 transition-colors duration-200">
+              <div className="flex items-start justify-between mb-4">
+                <h4 className="text-lg font-medium">Proyectos de Machine Learning</h4>
+                <FaCode className="text-gray-500 mt-1" />
+              </div>
+              <p className="text-gray-400 mb-4">
+                Desarrollando sistemas de clasificación de imágenes y análisis de datos usando TensorFlow y Python.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="px-3 py-1 bg-gray-800 text-xs rounded-full">Python</span>
+                <span className="px-3 py-1 bg-gray-800 text-xs rounded-full">TensorFlow</span>
+                <span className="px-3 py-1 bg-gray-800 text-xs rounded-full">Docker</span>
+              </div>
+            </div>
+
+            <div className="border border-gray-800 p-6 hover:border-gray-600 transition-colors duration-200">
+              <div className="flex items-start justify-between mb-4">
+                <h4 className="text-lg font-medium">Aplicaciones Full-Stack</h4>
+                <FaCode className="text-gray-500 mt-1" />
+              </div>
+              <p className="text-gray-400 mb-4">
+                Creando aplicaciones web modernas con React, Node.js y bases de datos optimizadas.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <span className="px-3 py-1 bg-gray-800 text-xs rounded-full">React</span>
+                <span className="px-3 py-1 bg-gray-800 text-xs rounded-full">Node.js</span>
+                <span className="px-3 py-1 bg-gray-800 text-xs rounded-full">PostgreSQL</span>
               </div>
             </div>
           </div>
-          <div className="mt-6 md:mt-8">
-            <h3
-              className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 text-white typing-effect"
-              id="typing-header"
-            >
-              {typedText}
-            </h3>
-          </div>
-        </div>
+        </motion.div> */}
 
-        <div className="absolute bottom-5 left-2 floating hidden md:block">
-          <svg
-            className="text-2xl md:text-4xl lg:text-5xl w-12 h-12 md:w-16 md:h-16 text-cyan-300 opacity-50"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-            ></path>
-          </svg>
-        </div>
-        <div
-          className="absolute top-5 right-2 floating hidden md:block"
-          style={{ animationDelay: "-2s" }}
+        {/* Availability Status */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className={`mb-16 p-6 border ${
+            isAvailable ? 'bg-green-900/20 border-green-800' : 'bg-red-900/20 border-red-800'
+          }`}
         >
-          <svg
-            className="text-2xl md:text-4xl lg:text-5xl w-12 h-12 md:w-16 md:h-16 text-blue-300 opacity-50"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
-            ></path>
-          </svg>
-        </div>
+          <div className="flex items-center mb-6">
+            <h3 className="text-xl font-light mr-3">Disponibilidad</h3>
+            <div className={`w-2 h-2 rounded-full ${
+              isAvailable ? 'bg-green-500' : 'bg-red-500'
+            } animate-pulse`}></div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div>
+              <div className="text-sm text-gray-500 mb-1">Estado actual</div>
+              <div className="flex items-center">
+               
+                <span className={`${
+                  isAvailable ? 'text-green-400' : 'text-red-400'
+                }`}>{availability.status}</span>
+              </div>
+            </div>
+            
+            <div>
+              <div className="text-sm text-gray-500 mb-1">Próxima disponibilidad</div>
+              <div className="text-white">{availability.nextAvailable}</div>
+            </div>
+            
+            <div>
+              <div className="text-sm text-gray-500 mb-1">Tiempo de respuesta</div>
+              <div className="text-white">{availability.responseTime}</div>
+            </div>
+
+            <div>
+              <div className="text-sm text-gray-500 mb-1">¿Puede participar?</div>
+              <div className={`font-medium ${
+                availability.canParticipate ? 'text-green-400' : 'text-red-400'
+              }`}>
+                {availability.canParticipate ? 'Sí, disponible' : 'No, ocupado'}
+              </div>
+            </div>
+          </div>
+          
+          {!isAvailable && (
+            <div className="mt-4 p-4 bg-gray-800/50 rounded border border-gray-700">
+              <p className="text-sm text-gray-400">
+                Actualmente no cuento con disponibilidad. Sin embargo, puedes contactarme 
+                para discutir oportunidades futuras o consultas.
+              </p>
+            </div>
+          )}
+          
+          {isAvailable && (
+            <div className="mt-4 p-4 bg-green-900/20 rounded border border-green-800">
+              <p className="text-sm text-green-300">
+                ¡Perfecto timing! Estoy buscando nuevos proyectos emocionantes. 
+                Contactame para discutir cómo puedo ayudarte.
+              </p>
+            </div>
+          )}
+        </motion.div>
+
+        {/* Social Links */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mb-16"
+        >
+          <h3 className="text-2xl font-light mb-8">Conectemos</h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {socialLinks.map((social, index) => {
+              const IconComponent = social.icon;
+              return (
+                <a
+                  key={index}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-6 border border-gray-800 hover:border-gray-600 transition-colors duration-200 group"
+                >
+                  <div className="flex items-center">
+                    <IconComponent className="text-xl mr-4 text-gray-400 group-hover:text-white transition-colors duration-200" />
+                    <div>
+                      <div className="font-medium">{social.platform}</div>
+                      <div className="text-sm text-gray-500">{social.handle}</div>
+                    </div>
+                  </div>
+                  <FaArrowRight className="text-gray-500 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" />
+                </a>
+              );
+            })}
+          </div>
+        </motion.div>
+
+
+
+        {/* Footer */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="pt-16 border-t border-gray-800 text-center"
+        >
+          <p className="text-gray-500">
+            © 2024 Brayan Rojas. Construido con React y mucho ☕
+          </p>
+        </motion.div>
       </div>
     </div>
   );

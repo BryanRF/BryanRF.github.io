@@ -20,7 +20,7 @@ const Header = () => {
   }, [location]);
 
   const navigationItems = [
-    { icon: FaHome, text: 'Inicio', path: '/', description: 'Página principal' },
+    { icon: FaHome, text: 'Inicio', path: '/portfolio', description: 'Página principal' },
     { icon: FaFolder, text: 'Proyectos', path: '/projects', description: 'Mi trabajo' },
     { icon: FaUser, text: 'Sobre Mí', path: '/about', description: 'Conoce más' },
     { icon: FaEnvelope, text: 'Contacto', path: '/contact', description: 'Hablemos' },
@@ -92,7 +92,7 @@ const Header = () => {
               whileHover="hover"
             >
               <Link 
-                to="/" 
+                to="/portfolio" 
                 className="relative group"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -117,7 +117,6 @@ const Header = () => {
                     key={item.text}
                     variants={navItemVariants}
                     initial="initial"
-                    whileHover="hover"
                     className="relative group"
                   >
                     <Link
