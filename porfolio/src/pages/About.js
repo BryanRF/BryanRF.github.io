@@ -7,7 +7,6 @@ import {
   FaBrain,
   FaDatabase,
   FaServer,
-  FaArrowLeft,
   FaDownload,
   FaCalendar
 } from 'react-icons/fa';

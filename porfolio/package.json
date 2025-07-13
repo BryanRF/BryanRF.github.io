@@ -1,6 +1,6 @@
 {
-  "home": "/",
-  "homepage": "https://bryanrf.github.io/",
+  "home": "porfolio",
+  "homepage": "https://bryanrf.github.io/portfolio",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

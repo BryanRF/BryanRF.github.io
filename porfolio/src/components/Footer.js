@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaHeart, FaCode, FaRocket, FaArrowUp } from 'react-icons/fa';
 
 const Footer = () => {
-  const [showScrollTop, setShowScrollTop] = useState(true);
+  const [showScrollTop] = useState(true);
 
   const socialLinks = [
     { 

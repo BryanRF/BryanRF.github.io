@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useSpring, animated } from 'react-spring';
-import { FaGithub, FaExternalLinkAlt, FaCode, FaDatabase, FaBrain, FaChartLine, FaRocket, FaCog } from 'react-icons/fa';
+import { FaGithub,  FaCode, FaDatabase, FaBrain, FaChartLine, FaRocket, FaCog } from 'react-icons/fa';
 
 // Iconos para diferentes tipos de proyectos
 const getProjectIcon = (type) => {

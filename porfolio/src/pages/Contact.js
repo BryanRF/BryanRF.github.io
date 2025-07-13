@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { 
   FaEnvelope,
@@ -10,22 +9,13 @@ import {
   FaWhatsapp,
   FaMapMarkerAlt,
   FaClock,
-  FaArrowLeft,
   FaArrowRight,
-  FaPaperPlane,
-  FaCheckCircle
 } from 'react-icons/fa';
 
 function Contact() {
   const [isVisible, setIsVisible] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  const [isSubmitted, setIsSubmitted] = useState(false);
+
   
   useEffect(() => {
     setIsVisible(true);
@@ -88,25 +78,6 @@ function Contact() {
     }
   ];
 
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Aquí puedes agregar la lógica para enviar el formulario
-    console.log('Formulario enviado:', formData);
-    setIsSubmitted(true);
-    
-    // Reset después de 3 segundos
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 3000);
-  };
 
   return (
     <div className="min-h-screen bg-black text-white">
