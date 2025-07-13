@@ -13,9 +13,6 @@ import {
   FaEnvelope,
   FaCode,
   FaRocket,
-  FaBriefcase,
-  FaCalendarAlt,
-  FaCheckCircle
 } from 'react-icons/fa';
 import { whatsappConfig } from '../data/projectData';
 import StarfieldBackground from '../components/StarfieldBackground';

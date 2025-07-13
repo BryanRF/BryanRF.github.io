@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { 
   FaGraduationCap,
@@ -17,21 +15,14 @@ import {
   FaGamepad,
   FaMusic,
   FaTv,
-  FaBook,
-  FaCamera,
   FaCoffee,
-  FaPlane,
+  
   FaStar,
-  FaArtstation,
-  FaPencilAlt
+
 } from 'react-icons/fa';
 
 function About() {
-  const [isVisible, setIsVisible] = useState(false);
   
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
 
   // Configuración personal
   const currentYear = new Date().getFullYear();

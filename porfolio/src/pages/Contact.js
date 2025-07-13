@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState} from "react";
 import { motion } from "framer-motion";
 import { 
   FaEnvelope,
@@ -10,7 +10,6 @@ import {
   FaMapMarkerAlt,
   FaClock,
   FaArrowRight,
-  FaPhone,
   FaGlobe,
   FaCalendarAlt,
   FaCheckCircle,
@@ -18,8 +17,7 @@ import {
 } from 'react-icons/fa';
 
 function Contact() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [currentTime, setCurrentTime] = useState(new Date());
+  const [currentTime] = useState(new Date());
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -27,13 +25,7 @@ function Contact() {
     message: ''
   });
 
-  useEffect(() => {
-    setIsVisible(true);
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
+
 
   const handleInputChange = (e) => {
     setFormData({
