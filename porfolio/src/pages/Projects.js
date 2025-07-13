@@ -1,104 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Header from '../components/Header';
 import ProjectCard from '../components/ProjectCard';
-import { FaFilter, FaSearch, FaCode, FaDatabase, FaBrain, FaChartLine, FaRocket } from 'react-icons/fa';
+import { FaSearch, FaCode, FaDatabase, FaBrain, FaChartLine, FaRocket, FaCog, FaWhatsapp } from 'react-icons/fa';
+import { projects, filterCategories, whatsappConfig } from '../data/projectData';
 
-// Datos de proyectos mejorados con más información
-const projects = [
-  {
-    id: 1,
-    title: "Generador de Datos Inteligente",
-    description: "Herramienta avanzada que genera automáticamente inserciones optimizadas para diferentes tipos de bases de datos, con soporte para múltiples formatos y validación de datos en tiempo real.",
-    type: "database",
-    status: "Completado",
-    technologies: ["Python", "PostgreSQL", "MySQL", "MongoDB", "Docker"],
-    features: [
-      "Generación de datos sintéticos realistas",
-      "Soporte para múltiples SGBD",
-      "Validación automática de esquemas",
-      "Optimización de consultas"
-    ],
-    metrics: {
-      rendimiento: "99.9%",
-      velocidad: "10K/seg"
-    },
-    progress: 100,
-    github: "https://github.com/tuusuario/generador-datos",
-    demo: "https://demo-generador.com"
-  },
-  {
-    id: 2,
-    title: "Clasificador de Imágenes con Deep Learning",
-    description: "Sistema de clasificación de imágenes usando redes neuronales convolucionales avanzadas, con capacidad de entrenamiento personalizado y detección en tiempo real.",
-    type: "ml",
-    status: "En desarrollo",
-    technologies: ["Python", "TensorFlow", "OpenCV", "Docker", "AWS"],
-    features: [
-      "Reconocimiento en tiempo real",
-      "Entrenamiento personalizable",
-      "API REST integrada",
-      "Escalabilidad en la nube"
-    ],
-    metrics: {
-      precisión: "94.2%",
-      velocidad: "30 FPS"
-    },
-    progress: 85,
-    github: "https://github.com/tuusuario/clasificador-ml",
-    demo: "https://demo-classifier.com"
-  },
-  {
-    id: 3,
-    title: "Dashboard Analítico Avanzado",
-    description: "Plataforma de visualización de datos en tiempo real con gráficos interactivos, métricas personalizables y alertas inteligentes para análisis empresarial.",
-    type: "analytics",
-    status: "Beta",
-    technologies: ["React", "Node.js", "PostgreSQL", "Redis", "AWS"],
-    features: [
-      "Visualizaciones interactivas",
-      "Alertas en tiempo real",
-      "Exportación automática",
-      "Integración con APIs"
-    ],
-    metrics: {
-      usuarios: "1.2K",
-      uptime: "99.8%"
-    },
-    progress: 90,
-    github: "https://github.com/tuusuario/dashboard-analytics",
-    demo: "https://demo-dashboard.com"
-  },
-  {
-    id: 4,
-    title: "Automatizador de Procesos Web",
-    description: "Sistema de automatización web que ejecuta tareas repetitivas, scraping inteligente y procesamiento de formularios con técnicas de machine learning.",
-    type: "automation",
-    status: "Planificado",
-    technologies: ["Python", "Selenium", "BeautifulSoup", "Celery", "Redis"],
-    features: [
-      "Scraping inteligente",
-      "Automatización de formularios",
-      "Programación de tareas",
-      "Detección anti-bot avanzada"
-    ],
-    metrics: {
-      tareas: "500+",
-      éxito: "96.5%"
-    },
-    progress: 60,
-    github: "https://github.com/tuusuario/web-automation",
-    demo: "https://demo-automation.com"
-  }
-];
-
-const filterCategories = [
-  { id: 'all', name: 'Todos', icon: FaRocket },
-  { id: 'database', name: 'Base de Datos', icon: FaDatabase },
-  { id: 'ml', name: 'Machine Learning', icon: FaBrain },
-  { id: 'analytics', name: 'Analítica', icon: FaChartLine },
-  { id: 'automation', name: 'Automatización', icon: FaCode }
-];
+const iconMap = {
+  'FaCode': FaCode,
+  'FaDatabase': FaDatabase,
+  'FaBrain': FaBrain,
+  'FaChartLine': FaChartLine,
+  'FaRocket': FaRocket,
+  'FaCog': FaCog
+};
 
 const Projects = () => {
   const [filteredProjects, setFilteredProjects] = useState(projects);
@@ -113,12 +26,10 @@ const Projects = () => {
   useEffect(() => {
     let result = projects;
     
-    // Filtrar por categoría
     if (activeFilter !== 'all') {
       result = result.filter(project => project.type === activeFilter);
     }
     
-    // Filtrar por búsqueda
     if (searchTerm) {
       result = result.filter(project =>
         project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -134,6 +45,12 @@ const Projects = () => {
 
   const handleFilterChange = (filterId) => {
     setActiveFilter(filterId);
+  };
+
+  const handleGeneralWhatsApp = () => {
+    const message = "¡Hola! Me interesan tus proyectos y me gustaría conocer más sobre tu trabajo. ¿Podríamos conversar?";
+    const link = `https://wa.me/${whatsappConfig.defaultNumber}?text=${encodeURIComponent(message)}`;
+    window.open(link, '_blank');
   };
 
   const containerVariants = {
@@ -152,78 +69,77 @@ const Projects = () => {
     visible: {
       y: 0,
       opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15
-      }
+      transition: { duration: 0.5 }
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white relative overflow-hidden">
-      {/* Elementos decorativos de fondo */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-3xl animate-pulse delay-500" />
-      </div>
-
-      <Header />
-      
-      <main className="container mx-auto px-4 py-20 relative z-10">
-        {/* Header de la página */}
+    <div className="min-h-screen bg-black text-white">
+      <div className="max-w-4xl mx-auto px-6 py-12 md:py-20">
+        
+        {/* Header Section */}
         <motion.div
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : -50 }}
-          transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
         >
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
-            Mis Proyectos
+          <h1 className="text-4xl md:text-6xl font-light mb-6 tracking-tight">
+            Mis <span className="font-normal">Proyectos</span>
           </h1>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Una colección de mis trabajos más destacados en desarrollo de software, 
-            machine learning y automatización de procesos.
+          
+          <p className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-3xl mb-12">
+            Una colección de soluciones tecnológicas que combinan innovación 
+            con diseño funcional para resolver problemas reales del mundo empresarial.
           </p>
+          
+          <motion.button
+            onClick={handleGeneralWhatsApp}
+            className="inline-flex items-center px-6 py-3 border border-gray-600 text-white hover:border-gray-400 transition-colors duration-200"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <FaWhatsapp className="mr-2 text-sm" />
+            Contactar por WhatsApp
+          </motion.button>
         </motion.div>
 
-        {/* Barra de búsqueda y filtros */}
+        {/* Search and Filters */}
         <motion.div
-          className="mb-8 space-y-6"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
+          className="mb-16 pb-16 border-b border-gray-800"
         >
-          {/* Búsqueda */}
-          <div className="relative max-w-md mx-auto">
-            <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          {/* Search Bar */}
+          <div className="relative mb-8 max-w-md">
+            <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm" />
             <input
               type="text"
               placeholder="Buscar proyectos..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-gray-800/80 border border-gray-600/50 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 focus:border-cyan-500/50 backdrop-blur-sm transition-all duration-300"
+              className="w-full pl-12 pr-4 py-3 bg-black border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-gray-600 transition-colors duration-200"
             />
           </div>
 
-          {/* Filtros */}
-          <div className="flex flex-wrap justify-center gap-3">
+          {/* Filter Categories */}
+          <div className="flex flex-wrap gap-3">
             {filterCategories.map((category) => {
-              const IconComponent = category.icon;
+              const IconComponent = iconMap[category.icon];
               return (
                 <motion.button
                   key={category.id}
                   onClick={() => handleFilterChange(category.id)}
-                  className={`flex items-center px-4 py-2 rounded-xl border transition-all duration-300 backdrop-blur-sm ${
+                  className={`flex items-center px-4 py-2 border transition-colors duration-200 ${
                     activeFilter === category.id
-                      ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-400'
-                      : 'bg-gray-800/50 border-gray-600/30 text-gray-300 hover:bg-gray-700/50 hover:border-gray-500/50'
+                      ? 'bg-white text-black border-white'
+                      : 'bg-black text-gray-400 border-gray-800 hover:border-gray-600 hover:text-gray-300'
                   }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <IconComponent className="mr-2" />
+                  {IconComponent && <IconComponent className="w-4 h-4 mr-2" />}
                   {category.name}
                 </motion.button>
               );
@@ -231,33 +147,27 @@ const Projects = () => {
           </div>
         </motion.div>
 
-        {/* Estadísticas rápidas */}
+        {/* Stats Grid */}
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 pb-16 border-b border-gray-800"
         >
           {[
-            { label: 'Proyectos', value: projects.length, color: 'cyan' },
-            { label: 'Completados', value: projects.filter(p => p.progress === 100).length, color: 'green' },
-            { label: 'En desarrollo', value: projects.filter(p => p.progress < 100 && p.progress > 0).length, color: 'yellow' },
-            { label: 'Tecnologías', value: [...new Set(projects.flatMap(p => p.technologies || []))].length, color: 'purple' }
+            { label: 'Proyectos', value: projects.length },
+            { label: 'Completados', value: projects.filter(p => p.progress === 100).length },
+            { label: 'En desarrollo', value: projects.filter(p => p.progress < 100 && p.progress > 0).length },
+            { label: 'Tecnologías', value: [...new Set(projects.flatMap(p => p.technologies || []))].length }
           ].map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              className="bg-gray-800/50 backdrop-blur-sm border border-gray-600/30 rounded-xl p-4 text-center"
-              variants={itemVariants}
-            >
-              <div className={`text-2xl font-bold text-${stat.color}-400 mb-1`}>
-                {stat.value}
-              </div>
-              <div className="text-sm text-gray-400">{stat.label}</div>
-            </motion.div>
+            <div key={index} className="text-center">
+              <div className="text-2xl md:text-3xl font-light mb-2">{stat.value}</div>
+              <div className="text-sm text-gray-500">{stat.label}</div>
+            </div>
           ))}
         </motion.div>
 
-        {/* Grid de proyectos */}
+        {/* Projects Grid */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeFilter + searchTerm}
@@ -265,26 +175,28 @@ const Projects = () => {
             initial="hidden"
             animate="visible"
             exit="hidden"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="mb-16"
           >
             {filteredProjects.length > 0 ? (
-              filteredProjects.map((project, index) => (
-                <motion.div key={project.id} variants={itemVariants}>
-                  <ProjectCard project={project} index={index} />
-                </motion.div>
-              ))
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredProjects.map((project, index) => (
+                  <motion.div key={project.id} variants={itemVariants}>
+                    <ProjectCard project={project} index={index} />
+                  </motion.div>
+                ))}
+              </div>
             ) : (
               <motion.div
-                className="col-span-full text-center py-16"
+                className="text-center py-16"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
               >
                 <div className="text-6xl mb-4">🔍</div>
-                <h3 className="text-xl font-semibold mb-2 text-gray-300">
+                <h3 className="text-xl font-light mb-2 text-white">
                   No se encontraron proyectos
                 </h3>
-                <p className="text-gray-400">
+                <p className="text-gray-500">
                   Intenta con otros términos de búsqueda o filtros diferentes.
                 </p>
               </motion.div>
@@ -292,29 +204,43 @@ const Projects = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* Call to action */}
+        {/* Call to Action */}
         <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="text-center mb-16 pb-16 border-b border-gray-800"
         >
-          <h3 className="text-2xl font-bold mb-4 text-white">
+          <h3 className="text-2xl font-light mb-4 text-white">
             ¿Tienes algún proyecto en mente?
           </h3>
-          <p className="text-gray-400 mb-6 max-w-md mx-auto">
-            Me encanta colaborar en proyectos innovadores. ¡Hablemos!
+          <p className="text-gray-400 mb-8 max-w-md mx-auto">
+            Me encanta colaborar en proyectos innovadores. ¡Hablemos sobre cómo puedo ayudarte!
           </p>
-          <motion.a
-            href="#contact"
-            className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <motion.button
+            onClick={handleGeneralWhatsApp}
+            className="inline-flex items-center px-6 py-3 bg-white text-black font-medium hover:bg-gray-200 transition-colors duration-200"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
-            Contactar
-          </motion.a>
+            <FaWhatsapp className="mr-2 text-sm" />
+            Empezemos a trabajar juntos
+          </motion.button>
         </motion.div>
-      </main>
+
+        {/* Footer */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="text-center"
+        >
+          <p className="text-gray-500">
+            © 2024 Brayan Rojas. Construido con React y mucho ☕
+          </p>
+        </motion.div>
+
+      </div>
     </div>
   );
 };

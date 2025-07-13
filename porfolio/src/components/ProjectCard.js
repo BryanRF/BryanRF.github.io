@@ -41,7 +41,18 @@ const TechTag = ({ tech }) => {
     'Node.js': 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
     'TensorFlow': 'bg-orange-500/20 text-orange-300 border-orange-500/30',
     'Docker': 'bg-blue-600/20 text-blue-300 border-blue-600/30',
-    'AWS': 'bg-orange-600/20 text-orange-300 border-orange-600/30'
+    'AWS': 'bg-orange-600/20 text-orange-300 border-orange-600/30',
+    'Redis': 'bg-red-500/20 text-red-300 border-red-500/30',
+    'FastAPI': 'bg-green-600/20 text-green-300 border-green-600/30',
+    'D3.js': 'bg-orange-500/20 text-orange-300 border-orange-500/30',
+    'Flask': 'bg-gray-500/20 text-gray-300 border-gray-500/30',
+    'OpenCV': 'bg-blue-500/20 text-blue-300 border-blue-500/30',
+    'Selenium': 'bg-green-500/20 text-green-300 border-green-500/30',
+    'BeautifulSoup': 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
+    'Celery': 'bg-green-600/20 text-green-300 border-green-600/30',
+    'Pandas': 'bg-purple-500/20 text-purple-300 border-purple-500/30',
+    'scikit-learn': 'bg-orange-500/20 text-orange-300 border-orange-500/30',
+    'Stripe': 'bg-purple-600/20 text-purple-300 border-purple-600/30'
   };
 
   const defaultColor = 'bg-gray-500/20 text-gray-300 border-gray-500/30';
@@ -74,52 +85,51 @@ const ProjectCard = ({ project, index }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50, scale: 0.9 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ 
-        duration: 0.6, 
-        delay: index * 0.1,
-        type: "spring",
-        stiffness: 100,
-        damping: 15
-      }}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
+      className="h-full"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      whileHover="hover"
     >
       <animated.div
         style={springProps}
-        className={`relative overflow-hidden rounded-xl bg-gradient-to-br ${gradientClass} backdrop-blur-sm border border-gray-700/50 group cursor-pointer`}
+        className={`relative h-full bg-gradient-to-br ${gradientClass} backdrop-blur-sm border border-gray-700/50 rounded-2xl overflow-hidden group cursor-pointer`}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
-        {/* Efecto de brillo animado */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-        
-        {/* Header con icono */}
-        <div className="relative p-6 bg-gradient-to-br from-gray-800/80 to-gray-900/80">
-          <div className="flex items-center justify-between mb-4">
-            <animated.div style={iconSpring} className="p-3 rounded-lg bg-cyan-500/20 border border-cyan-500/30">
+        {/* Header con icono y acciones */}
+        <div className="relative p-6 pb-4">
+          <div className="flex items-start justify-between mb-4">
+            <animated.div 
+              style={iconSpring}
+              className="flex items-center justify-center w-12 h-12 bg-gray-800/50 rounded-xl border border-gray-600/30 backdrop-blur-sm"
+            >
               <IconComponent className="w-6 h-6 text-cyan-400" />
             </animated.div>
-            <div className="flex space-x-2">
+            
+            <div className="flex gap-2">
               <motion.a
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-gray-700/50 text-gray-300 hover:text-cyan-400 hover:bg-gray-600/50 transition-all duration-200 backdrop-blur-sm border border-gray-600/30"
+                className="p-2 rounded-lg bg-gray-800/50 text-gray-400 hover:text-white hover:bg-gray-700/50 transition-all duration-200 backdrop-blur-sm border border-gray-600/30"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <FaGithub className="w-4 h-4" />
               </motion.a>
-              <motion.a
-                href={project.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-cyan-500/20 text-cyan-400 hover:bg-cyan-500/30 transition-all duration-200 backdrop-blur-sm border border-cyan-500/30"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <FaExternalLinkAlt className="w-4 h-4" />
-              </motion.a>
+              {project.demo && (
+                <motion.a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg bg-cyan-500/20 text-cyan-400 hover:bg-cyan-500/30 transition-all duration-200 backdrop-blur-sm border border-cyan-500/30"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaExternalLinkAlt className="w-4 h-4" />
+                </motion.a>
+              )}
             </div>
           </div>
           
