@@ -10,18 +10,25 @@ import {
   FaClock,
   FaWhatsapp,
   FaArrowRight,
-  FaDownload,
-  FaEnvelope
+  FaEnvelope,
+  FaCode,
+  FaRocket,
+  FaBriefcase,
+  FaCalendarAlt,
+  FaCheckCircle
 } from 'react-icons/fa';
-import {whatsappConfig } from '../data/projectData';
+import { whatsappConfig } from '../data/projectData';
+import StarfieldBackground from '../components/StarfieldBackground';
 
 function Home() {
   const [currentTime, setCurrentTime] = useState(new Date());
-    const handleGeneralWhatsApp = () => {
-      const message = "¡Hola! Me interesan tus proyectos y me gustaría conocer más sobre tu trabajo. ¿Podríamos conversar?";
-      const link = `https://wa.me/${whatsappConfig.defaultNumber}?text=${encodeURIComponent(message)}`;
-      window.open(link, '_blank');
-    };
+  const [isVisible, setIsVisible] = useState(false);
+  
+  const handleGeneralWhatsApp = () => {
+    const message = "¡Hola! Me interesan tus proyectos y me gustaría conocer más sobre tu trabajo. ¿Podríamos conversar?";
+    const link = `https://wa.me/${whatsappConfig.defaultNumber}?text=${encodeURIComponent(message)}`;
+    window.open(link, '_blank');
+  };
   
   // Configuración de disponibilidad - Cambiar solo este valor
   const isAvailable = false; // Cambiar a false cuando esté bajo contrato
@@ -32,6 +39,7 @@ function Home() {
   const yearsOfExperience = currentYear - startYear;
 
   useEffect(() => {
+    setIsVisible(true);
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
@@ -43,33 +51,49 @@ function Home() {
       platform: "GitHub", 
       handle: "@BryanRF", 
       url: "https://github.com/BryanRF", 
-      icon: FaGithub 
+      icon: FaGithub
     },
     { 
       platform: "LinkedIn", 
       handle: "Brayan Rojas", 
       url: "https://www.linkedin.com/in/brayan-eduardo-rojas-freyre-41255414a/", 
-      icon: FaLinkedin 
+      icon: FaLinkedin
     },
     { 
       platform: "Instagram", 
       handle: "@bryan.rfr", 
       url: "https://www.instagram.com/bryan.rfr/", 
-      icon: FaInstagram 
+      icon: FaInstagram
     },
     { 
       platform: "TikTok", 
       handle: "@edu_rf", 
       url: "https://www.tiktok.com/@edu_rf", 
-      icon: FaTiktok 
+      icon: FaTiktok
     }
   ];
 
   const stats = [
-    { label: "Años de experiencia", value: `${yearsOfExperience}+` },
-    { label: "Proyectos completados", value: "15+" },
-    { label: "Tecnologías dominadas", value: "10+" },
-    { label: "Tazas de café", value: "∞" }
+    { 
+      label: "Años de experiencia", 
+      value: `${yearsOfExperience}+`,
+      icon: FaCode
+    },
+    { 
+      label: "Proyectos completados", 
+      value: "15+",
+      icon: FaRocket
+    },
+    { 
+      label: "Tecnologías dominadas", 
+      value: "10+",
+      icon: FaCode
+    },
+    { 
+      label: "Tazas de café", 
+      value: "∞",
+      icon: FaClock
+    }
   ];
 
   // Disponibilidad dinámica basada en el estado
@@ -80,282 +104,257 @@ function Home() {
     canParticipate: isAvailable
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6 }
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Main Container */}
-      <div className="max-w-4xl mx-auto px-6 py-12 md:py-20">
-        
-        {/* Header Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          {/* Status Badge */}
-          <div className="flex items-center mb-8">
-            <div className={`w-3 h-3 rounded-full mr-3 animate-pulse ${
-              isAvailable ? 'bg-green-500' : 'bg-red-500'
-            }`}></div>
-            <span className="text-sm text-gray-400">{availability.status}</span>
-          </div>
-
-          {/* Main Intro */}
-          <h1 className="text-4xl md:text-6xl font-light mb-6 tracking-tight">
-            Hola, soy <span className="font-normal">Brayan</span>
-          </h1>
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Fondo de estrellas */}
+      <StarfieldBackground numStars={200} numPlanets={8} numShips={10} numSatellites={5} numMoons={5} speed={0.8} />
+      
+      {/* Overlay sutil para mejor legibilidad */}
+      <div className="absolute inset-0 bg-black/20 z-5"></div>
+      
+      {/* Contenido principal */}
+      <motion.div 
+        className="relative z-10 text-white"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isVisible ? "visible" : "hidden"}
+      >
+        {/* Main Container */}
+        <div className="max-w-5xl mx-auto px-6 py-12 md:py-20">
           
-          <h2 className="text-xl md:text-2xl text-gray-400 mb-8 font-light">
-            Software Developer & System Engineer
-          </h2>
+          {/* Header Section */}
+          <motion.div
+            variants={itemVariants}
+            className="text-center mb-16 p-8 rounded-3xl border border-gray-800 bg-gray-900/40 backdrop-blur-sm"
+          >
+          
 
-          <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-3xl mb-12">
-            Ingeniero de sistemas con {yearsOfExperience} años de experiencia creando soluciones tecnológicas. 
-            Me especializo en desarrollo full-stack, machine learning y arquitecturas escalables.  
-            {isAvailable ? 
-              " Actualmente disponible para nuevos proyectos y colaboraciones." : 
-              " Actualmente laborando en InnovaHtec."
-            }
-          </p>
-
-          {/* Quick Actions */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-16">
-            <Link
-              to="/projects"
-              className="inline-flex items-center justify-center px-6 py-3 bg-white text-black font-medium hover:bg-gray-200 transition-colors duration-200"
+            {/* Main Title */}
+            <motion.h1 
+              className="text-6xl md:text-8xl font-light mb-6 leading-tight tracking-tight"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 1, delay: 0.3 }}
             >
-              Ver mi trabajo
-              <FaArrowRight className="ml-2 text-sm" />
-            </Link>
-            
-            <a
-              href="mailto:rfreyrebrayaned@gmail.com"
-              className="inline-flex items-center justify-center px-6 py-3 border border-gray-600 text-white hover:border-gray-400 transition-colors duration-200"
+              <span className="font-normal bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+                Bryan RF
+              </span>
+            </motion.h1>
+
+            {/* Subtitle */}
+            <motion.h2 
+              className="text-2xl md:text-3xl text-gray-400 mb-8 font-light"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
             >
-              <FaEnvelope className="mr-2 text-sm" />
-              Contactar
-            </a>
-            <motion.button
-                        onClick={handleGeneralWhatsApp}
-                        className="inline-flex items-center justify-center px-6 py-3 border border-gray-600 text-white hover:border-gray-400 transition-colors duration-200"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        <FaWhatsapp className="mr-2 text-sm" />
-                        Contactar por WhatsApp
-                      </motion.button>
-            
-            {isAvailable && (
-              <button className="inline-flex items-center justify-center px-6 py-3 border border-green-600 text-green-400 hover:border-green-400 hover:bg-green-500/10 transition-colors duration-200">
-                <FaDownload className="mr-2 text-sm" />
-                Disponible para contratar
-              </button>
-            )}
-            
-            {!isAvailable && (
-              <button className="inline-flex items-center justify-center px-6 py-3 border border-gray-600 text-gray-500 cursor-not-allowed opacity-60">
-                <FaDownload className="mr-2 text-sm" />
-                CV No disponible
-              </button>
-            )}
-          </div>
-        </motion.div>
+              Software Developer & System Engineer
+            </motion.h2>
 
-        {/* Stats Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 pb-16 border-b border-gray-800"
-        >
-          {stats.map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-2xl md:text-3xl font-light mb-2">{stat.value}</div>
-              <div className="text-sm text-gray-500">{stat.label}</div>
-            </div>
-          ))}
-        </motion.div>
+            {/* Descripción */}
+            <motion.p 
+              className="text-lg md:text-xl text-gray-400 mb-12 max-w-4xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+            >
+              Desarrollador Full-Stack con experiencia en soluciones digitales para web, móvil y escritorio. 
+              Me adapto a distintos entornos y desafíos, con un enfoque en la <span className="text-white font-medium">eficiencia</span>, 
+              la <span className="text-white font-medium">calidad</span> y 
+              la <span className="text-white font-medium">experiencia del usuario</span>.
+            </motion.p>
 
-        {/* Location & Time */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col sm:flex-row sm:items-center justify-between mb-16 pb-16 border-b border-gray-800"
-        >
-          <div className="flex items-center mb-4 sm:mb-0">
-            <FaMapMarkerAlt className="text-gray-500 mr-3" />
-            <span className="text-gray-300">Chiclayo, Perú</span>
-          </div>
-          
-          <div className="flex items-center">
-            <FaClock className="text-gray-500 mr-3" />
-            <span className="text-gray-300">
-              {currentTime.toLocaleTimeString('es-PE', { 
-                hour: '2-digit', 
-                minute: '2-digit',
-                timeZone: 'America/Lima'
-              })} PET
-            </span>
-          </div>
-        </motion.div>
+            {/* CTA Button */}
+            <motion.div 
+              className="flex justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
+            >
+              <Link
+                to="/projects"
+                className="group flex items-center justify-center px-10 py-4 border-2 border-gray-600 text-white rounded-lg hover:border-gray-400 hover:bg-gray-900/50 transition-all duration-300 font-medium"
+              >
+                <FaRocket className="mr-3 group-hover:scale-110 transition-transform" />
+                Mis proyectos y más sobre mí
+                <FaArrowRight className="ml-3 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
+          </motion.div>
 
-        {/* Current Focus
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mb-16"
-        >
-          <h3 className="text-2xl font-light mb-8">Proyectos Personales</h3>
-          
-          <div className="space-y-6">
-            <div className="border border-gray-800 p-6 hover:border-gray-600 transition-colors duration-200">
-              <div className="flex items-start justify-between mb-4">
-                <h4 className="text-lg font-medium">Proyectos de Machine Learning</h4>
-                <FaCode className="text-gray-500 mt-1" />
-              </div>
-              <p className="text-gray-400 mb-4">
-                Desarrollando sistemas de clasificación de imágenes y análisis de datos usando TensorFlow y Python.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-gray-800 text-xs rounded-full">Python</span>
-                <span className="px-3 py-1 bg-gray-800 text-xs rounded-full">TensorFlow</span>
-                <span className="px-3 py-1 bg-gray-800 text-xs rounded-full">Docker</span>
-              </div>
-            </div>
-
-            <div className="border border-gray-800 p-6 hover:border-gray-600 transition-colors duration-200">
-              <div className="flex items-start justify-between mb-4">
-                <h4 className="text-lg font-medium">Aplicaciones Full-Stack</h4>
-                <FaCode className="text-gray-500 mt-1" />
-              </div>
-              <p className="text-gray-400 mb-4">
-                Creando aplicaciones web modernas con React, Node.js y bases de datos optimizadas.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-gray-800 text-xs rounded-full">React</span>
-                <span className="px-3 py-1 bg-gray-800 text-xs rounded-full">Node.js</span>
-                <span className="px-3 py-1 bg-gray-800 text-xs rounded-full">PostgreSQL</span>
-              </div>
-            </div>
-          </div>
-        </motion.div> */}
-
-        {/* Availability Status */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className={`mb-16 p-6 border ${
-            isAvailable ? 'bg-green-900/20 border-green-800' : 'bg-red-900/20 border-red-800'
-          }`}
-        >
-          <div className="flex items-center mb-6">
-            <h3 className="text-xl font-light mr-3">Disponibilidad</h3>
-            <div className={`w-2 h-2 rounded-full ${
-              isAvailable ? 'bg-green-500' : 'bg-red-500'
-            } animate-pulse`}></div>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div>
-              <div className="text-sm text-gray-500 mb-1">Estado actual</div>
-              <div className="flex items-center">
-               
-                <span className={`${
-                  isAvailable ? 'text-green-400' : 'text-red-400'
-                }`}>{availability.status}</span>
-              </div>
-            </div>
-            
-            <div>
-              <div className="text-sm text-gray-500 mb-1">Próxima disponibilidad</div>
-              <div className="text-white">{availability.nextAvailable}</div>
-            </div>
-            
-            <div>
-              <div className="text-sm text-gray-500 mb-1">Tiempo de respuesta</div>
-              <div className="text-white">{availability.responseTime}</div>
-            </div>
-
-            <div>
-              <div className="text-sm text-gray-500 mb-1">¿Puede participar?</div>
-              <div className={`font-medium ${
-                availability.canParticipate ? 'text-green-400' : 'text-red-400'
-              }`}>
-                {availability.canParticipate ? 'Sí, disponible' : 'No, ocupado'}
-              </div>
-            </div>
-          </div>
-          
-          {!isAvailable && (
-            <div className="mt-4 p-4 bg-gray-800/50 rounded border border-gray-700">
-              <p className="text-sm text-gray-400">
-                Actualmente no cuento con disponibilidad. Sin embargo, puedes contactarme 
-                para discutir oportunidades futuras o consultas.
-              </p>
-            </div>
-          )}
-          
-          {isAvailable && (
-            <div className="mt-4 p-4 bg-green-900/20 rounded border border-green-800">
-              <p className="text-sm text-green-300">
-                ¡Perfecto timing! Estoy buscando nuevos proyectos emocionantes. 
-                Contactame para discutir cómo puedo ayudarte.
-              </p>
-            </div>
-          )}
-        </motion.div>
-
-        {/* Social Links */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mb-16"
-        >
-          <h3 className="text-2xl font-light mb-8">Conectemos</h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {socialLinks.map((social, index) => {
-              const IconComponent = social.icon;
+          {/* Stats Grid */}
+          <motion.div
+            variants={itemVariants}
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
+          >
+            {stats.map((stat, index) => {
+              const IconComponent = stat.icon;
               return (
-                <a
-                  key={index}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between p-6 border border-gray-800 hover:border-gray-600 transition-colors duration-200 group"
+                <motion.div 
+                  key={index} 
+                  className="text-center bg-gray-900/30 backdrop-blur-sm p-8 rounded-2xl border border-gray-800 hover:bg-gray-900/50 transition-all duration-300 hover:scale-105 group"
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <div className="flex items-center">
-                    <IconComponent className="text-xl mr-4 text-gray-400 group-hover:text-white transition-colors duration-200" />
-                    <div>
-                      <div className="font-medium">{social.platform}</div>
-                      <div className="text-sm text-gray-500">{social.handle}</div>
-                    </div>
+                  <IconComponent className="text-3xl mx-auto mb-4 text-gray-400 group-hover:text-white transition-colors" />
+                  <div className="text-4xl md:text-5xl font-light mb-3 text-white">
+                    {stat.value}
                   </div>
-                  <FaArrowRight className="text-gray-500 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" />
-                </a>
+                  <div className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                    {stat.label}
+                  </div>
+                </motion.div>
               );
             })}
-          </div>
-        </motion.div>
+          </motion.div>
 
+          {/* Location & Availability */}
+          <motion.div
+            variants={itemVariants}
+            className="grid md:grid-cols-2 gap-8 mb-20"
+          >
+            {/* Location */}
+            <motion.div 
+              className="p-8 rounded-2xl border border-gray-800 bg-gray-900/30 backdrop-blur-sm hover:bg-gray-900/40 transition-all duration-300"
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="flex items-center mb-6">
+                <FaMapMarkerAlt className="text-gray-400 mr-4 text-xl" />
+                <h3 className="font-medium text-white text-lg">Ubicación</h3>
+              </div>
+              <p className="text-gray-400 mb-4 text-lg">Chiclayo, Perú 🇵🇪</p>
+              <div className="flex items-center text-gray-400 bg-gray-800/50 p-4 rounded-lg">
+                <FaClock className="mr-3" />
+                <span className="font-mono">
+                  {currentTime.toLocaleTimeString('es-PE', { 
+                    hour: '2-digit', 
+                    minute: '2-digit',
+                    second: '2-digit',
+                    timeZone: 'America/Lima'
+                  })} UTC-5
+                </span>
+              </div>
+            </motion.div>
 
+            {/* Availability Detail */}
+            <motion.div 
+              className="p-8 rounded-2xl border border-gray-800 bg-gray-900/30 backdrop-blur-sm hover:bg-gray-900/40 transition-all duration-300"
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="flex items-center mb-6">
+                <div className={`w-4 h-4 rounded-full mr-4 ${
+                  isAvailable 
+                    ? 'bg-green-400 animate-pulse' 
+                    : 'bg-yellow-400 animate-pulse'
+                }`}></div>
+                <h3 className="font-medium text-white text-lg">Estado actual</h3>
+              </div>
+              <p className="text-gray-400 mb-4 text-lg">{availability.status}</p>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center bg-gray-800/50 p-3 rounded-lg">
+                  <span className="text-gray-400">Próximo disponible:</span>
+                  <span className="font-medium text-white">{availability.nextAvailable}</span>
+                </div>
+                <div className="flex justify-between items-center bg-gray-800/50 p-3 rounded-lg">
+                  <span className="text-gray-400">Tiempo de respuesta:</span>
+                  <span className="font-medium text-white">{availability.responseTime}</span>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
 
-        {/* Footer */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="pt-16 border-t border-gray-800 text-center"
-        >
-          <p className="text-gray-500">
-            © 2024 Brayan Rojas. Construido con React y mucho ☕
-          </p>
-        </motion.div>
-      </div>
+          {/* Social Links */}
+          <motion.div
+            variants={itemVariants}
+            className="mb-20 p-8 rounded-3xl border border-gray-800 bg-gray-900/40 backdrop-blur-sm"
+          >
+            <h3 className="text-2xl font-medium mb-10 text-center text-white">
+              Conecta conmigo
+            </h3>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {socialLinks.map((social, index) => {
+                const IconComponent = social.icon;
+                return (
+                  <motion.a
+                    key={index}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex flex-col items-center p-8 rounded-2xl border border-gray-800 hover:border-gray-600 bg-gray-900/20 backdrop-blur-sm transition-all duration-300 hover:bg-gray-900/40"
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <IconComponent className="text-3xl mb-4 group-hover:scale-110 transition-transform text-gray-400 group-hover:text-white" />
+                    <div className="text-base font-medium mb-2 text-white">{social.platform}</div>
+                    <div className="text-sm text-gray-400 text-center">{social.handle}</div>
+                  </motion.a>
+                );
+              })}
+            </div>
+          </motion.div>
+
+          {/* Email Contact */}
+          <motion.div
+            id="contact"
+            variants={itemVariants}
+            className="text-center p-10 rounded-3xl border border-gray-800 bg-gray-900/40 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 1.2 }}
+            >
+              <FaEnvelope className="text-5xl mx-auto mb-6 text-gray-400" />
+            </motion.div>
+            
+            <h3 className="text-3xl font-medium mb-4 text-white">
+              ¿Tienes un proyecto en mente?
+            </h3>
+            <p className="text-gray-400 mb-8 text-lg max-w-2xl mx-auto">
+              Envíame un correo o conversemos por WhatsApp sobre cómo puedo ayudarte a materializar tu visión digital
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <a
+                href="mailto:rfreyrebrayaned@gmail.com"
+                className="group inline-flex items-center px-8 py-4 bg-gray-700 hover:bg-gray-600 text-white rounded-xl transition-all duration-300 hover:scale-105 transform"
+              >
+                <FaEnvelope className="mr-3 group-hover:scale-110 transition-transform" />
+                rfreyrebrayaned@gmail.com
+              </a>
+
+              <button
+                onClick={handleGeneralWhatsApp}
+                className="group flex items-center justify-center px-8 py-4 bg-white text-black rounded-xl hover:bg-gray-100 transition-all duration-300 font-medium hover:scale-105 transform"
+              >
+                <FaWhatsapp className="mr-3 group-hover:scale-110 transition-transform" />
+                Conversemos por WhatsApp
+                <FaArrowRight className="ml-3 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      </motion.div>
     </div>
   );
 }
