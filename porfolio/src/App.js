@@ -7,11 +7,14 @@ import Contact from './pages/Contact';
 import Layout from './components/Layout';
 
 function App() {
+  // Configuración para GitHub Pages
+  const basename = process.env.NODE_ENV === 'production' ? '/porfolio' : '';
+  
   return (
-    <Router>
+    <Router basename={basename}>
       <Routes>
-        {/* Ruta principal - Home standalone */}
-        <Route path="/home" element={<Home />} />
+        {/* Ruta principal */}
+        <Route path="/" element={<Home />} />
         
         {/* Rutas con Layout (para páginas internas) */}
         <Route element={<Layout />}>
@@ -20,8 +23,8 @@ function App() {
           <Route path="/contact" element={<Contact />} />
         </Route>
         
-        {/* Redirección por defecto */}
-        <Route path="/" element={<Home />} />
+        {/* Ruta catch-all para 404s */}
+        <Route path="*" element={<Home />} />
       </Routes>
     </Router>
   );
