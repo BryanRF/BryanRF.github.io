@@ -20,15 +20,15 @@ const Header = () => {
   }, [location]);
 
   const navigationItems = [
-    { icon: FaHome, text: 'Inicio', path: '/portfolio', description: 'Página principal' },
+    { icon: FaHome, text: 'Inicio', path: '/', description: 'Página principal' },
     { icon: FaFolder, text: 'Proyectos', path: '/projects', description: 'Mi trabajo' },
     { icon: FaUser, text: 'Sobre Mí', path: '/about', description: 'Conoce más' },
     { icon: FaEnvelope, text: 'Contacto', path: '/contact', description: 'Hablemos' },
   ];
 
   const socialLinks = [
-    { icon: FaGithub, href: 'https://github.com/tuusuario', label: 'GitHub' },
-    { icon: FaLinkedin, href: 'https://linkedin.com/in/tuusuario', label: 'LinkedIn' },
+    { icon: FaGithub, href: 'https://github.com/BryanRF', label: 'GitHub' },
+    { icon: FaLinkedin, href: 'https://linkedin.com/in/BryanRF', label: 'LinkedIn' },
   ];
 
   const isCurrentPath = (path) => location.pathname === path;
@@ -92,7 +92,7 @@ const Header = () => {
               whileHover="hover"
             >
               <Link 
-                to="/portfolio" 
+                to="/" 
                 className="relative group"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

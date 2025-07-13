@@ -8,14 +8,20 @@ import {
   FaTiktok,
   FaMapMarkerAlt,
   FaClock,
-  FaCode,
+  FaWhatsapp,
   FaArrowRight,
   FaDownload,
   FaEnvelope
 } from 'react-icons/fa';
+import {whatsappConfig } from '../data/projectData';
 
 function Home() {
   const [currentTime, setCurrentTime] = useState(new Date());
+    const handleGeneralWhatsApp = () => {
+      const message = "¡Hola! Me interesan tus proyectos y me gustaría conocer más sobre tu trabajo. ¿Podríamos conversar?";
+      const link = `https://wa.me/${whatsappConfig.defaultNumber}?text=${encodeURIComponent(message)}`;
+      window.open(link, '_blank');
+    };
   
   // Configuración de disponibilidad - Cambiar solo este valor
   const isAvailable = false; // Cambiar a false cuando esté bajo contrato
@@ -108,7 +114,7 @@ function Home() {
             Me especializo en desarrollo full-stack, machine learning y arquitecturas escalables.  
             {isAvailable ? 
               " Actualmente disponible para nuevos proyectos y colaboraciones." : 
-              " Actualmente trabajando."
+              " Actualmente laborando en InnovaHtec."
             }
           </p>
 
@@ -123,12 +129,21 @@ function Home() {
             </Link>
             
             <a
-              href="mailto:brayan@ejemplo.com"
+              href="mailto:rfreyrebrayaned@gmail.com"
               className="inline-flex items-center justify-center px-6 py-3 border border-gray-600 text-white hover:border-gray-400 transition-colors duration-200"
             >
               <FaEnvelope className="mr-2 text-sm" />
               Contactar
             </a>
+            <motion.button
+                        onClick={handleGeneralWhatsApp}
+                        className="inline-flex items-center justify-center px-6 py-3 border border-gray-600 text-white hover:border-gray-400 transition-colors duration-200"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <FaWhatsapp className="mr-2 text-sm" />
+                        Contactar por WhatsApp
+                      </motion.button>
             
             {isAvailable && (
               <button className="inline-flex items-center justify-center px-6 py-3 border border-green-600 text-green-400 hover:border-green-400 hover:bg-green-500/10 transition-colors duration-200">
@@ -140,7 +155,7 @@ function Home() {
             {!isAvailable && (
               <button className="inline-flex items-center justify-center px-6 py-3 border border-gray-600 text-gray-500 cursor-not-allowed opacity-60">
                 <FaDownload className="mr-2 text-sm" />
-                Actualmente ocupado
+                CV No disponible
               </button>
             )}
           </div>

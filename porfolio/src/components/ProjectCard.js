@@ -118,18 +118,7 @@ const ProjectCard = ({ project, index }) => {
               >
                 <FaGithub className="w-4 h-4" />
               </motion.a>
-              {project.demo && (
-                <motion.a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 rounded-lg bg-cyan-500/20 text-cyan-400 hover:bg-cyan-500/30 transition-all duration-200 backdrop-blur-sm border border-cyan-500/30"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FaExternalLinkAlt className="w-4 h-4" />
-                </motion.a>
-              )}
+            
             </div>
           </div>
           

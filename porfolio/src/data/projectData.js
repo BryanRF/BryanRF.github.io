@@ -20,7 +20,7 @@ export const projects = [
       transacciones: "15K+"
     },
     progress: 100,
-    github: "https://github.com/tuusuario/sistema-gestion",
+    github: "https://github.com/BryanRF/sistema-gestion",
     demo: "https://demo-gestion.com",
     whatsapp: "5491123456789" // Número de WhatsApp para contacto
   },
@@ -44,7 +44,7 @@ export const projects = [
       predicciones: "50K+"
     },
     progress: 75,
-    github: "https://github.com/tuusuario/ml-predictivo",
+    github: "https://github.com/BryanRF/ml-predictivo",
     demo: "https://demo-ml.com",
     whatsapp: "5491123456789"
   },
@@ -68,7 +68,7 @@ export const projects = [
       reportes: "2.5K"
     },
     progress: 90,
-    github: "https://github.com/tuusuario/bi-dashboard",
+    github: "https://github.com/BryanRF/bi-dashboard",
     demo: "https://demo-bi.com",
     whatsapp: "5491123456789"
   },
@@ -92,7 +92,7 @@ export const projects = [
       bases_datos: "50+"
     },
     progress: 100,
-    github: "https://github.com/tuusuario/db-optimizer",
+    github: "https://github.com/BryanRF/db-optimizer",
     demo: "https://demo-optimizer.com",
     whatsapp: "5491123456789"
   },
@@ -116,7 +116,7 @@ export const projects = [
       precisión: "78%"
     },
     progress: 60,
-    github: "https://github.com/tuusuario/trading-bot",
+    github: "https://github.com/BryanRF/trading-bot",
     demo: "https://demo-trading.com",
     whatsapp: "5491123456789"
   },
@@ -140,7 +140,7 @@ export const projects = [
       conversión: "12.8%"
     },
     progress: 100,
-    github: "https://github.com/tuusuario/ecommerce-platform",
+    github: "https://github.com/BryanRF/ecommerce-platform",
     demo: "https://demo-ecommerce.com",
     whatsapp: "5491123456789"
   },
@@ -164,7 +164,7 @@ export const projects = [
       rostros: "10K+"
     },
     progress: 80,
-    github: "https://github.com/tuusuario/facial-recognition",
+    github: "https://github.com/BryanRF/facial-recognition",
     demo: "https://demo-facial.com",
     whatsapp: "5491123456789"
   },
@@ -188,7 +188,7 @@ export const projects = [
       eficiencia: "94%"
     },
     progress: 65,
-    github: "https://github.com/tuusuario/rpa-suite",
+    github: "https://github.com/BryanRF/rpa-suite",
     demo: "https://demo-rpa.com",
     whatsapp: "5491123456789"
   }
@@ -196,7 +196,7 @@ export const projects = [
 
 // Configuración para WhatsApp
 export const whatsappConfig = {
-  defaultNumber: "5491123456789", // Tu número por defecto
+  defaultNumber: "998511769", // Tu número por defecto
   defaultMessage: "¡Hola! Me interesa conocer más sobre tus proyectos. ¿Podríamos hablar?"
 };
 
