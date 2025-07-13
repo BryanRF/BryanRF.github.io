@@ -11,7 +11,7 @@ function App() {
     <Router>
       <Routes>
         {/* Ruta principal - Home standalone */}
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         
         {/* Rutas con Layout (para páginas internas) */}
         <Route element={<Layout />}>
@@ -21,7 +21,7 @@ function App() {
         </Route>
         
         {/* Redirección por defecto */}
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
     </Router>
   );

@@ -37,7 +37,7 @@ const Footer = () => {
   ];
 
   const quickLinks = [
-    { name: 'Inicio', href: '/' },
+    { name: 'Inicio', href: '/home' },
     { name: 'Proyectos', href: '/projects' },
     { name: 'Sobre Mí', href: '/about' },
     { name: 'Contacto', href: '/contact' },
