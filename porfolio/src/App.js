@@ -7,21 +7,29 @@ import Contact from './pages/Contact';
 import Layout from './components/Layout';
 
 function App() {
-  // Configuración para GitHub Pages
-  const basename = process.env.NODE_ENV === 'production' ? '/porfolio' : '';
-  
+  // Sin basename para dominio raíz
   return (
-    <Router basename={basename}>
+    <Router>
       <Routes>
         {/* Ruta principal */}
         <Route path="/" element={<Home />} />
         
-        {/* Rutas con Layout (para páginas internas) */}
-        <Route element={<Layout />}>
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-        </Route>
+        {/* Rutas con Layout */}
+        <Route path="/projects" element={
+          <Layout>
+            <Projects />
+          </Layout>
+        } />
+        <Route path="/about" element={
+          <Layout>
+            <About />
+          </Layout>
+        } />
+        <Route path="/contact" element={
+          <Layout>
+            <Contact />
+          </Layout>
+        } />
         
         {/* Ruta catch-all para 404s */}
         <Route path="*" element={<Home />} />
