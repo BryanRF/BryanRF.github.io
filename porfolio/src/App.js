@@ -21,7 +21,7 @@ function App() {
         </Route>
         
         {/* Redirección por defecto */}
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </Router>
   );
