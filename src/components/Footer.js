@@ -70,7 +70,7 @@ const Footer = () => {
   const techStack = ['React', 'Node.js', 'Python', 'PostgreSQL', 'TensorFlow'];
 
   return (
-    <footer className="bg-white border-t-4 border-black text-black relative">
+    <footer className="bg-default border-t-4 border-default text-default relative">
       {/* Scroll to top button */}
       <button
         onClick={scrollToTop}
@@ -86,12 +86,12 @@ const Footer = () => {
           {/* Brand & Description */}
           <div className="lg:col-span-2">
             <Link to="/" className="inline-block mb-6">
-              <h3 className="text-3xl font-black text-black hover:text-gray-700 transition-colors" style={{ fontFamily: 'Sora, sans-serif' }}>
+              <h3 className="text-3xl font-black text-default hover:text-gray-700 transition-colors" style={{ fontFamily: 'Sora, sans-serif' }}>
                 BryanRF
               </h3>
             </Link>
             
-            <p className="text-black font-bold leading-relaxed mb-6 max-w-md">
+            <p className="text-default font-bold leading-relaxed mb-6 max-w-md">
               Desarrollador Full-Stack apasionado por crear soluciones tecnológicas 
               innovadoras que marquen la diferencia. Siempre en busca de nuevos 
               desafíos y oportunidades de aprendizaje.
@@ -102,31 +102,27 @@ const Footer = () => {
               {techStack.map((tech, index) => (
                 <span
                   key={index}
-                  className="px-3 py-1 bg-gray-light text-black text-sm font-bold border-4 border-black rounded-lg shadow-brutal-sm hover-lift"
+                  className="px-3 py-1 bg-gray-light text-default text-sm font-bold border-4 border-default rounded-lg shadow-brutal-sm hover-lift"
                 >
                   {tech}
                 </span>
               ))}
             </div>
 
-            {/* Availability Status */}
-            <div className="flex items-center text-sm bg-primary border-4 border-black rounded-lg px-4 py-3 shadow-brutal-sm inline-flex">
-              <div className="w-2 h-2 bg-black rounded-full animate-pulse mr-3"></div>
-              <span className="text-black font-black">Disponible para nuevos proyectos</span>
-            </div>
+      
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-black text-black mb-6 border-b-4 border-black pb-2">Navegación</h4>
+            <h4 className="text-lg font-black text-default mb-6 border-b-4 border-default pb-2">Navegación</h4>
             <ul className="space-y-4">
               {quickLinks.map((link, index) => (
                 <li key={index}>
                   <Link
                     to={link.path}
-                    className="text-black font-bold hover:text-gray-700 transition-colors duration-300 flex items-center group hover:translate-x-1"
+                    className="text-default font-bold hover:text-gray-700 transition-colors duration-300 flex items-center group hover:translate-x-1"
                   >
-                    <span className="w-2 h-2 bg-black rounded-full mr-3 group-hover:scale-125 transition-transform"></span>
+                    <span className="w-2 h-2 bg-[var(--text-primary)] rounded-full mr-3 group-hover:scale-125 transition-transform"></span>
                     {link.name}
                   </Link>
                 </li>
@@ -136,12 +132,12 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-black text-black mb-6 border-b-4 border-black pb-2">Contacto</h4>
+            <h4 className="text-lg font-black text-default mb-6 border-b-4 border-default pb-2">Contacto</h4>
             <ul className="space-y-4">
               {contactInfo.map((contact, index) => {
                 const IconComponent = contact.icon;
                 const content = (
-                  <div className="flex items-center text-black font-bold hover:text-gray-700 transition-colors duration-300 group hover:translate-x-1">
+                  <div className="flex items-center text-default font-bold hover:text-gray-700 transition-colors duration-300 group hover:translate-x-1">
                     <IconComponent className="mr-3 text-sm group-hover:scale-110 transition-transform" />
                     <span className="text-sm">{contact.text}</span>
                   </div>
@@ -168,12 +164,12 @@ const Footer = () => {
         </div>
 
         {/* Social Links & Copyright */}
-        <div className="mt-16 pt-8 border-t-4 border-black">
+        <div className="mt-16 pt-8 border-t-4 border-default">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
             
             {/* Social Links */}
             <div className="flex items-center space-x-4">
-              <span className="text-black text-sm font-black">Sígueme:</span>
+              <span className="text-default text-sm font-black">Sígueme:</span>
               {socialLinks.map((social, index) => {
                 const IconComponent = social.icon;
                 return (
@@ -182,7 +178,7 @@ const Footer = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 text-black bg-white border-4 border-black rounded-lg shadow-brutal-sm hover-lift transition-all duration-300"
+                    className="p-3 text-default bg-default border-4 border-default rounded-lg shadow-brutal-sm hover-lift transition-all duration-300"
                     aria-label={social.label}
                   >
                     <IconComponent className="text-lg" />
@@ -192,18 +188,18 @@ const Footer = () => {
             </div>
 
             {/* Copyright */}
-            <div className="flex flex-col md:flex-row md:items-center gap-4 text-sm text-black font-bold">
+            <div className="flex flex-col md:flex-row md:items-center gap-4 text-sm text-default font-bold">
               <div className="flex items-center">
                 <span>© {currentYear} BryanRF. Hecho con</span>
                 <FaHeart className="text-red-600 mx-2 animate-pulse" />
                 <span>y</span>
-                <FaCode className="mx-2 text-black" />
+                <FaCode className="mx-2 text-default" />
                 <span>en Perú</span>
               </div>
               
               <div className="flex items-center gap-4 text-xs">
                 <span>Diseñado & Desarrollado por mí</span>
-                <span className="w-1 h-1 bg-black rounded-full hidden md:block"></span>
+                <span className="w-1 h-1 bg-[var(--text-primary)] rounded-full hidden md:block"></span>
                 <span>React + Tailwind CSS</span>
               </div>
             </div>

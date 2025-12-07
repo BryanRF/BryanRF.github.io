@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaHome, FaFolder, FaUser, FaEnvelope, FaBars, FaTimes } from 'react-icons/fa';
+import { FaHome, FaFolder, FaUser, FaEnvelope, FaBars, FaTimes, FaSun, FaMoon } from 'react-icons/fa';
+import useDarkMode from '../hooks/useDarkMode';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isDarkMode, toggleDarkMode] = useDarkMode();
   const location = useLocation();
 
   useEffect(() => {
@@ -32,9 +34,13 @@ const Header = () => {
       <motion.header
         className={`fixed w-full z-50 transition-all duration-300 ${
           scrolled 
-            ? 'bg-white border-b-4 border-black shadow-brutal' 
-            : 'bg-white/95 backdrop-blur-sm'
+            ? 'border-b-4 shadow-brutal' 
+            : 'backdrop-blur-sm'
         }`}
+        style={{
+          backgroundColor: isDarkMode ? 'var(--bg-primary)' : 'white',
+          borderColor: 'var(--border-color)'
+        }}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6 }}
@@ -45,8 +51,11 @@ const Header = () => {
             {/* Logo */}
             <Link 
               to="/" 
-              className="text-2xl font-black  text-black hover:text-gray-700 transition-colors duration-300"
-              style={{ fontFamily: 'Sora, sans-serif' }}
+              className="text-2xl font-black transition-colors duration-300"
+              style={{ 
+                fontFamily: 'Sora, sans-serif',
+                color: 'var(--text-primary)'
+              }}
             >
               BryanRF
             </Link>
@@ -61,26 +70,52 @@ const Header = () => {
                   <Link
                     key={index}
                     to={item.path}
-                    className={`flex items-center space-x-2 px-5 py-3 rounded-xl border-4 border-black font-bold  text-sm shadow-brutal-sm transition-all duration-200 ${
+                    className={`flex items-center space-x-2 px-5 py-3 rounded-xl border-4 font-bold text-sm shadow-brutal-sm transition-all duration-200 ${
                       isActive 
-                        ? 'bg-primary text-black' 
-                        : 'bg-white text-black hover:bg-gray-100'
+                        ? 'bg-primary' 
+                        : 'hover:bg-gray-100 dark:hover:bg-gray-800'
                     }`}
+                    style={{
+                      backgroundColor: isActive ? 'var(--color-primary)' : (isDarkMode ? 'var(--bg-secondary)' : 'white'),
+                      color: isActive ? 'black' : 'var(--text-primary)',
+                      borderColor: 'var(--border-color)'
+                    }}
                   >
                     <IconComponent className="text-lg" />
                     <span>{item.text}</span>
                   </Link>
                 );
               })}
+              
+              {/* Dark Mode Toggle Button - Desktop */}
+              <button
+                onClick={toggleDarkMode}
+                className="p-3 rounded-xl border-4 shadow-brutal-sm transition-all duration-200 hover:scale-105"
+                style={{
+                  backgroundColor: isDarkMode ? 'var(--bg-secondary)' : 'white',
+                  borderColor: 'var(--border-color)'
+                }}
+                aria-label={isDarkMode ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+              >
+                {isDarkMode ? (
+                  <FaSun className="text-xl text-yellow-400" />
+                ) : (
+                  <FaMoon className="text-xl text-gray-700" />
+                )}
+              </button>
             </nav>
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden p-3 bg-white border-4 border-black rounded-xl shadow-brutal-sm hover:bg-gray-100 transition-all"
+              className="lg:hidden p-3 border-4 rounded-xl shadow-brutal-sm transition-all"
+              style={{
+                backgroundColor: isDarkMode ? 'var(--bg-secondary)' : 'white',
+                borderColor: 'var(--border-color)'
+              }}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle mobile menu"
             >
-              {mobileMenuOpen ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}
+              {mobileMenuOpen ? <FaTimes className="text-xl" style={{ color: 'var(--text-primary)' }} /> : <FaBars className="text-xl" style={{ color: 'var(--text-primary)' }} />}
             </button>
           </div>
         </div>
@@ -101,7 +136,11 @@ const Header = () => {
             
             {/* Mobile Menu Panel */}
             <motion.div
-              className="fixed top-0 right-0 h-full w-80 max-w-sm bg-white border-l-4 border-black z-50 lg:hidden"
+              className="fixed top-0 right-0 h-full w-80 max-w-sm border-l-4 z-50 lg:hidden"
+              style={{
+                backgroundColor: isDarkMode ? 'var(--bg-primary)' : 'white',
+                borderColor: 'var(--border-color)'
+              }}
               initial={{ x: "100%" }}
               animate={{ x: "0%" }}
               exit={{ x: "100%" }}
@@ -109,21 +148,24 @@ const Header = () => {
             >
               <div className="flex flex-col h-full">
                 {/* Mobile Header */}
-                <div className="flex items-center justify-between p-6 border-b-4 border-black">
+                <div className="flex items-center justify-between p-6 border-b-4" style={{ borderColor: 'var(--border-color)' }}>
                   <Link 
                     to="/" 
-                    className="text-xl font-black "
-                    style={{ fontFamily: 'Sora, sans-serif' }}
+                    className="text-xl font-black"
+                    style={{ 
+                      fontFamily: 'Sora, sans-serif',
+                      color: 'var(--text-primary)'
+                    }}
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     BryanRF
                   </Link>
                   <button
                     onClick={() => setMobileMenuOpen(false)}
-                    className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                    className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
                     aria-label="Close menu"
                   >
-                    <FaTimes className="text-lg" />
+                    <FaTimes className="text-lg" style={{ color: 'var(--text-primary)' }} />
                   </button>
                 </div>
 
@@ -138,11 +180,12 @@ const Header = () => {
                         <Link
                           key={index}
                           to={item.path}
-                          className={`flex items-center space-x-4 p-4 rounded-xl border-4 border-black font-bold  shadow-brutal-sm transition-all duration-200 ${
-                            isActive 
-                              ? 'bg-primary text-black' 
-                              : 'bg-white text-black hover:bg-gray-100'
-                          }`}
+                          className={`flex items-center space-x-4 p-4 rounded-xl border-4 font-bold shadow-brutal-sm transition-all duration-200`}
+                          style={{
+                            backgroundColor: isActive ? 'var(--color-primary)' : (isDarkMode ? 'var(--bg-secondary)' : 'white'),
+                            color: isActive ? 'black' : 'var(--text-primary)',
+                            borderColor: 'var(--border-color)'
+                          }}
                           onClick={() => setMobileMenuOpen(false)}
                         >
                           <IconComponent className="text-xl" />
@@ -150,6 +193,29 @@ const Header = () => {
                         </Link>
                       );
                     })}
+                    
+                    {/* Dark Mode Toggle Button - Mobile */}
+                    <button
+                      onClick={toggleDarkMode}
+                      className="w-full flex items-center space-x-4 p-4 rounded-xl border-4 font-bold shadow-brutal-sm transition-all duration-200"
+                      style={{
+                        backgroundColor: isDarkMode ? 'var(--bg-secondary)' : 'white',
+                        color: 'var(--text-primary)',
+                        borderColor: 'var(--border-color)'
+                      }}
+                    >
+                      {isDarkMode ? (
+                        <>
+                          <FaSun className="text-xl text-yellow-400" />
+                          <span>Modo Claro</span>
+                        </>
+                      ) : (
+                        <>
+                          <FaMoon className="text-xl" />
+                          <span>Modo Oscuro</span>
+                        </>
+                      )}
+                    </button>
                   </div>
                 </nav>
               </div>

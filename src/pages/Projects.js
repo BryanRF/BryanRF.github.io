@@ -95,7 +95,7 @@ const Projects = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-body">
       <div className="max-w-6xl mx-auto px-6 py-12 md:py-20">
         
         {/* Header Section */}
@@ -116,27 +116,27 @@ const Projects = () => {
 
           {/* Estadísticas rápidas */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 mb-12">
-            <div className="bg-white border-4 border-black rounded-2xl p-6 text-center shadow-brutal">
-              <div className="text-4xl font-black text-black mb-2">{githubProjects.length}</div>
-              <div className="text-sm font-bold  text-black">Proyectos</div>
+            <div className="bg-default border-4 border-default rounded-2xl p-6 text-center shadow-brutal">
+              <div className="text-4xl font-black text-default mb-2">{githubProjects.length}</div>
+              <div className="text-sm font-bold text-default">Proyectos</div>
             </div>
-            <div className="bg-white border-4 border-black rounded-2xl p-6 text-center shadow-brutal">
-              <div className="text-4xl font-black text-black mb-2">
+            <div className="bg-default border-4 border-default rounded-2xl p-6 text-center shadow-brutal">
+              <div className="text-4xl font-black text-default mb-2">
                 {filteredProjects.length}
               </div>
-              <div className="text-sm font-bold  text-black">Activos</div>
+              <div className="text-sm font-bold text-default">Activos</div>
             </div>
-            <div className="bg-white border-4 border-black rounded-2xl p-6 text-center shadow-brutal">
-              <div className="text-4xl font-black text-black mb-2">
+            <div className="bg-default border-4 border-default rounded-2xl p-6 text-center shadow-brutal">
+              <div className="text-4xl font-black text-default mb-2">
                 {githubProjects.filter(p => p.status === 'Completado').length}
               </div>
-              <div className="text-sm font-bold  text-black">Completados</div>
+              <div className="text-sm font-bold text-default">Completados</div>
             </div>
-            <div className="bg-white border-4 border-black rounded-2xl p-6 text-center shadow-brutal">
-              <div className="text-4xl font-black text-black mb-2">
+            <div className="bg-default border-4 border-default rounded-2xl p-6 text-center shadow-brutal">
+              <div className="text-4xl font-black text-default mb-2">
                 {new Set(githubProjects.flatMap(p => p.technologies || [])).size}
               </div>
-              <div className="text-sm font-bold  text-black">Tecnologías</div>
+              <div className="text-sm font-bold text-default">Tecnologías</div>
             </div>
           </div>
         </motion.div>
@@ -150,7 +150,7 @@ const Projects = () => {
         >
           {/* Barra de búsqueda */}
           <div className="relative mb-8">
-            <FaSearch className="absolute left-6 top-1/2 transform -translate-y-1/2 text-black text-xl" />
+            <FaSearch className="absolute left-6 top-1/2 transform -translate-y-1/2 text-default text-xl" />
             <input
               type="text"
               placeholder="Buscar proyectos, tecnologías, lenguajes..."
@@ -164,8 +164,8 @@ const Projects = () => {
             {/* Filtros por categoría */}
             <div className="flex flex-wrap items-center gap-3">
               <div className="flex items-center mr-4">
-                <FaFilter className="mr-2 text-black" />
-                <span className="text-sm font-black ">Filtrar:</span>
+                <FaFilter className="mr-2 text-default" />
+                <span className="text-sm font-black text-default">Filtrar:</span>
               </div>
               {filterCategories.map((category) => {
                 const IconComponent = iconMap[category.icon] || FaRocket;
@@ -173,10 +173,10 @@ const Projects = () => {
                   <button
                     key={category.id}
                     onClick={() => handleFilterChange(category.id)}
-                    className={`flex items-center px-4 py-2 border-4 border-black rounded-lg font-bold  text-sm shadow-brutal-sm transition-all duration-200 ${
+                    className={`flex items-center px-4 py-2 border-4 border-default rounded-lg font-bold text-sm shadow-brutal-sm transition-all duration-200 ${
                       activeFilter === category.id
                         ? 'bg-primary text-black'
-                        : 'bg-white text-black hover:bg-gray-100'
+                        : 'bg-default text-default hover:bg-opacity-80'
                     }`}
                   >
                     <IconComponent className="mr-2" />
@@ -189,13 +189,13 @@ const Projects = () => {
             {/* Ordenamiento */}
             <div className="flex items-center gap-3">
               <div className="flex items-center">
-                <FaSort className="mr-2 text-black" />
-                <span className="text-sm font-black ">Ordenar:</span>
+                <FaSort className="mr-2 text-default" />
+                <span className="text-sm font-black text-default">Ordenar:</span>
               </div>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-2 border-4 border-black rounded-lg font-bold bg-white text-black shadow-brutal-sm"
+                className="px-4 py-2 border-4 border-default rounded-lg font-bold bg-default text-default shadow-brutal-sm"
               >
                 <option value="recent">Más recientes</option>
                 <option value="stars">Más estrellas</option>
@@ -211,8 +211,8 @@ const Projects = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mb-8"
         >
-          <div className="bg-white border-4 border-black rounded-xl p-4 shadow-brutal-sm">
-            <p className="font-bold text-black">
+          <div className="bg-default border-4 border-default rounded-xl p-4 shadow-brutal-sm">
+            <p className="font-bold text-default">
               Mostrando {filteredProjects.length} de {githubProjects.length} proyectos
               {searchTerm && ` para "${searchTerm}"`}
               {activeFilter !== 'all' && ` en ${filterCategories.find(f => f.id === activeFilter)?.name}`}
@@ -247,10 +247,10 @@ const Projects = () => {
               animate={{ opacity: 1 }}
               className="col-span-full text-center py-16"
             >
-              <div className="bg-white border-4 border-black rounded-3xl p-12 shadow-brutal-xl">
+              <div className="bg-default border-4 border-default rounded-3xl p-12 shadow-brutal-xl">
                 <div className="text-6xl mb-4">🔍</div>
-                <h3 className="text-2xl font-black  mb-4">No se encontraron proyectos</h3>
-                <p className="font-bold text-black">
+                <h3 className="text-2xl font-black mb-4 text-default">No se encontraron proyectos</h3>
+                <p className="font-bold text-default">
                   Intenta con otros términos de búsqueda o cambia los filtros
                 </p>
               </div>
@@ -263,11 +263,11 @@ const Projects = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="bg-primary border-4 border-black rounded-3xl p-12 shadow-brutal-xl text-center"
+          className="bg-primary border-4 border-default rounded-3xl p-12 shadow-brutal-xl text-center"
         >
           <FaGithub className="text-6xl mx-auto mb-6 text-black" />
           
-          <h3 className="text-3xl md:text-4xl font-black  mb-6">
+          <h3 className="text-3xl md:text-4xl font-black text-black mb-6">
             ¿Quieres ver más?
           </h3>
           <p className="text-lg md:text-xl mb-10 max-w-2xl mx-auto font-bold text-black">
@@ -278,7 +278,7 @@ const Projects = () => {
             href="https://github.com/BryanRF"
             target="_blank"
             rel="noopener noreferrer"
-            className="neo-button bg-black text-white hover:bg-gray-800 inline-flex items-center"
+                    className="neo-button bg-purple-800  dark:bg-black text-white hover:opacity-80 inline-flex items-center transition-all duration-200"
           >
             <FaGithub className="mr-3" />
             Ver GitHub

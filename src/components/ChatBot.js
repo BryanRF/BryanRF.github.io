@@ -186,7 +186,7 @@ const ChatBot = () => {
       {/* Botón flotante - Desktop */}
       <motion.button
         onClick={handleToggleChat}
-        className="fixed bottom-8 right-32 z-50 md:flex hidden items-center justify-center w-16 h-16 bg-secondary hover:bg-blue-600 text-white rounded-full border-4 border-black shadow-brutal hover-lift transition-all duration-200 chatbot-floating-button"
+        className="fixed bottom-8 right-32 z-[100] md:flex hidden items-center justify-center w-16 h-16 bg-secondary hover:bg-blue-600 text-white rounded-full border-4 border-default shadow-brutal hover-lift transition-all duration-200 chatbot-floating-button"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Abrir chatbot"
@@ -198,7 +198,7 @@ const ChatBot = () => {
       {!isOpen && (
         <motion.button
           onClick={handleToggleChat}
-          className="fixed bottom-6 right-20 z-50 md:hidden flex items-center justify-center w-12 h-12 bg-secondary text-white rounded-full border-2 border-black shadow-brutal-sm hover-lift transition-all duration-200"
+          className="fixed bottom-6 right-20 z-[100] md:hidden flex items-center justify-center w-12 h-12 bg-secondary text-white rounded-full border-2 border-default shadow-brutal-sm hover-lift transition-all duration-200"
           whileTap={{ scale: 0.95 }}
           aria-label="Abrir chatbot"
         >
@@ -214,11 +214,11 @@ const ChatBot = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-28 right-8 z-50 w-96 max-w-[calc(100vw-2rem)] md:w-96 bg-white border-4 border-black rounded-3xl shadow-brutal-xl overflow-hidden"
+            className="fixed bottom-28 right-8 z-[100] w-96 max-w-[calc(100vw-2rem)] md:w-96 bg-default border-4 border-default rounded-3xl shadow-brutal-xl overflow-hidden"
             style={{ maxHeight: 'calc(100vh - 10rem)' }}
           >
             {/* Header */}
-            <div className="bg-secondary border-b-4 border-black p-4">
+            <div className="bg-secondary border-b-4 border-default p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
                   <FaRobot className="text-2xl text-white mr-3" />
@@ -236,11 +236,11 @@ const ChatBot = () => {
             </div>
 
             {/* Mensajes */}
-            <div className="h-96 overflow-y-auto p-4 space-y-4 bg-gray-light">
+            <div className="h-96 overflow-y-auto p-4 space-y-4 bg-default">
               {messages.map((message, index) => (
                 <div key={index} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-[80%] ${message.type === 'user' ? 'bg-primary' : 'bg-white'} border-4 border-black rounded-xl p-3 shadow-brutal-sm`}>
-                    <p className="text-sm font-bold text-black">{message.text}</p>
+                  <div className={`max-w-[80%] ${message.type === 'user' ? 'bg-primary' : 'bg-gray-light'} border-4 border-default rounded-xl p-3 shadow-brutal-sm`}>
+                    <p className={`text-sm font-bold ${message.type === 'user' ? 'text-black' : 'text-default'}`}>{message.text}</p>
                     
                     {message.options && (
                       <div className="mt-3 space-y-2">
@@ -248,7 +248,7 @@ const ChatBot = () => {
                           <button
                             key={optIndex}
                             onClick={() => handleOptionClick(option)}
-                            className="w-full text-left px-3 py-2 bg-white border-4 border-black rounded-lg font-bold text-xs hover:bg-gray-100 transition-all shadow-brutal-sm hover-lift"
+                            className="w-full text-left px-3 py-2 bg-gray-light border-4 border-default rounded-lg font-bold text-xs hover:bg-opacity-80 transition-all shadow-brutal-sm hover-lift text-default"
                           >
                             {option}
                           </button>
@@ -262,8 +262,8 @@ const ChatBot = () => {
             </div>
 
             {/* Footer */}
-            <div className="border-t-4 border-black p-3 bg-white">
-              <p className="text-xs text-center font-bold text-black">
+            <div className="border-t-4 border-default p-3 bg-default">
+              <p className="text-xs text-center font-bold text-default">
                 Selecciona una opción arriba
               </p>
             </div>
@@ -278,10 +278,10 @@ const ChatBot = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="md:hidden fixed inset-0 z-[9999] bg-white flex flex-col"
+            className="md:hidden fixed inset-0 z-[9999] bg-default flex flex-col"
           >
             {/* Header móvil */}
-            <div className="bg-secondary border-b-4 border-black p-4">
+            <div className="bg-secondary border-b-4 border-default p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
                   <FaRobot className="text-2xl text-white mr-3" />
@@ -299,11 +299,11 @@ const ChatBot = () => {
             </div>
 
             {/* Mensajes móvil */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-light" style={{ height: 'calc(100vh - 8rem)' }}>
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-default" style={{ height: 'calc(100vh - 8rem)' }}>
               {messages.map((message, index) => (
                 <div key={index} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-[85%] ${message.type === 'user' ? 'bg-primary' : 'bg-white'} border-4 border-black rounded-xl p-4 shadow-brutal`}>
-                    <p className="text-sm font-bold text-black">{message.text}</p>
+                  <div className={`max-w-[85%] ${message.type === 'user' ? 'bg-primary' : 'bg-gray-light'} border-4 border-default rounded-xl p-4 shadow-brutal`}>
+                    <p className={`text-sm font-bold ${message.type === 'user' ? 'text-black' : 'text-default'}`}>{message.text}</p>
                     
                     {message.options && (
                       <div className="mt-4 space-y-3">
@@ -311,7 +311,7 @@ const ChatBot = () => {
                           <button
                             key={optIndex}
                             onClick={() => handleOptionClick(option)}
-                            className="w-full text-left px-4 py-3 bg-white border-4 border-black rounded-lg font-bold text-sm hover:bg-gray-100 transition-all shadow-brutal hover-lift"
+                            className="w-full text-left px-4 py-3 bg-gray-light border-4 border-default rounded-lg font-bold text-sm hover:bg-opacity-80 transition-all shadow-brutal hover-lift text-default"
                           >
                             {option}
                           </button>
@@ -325,8 +325,8 @@ const ChatBot = () => {
             </div>
 
             {/* Footer móvil */}
-            <div className="border-t-4 border-black p-3 bg-white">
-              <p className="text-xs text-center font-bold text-black">
+            <div className="border-t-4 border-default p-3 bg-default">
+              <p className="text-xs text-center font-bold text-default">
                 Selecciona una opción arriba
               </p>
             </div>

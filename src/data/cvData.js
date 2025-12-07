@@ -110,6 +110,10 @@ export const cvData = {
     tools: {
       title: "Herramientas y Otros",
       items: ["Git", "GitHub", "Postman", "Metodologías Ágiles (Scrum)", "Clean Code", "SOLID"]
+    },
+    security: {
+      title: "Seguridad y Normativas",
+      items: ["Normativas ISO (27001)", "Seguridad de la Información", "OWASP"]
     }
   }
 };
@@ -125,7 +129,7 @@ export const getSkillsByType = (type) => {
     frontend: ['frontend', 'tools'],
     backend: ['backend', 'database', 'cloud', 'tools'],
     mobile: ['mobile', 'frontend', 'database', 'tools'],
-    fullstack: ['frontend', 'backend', 'mobile', 'database', 'cloud', 'ml', 'tools'],
+    fullstack: ['frontend', 'backend', 'mobile', 'database', 'cloud', 'ml', 'tools', 'security'],
     ml: ['ml', 'backend', 'tools']
   };
   

@@ -102,7 +102,7 @@ function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-body">
       <div className="max-w-6xl mx-auto px-6 py-12 md:py-20">
         
         {/* Header Section */}
@@ -116,19 +116,19 @@ function Contact() {
             Hablemos sobre tu proyecto
           </h1>
           
-          <p className="text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto mb-8 font-bold text-black">
+          <p className="text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto mb-8 font-bold text-default">
             ¿Tienes una idea en mente? Me encanta colaborar en proyectos innovadores. 
             Contactame para discutir cómo puedo ayudarte a convertir tu visión en realidad.
           </p>
 
           {/* Availability Info */}
-          <div className="inline-flex items-center px-6 py-3 bg-primary border-4 border-black rounded-full shadow-brutal-sm mb-8">
+          <div className="inline-flex items-center px-6 py-3 bg-primary border-4 border-default rounded-full shadow-brutal-sm mb-8">
             <div className="w-3 h-3 bg-black rounded-full animate-pulse mr-3"></div>
             <span className="font-black text-black">Disponible para nuevos proyectos</span>
           </div>
 
           {/* Location & Time */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-center gap-6 text-black font-bold">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-center gap-6 text-default font-bold">
             <div className="flex items-center justify-center">
               <FaMapMarkerAlt className="mr-2 text-xl" />
               <span>Chiclayo, Perú 🇵🇪</span>
@@ -155,9 +155,9 @@ function Contact() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="p-8 bg-white border-4 border-black rounded-3xl shadow-brutal-xl"
+            className="p-8 bg-default border-4 border-default rounded-3xl shadow-brutal-xl"
           >
-            <h2 className="text-2xl font-black  mb-8 text-black flex items-center">
+            <h2 className="text-2xl font-black  mb-8 text-default flex items-center">
               <FaPaperPlane className="mr-3" />
               Envíame un mensaje
             </h2>
@@ -165,7 +165,7 @@ function Contact() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-black text-sm font-black  mb-2">
+                  <label className="block text-default text-sm font-black  mb-2">
                     Nombre *
                   </label>
                   <input
@@ -180,7 +180,7 @@ function Contact() {
                 </div>
                 
                 <div>
-                  <label className="block text-black text-sm font-black  mb-2">
+                  <label className="block text-default text-sm font-black  mb-2">
                     Email *
                   </label>
                   <input
@@ -196,7 +196,7 @@ function Contact() {
               </div>
               
               <div>
-                <label className="block text-black text-sm font-black  mb-2">
+                <label className="block text-default text-sm font-black  mb-2">
                   Asunto
                 </label>
                 <input
@@ -210,7 +210,7 @@ function Contact() {
               </div>
               
               <div>
-                <label className="block text-black text-sm font-black  mb-2">
+                <label className="block text-default text-sm font-black  mb-2">
                   Mensaje *
                 </label>
                 <textarea
@@ -233,7 +233,7 @@ function Contact() {
                 <FaArrowRight className="ml-3 group-hover:translate-x-1 transition-transform" />
               </button>
               
-              <p className="text-black text-sm text-center font-bold">
+              <p className="text-default text-sm text-center font-bold">
                 Al enviar el formulario se abrirá tu cliente de email
               </p>
             </form>
@@ -246,36 +246,36 @@ function Contact() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="space-y-6"
           >
-            <h2 className="text-2xl font-black  mb-8 text-black">
+            <h2 className="text-2xl font-black  mb-8 text-default">
               Otras formas de contacto
             </h2>
             
             {contactMethods.map((contact, index) => {
               const IconComponent = contact.icon;
               return (
-                <motion.a
-                  key={index}
-                  href={contact.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`flex items-center justify-between p-6 border-4 border-black rounded-2xl shadow-brutal hover-lift group ${contact.primary ? 'bg-primary' : 'bg-white'}`}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div className="flex items-center">
-                    <div className="p-3 bg-white border-4 border-black rounded-lg mr-4 shadow-brutal-sm">
-                      <IconComponent className="text-2xl text-black" />
+                  <motion.a
+                    key={index}
+                    href={contact.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center justify-between p-6 border-4 border-default rounded-2xl shadow-brutal hover-lift group ${contact.primary ? 'bg-primary' : 'bg-default'}`}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div className="flex items-center">
+                      <div className="p-3 bg-default border-4 border-default rounded-lg mr-4 shadow-brutal-sm">
+                        <IconComponent className={`text-2xl ${contact.primary ? 'text-default' : 'text-default'}`} />
+                      </div>
+                      <div>
+                        <h3 className={`font-black ${contact.primary ? 'text-black' : 'text-default'}`}>
+                          {contact.platform}
+                        </h3>
+                        <p className={`text-sm font-bold ${contact.primary ? 'text-black' : 'text-default'}`}>{contact.handle}</p>
+                        <p className={`text-xs font-bold ${contact.primary ? 'text-black' : 'text-default'}`}>{contact.description}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-black font-black ">
-                        {contact.platform}
-                      </h3>
-                      <p className="text-black text-sm font-bold">{contact.handle}</p>
-                      <p className="text-black text-xs font-bold">{contact.description}</p>
-                    </div>
-                  </div>
-                  <FaArrowRight className="text-black group-hover:translate-x-1 transition-all" />
-                </motion.a>
+                    <FaArrowRight className={`${contact.primary ? 'text-black' : 'text-default'} group-hover:translate-x-1 transition-all`} />
+                  </motion.a>
               );
             })}
           </motion.div>
@@ -286,35 +286,35 @@ function Contact() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="mb-16 p-8 bg-white border-4 border-black rounded-3xl shadow-brutal-xl"
+          className="mb-16 p-8 bg-default border-4 border-default rounded-3xl shadow-brutal-xl"
         >
-          <h3 className="text-xl font-black  mb-6 text-black flex items-center">
+          <h3 className="text-xl font-black  mb-6 text-default flex items-center">
             <FaCalendarAlt className="mr-3" />
             Disponibilidad y tiempos de respuesta
           </h3>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="flex items-center p-4 bg-gray-light border-4 border-black rounded-xl shadow-brutal-sm">
-              <FaCheckCircle className="text-black mr-3 text-2xl" />
+            <div className="flex items-center p-4 bg-gray-light border-4 border-default rounded-xl shadow-brutal-sm">
+              <FaCheckCircle className="text-default mr-3 text-2xl" />
               <div>
-                <div className="text-black font-black text-sm ">Estado</div>
-                <div className="text-black text-sm font-bold">{availability.status}</div>
+                <div className="text-default font-black text-sm ">Estado</div>
+                <div className="text-default text-sm font-bold">{availability.status}</div>
               </div>
             </div>
             
-            <div className="flex items-center p-4 bg-gray-light border-4 border-black rounded-xl shadow-brutal-sm">
-              <FaGlobe className="text-black mr-3 text-2xl" />
+            <div className="flex items-center p-4 bg-gray-light border-4 border-default rounded-xl shadow-brutal-sm">
+              <FaGlobe className="text-default mr-3 text-2xl" />
               <div>
-                <div className="text-black font-black text-sm ">Zona horaria</div>
-                <div className="text-black text-sm font-bold">{availability.timezone}</div>
+                <div className="text-default font-black text-sm ">Zona horaria</div>
+                <div className="text-default text-sm font-bold">{availability.timezone}</div>
               </div>
             </div>
             
-            <div className="flex items-center p-4 bg-gray-light border-4 border-black rounded-xl shadow-brutal-sm">
-              <FaClock className="text-black mr-3 text-2xl" />
+            <div className="flex items-center p-4 bg-gray-light border-4 border-default rounded-xl shadow-brutal-sm">
+              <FaClock className="text-default mr-3 text-2xl" />
               <div>
-                <div className="text-black font-black text-sm ">Mejor horario</div>
-                <div className="text-black text-sm font-bold">{availability.bestTime}</div>
+                <div className="text-default font-black text-sm ">Mejor horario</div>
+                <div className="text-default text-sm font-bold">{availability.bestTime}</div>
               </div>
             </div>
           </div>
@@ -327,7 +327,7 @@ function Contact() {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center"
         >
-          <h3 className="text-xl font-black  mb-8 text-black">
+          <h3 className="text-xl font-black  mb-8 text-default">
             También me puedes encontrar en
           </h3>
           
@@ -351,11 +351,11 @@ function Contact() {
           </div>
 
           {/* Final CTA */}
-          <div className="p-8 bg-secondary border-4 border-black rounded-3xl shadow-brutal-xl">
-            <h3 className="text-3xl font-black  mb-4 text-white">
+          <div className="p-8 bg-secondary border-4 border-default rounded-3xl shadow-brutal-xl">
+            <h3 className="text-3xl font-black  mb-4 text-default">
               ¿Listo para comenzar?
             </h3>
-            <p className="text-white font-bold mb-6 max-w-2xl mx-auto text-lg">
+            <p className="text-default font-bold mb-6 max-w-2xl mx-auto text-lg">
               No importa si tienes una idea completamente desarrollada o solo un concepto inicial. 
               Me encanta ser parte del proceso creativo desde el principio.
             </p>
@@ -364,12 +364,13 @@ function Contact() {
               href="https://wa.me/998511769?text=¡Hola! Me interesa trabajar contigo en un proyecto. ¿Podríamos conversar?"
               target="_blank"
               rel="noopener noreferrer"
-              className="neo-button bg-[#25D366] text-white hover:bg-[#20BA5A] inline-flex items-center text-lg group border-4 border-black"
+               className="neo-button bg-green-500 text-black dark:bg-black dark:text-white hover:opacity-80 inline-flex items-center transition-all duration-200"
             >
               <FaWhatsapp className="mr-3 group-hover:scale-110 transition-transform" />
               Empezar conversación
               <FaArrowRight className="ml-3 group-hover:translate-x-1 transition-transform" />
             </a>
+           
           </div>
         </motion.div>
       </div>

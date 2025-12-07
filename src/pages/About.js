@@ -17,6 +17,7 @@ import {
   FaTv,
   FaCoffee,
   FaStar,
+  FaShieldAlt,
 } from 'react-icons/fa';
 
 function About() {
@@ -59,6 +60,12 @@ function About() {
       category: "Herramientas",
       icon: FaTools,
       technologies: ["Git", "Docker", "AWS", "Linux", "VS Code", "Figma"],
+      level: "Intermedio-Avanzado"
+    },
+    {
+      category: "Seguridad y Normativas",
+      icon: FaShieldAlt,
+      technologies: ["Normativas ISO (27001)", "Seguridad de la Información", "OWASP"],
       level: "Intermedio-Avanzado"
     }
   ];
@@ -144,7 +151,7 @@ function About() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-body">
       <div className="max-w-6xl mx-auto px-6 py-12 md:py-20">
         
         {/* Header Section */}
@@ -154,17 +161,17 @@ function About() {
           transition={{ duration: 0.6 }}
           className="mb-20 text-center"
         >
-          <h1 className="neo-title mb-6">
+          <h1 className="neo-title mb-6 text-default">
             Sobre Mí
           </h1>
           
           <div className="max-w-4xl mx-auto">
-            <p className="text-xl md:text-2xl leading-relaxed mb-8 font-bold text-black">
+            <p className="text-xl md:text-2xl leading-relaxed mb-8 font-bold text-default">
               Ingeniero de sistemas con {yearsOfExperience} años de experiencia creando soluciones tecnológicas 
               innovadoras que combinan funcionalidad, diseño y eficiencia.
             </p>
             
-            <div className="flex items-center justify-center text-black mb-8">
+            <div className="flex items-center justify-center text-default mb-8">
               <FaMapMarkerAlt className="mr-2 text-2xl" />
               <span className="font-bold text-lg">Chiclayo, Perú 🇵🇪</span>
             </div>
@@ -178,21 +185,21 @@ function About() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
         >
-          <div className="text-center p-6 bg-white border-4 border-black rounded-2xl shadow-brutal">
-            <div className="text-4xl font-black text-black mb-2">{yearsOfExperience}+</div>
-            <div className="text-sm font-bold  text-black">Años de experiencia</div>
+          <div className="text-center p-6 bg-default border-4 border-default rounded-2xl shadow-brutal">
+            <div className="text-4xl font-black text-default mb-2">{yearsOfExperience}+</div>
+            <div className="text-sm font-bold  text-default">Años de experiencia</div>
           </div>
-          <div className="text-center p-6 bg-white border-4 border-black rounded-2xl shadow-brutal">
-            <div className="text-4xl font-black text-black mb-2">15+</div>
-            <div className="text-sm font-bold  text-black">Proyectos completados</div>
+          <div className="text-center p-6 bg-default border-4 border-default rounded-2xl shadow-brutal">
+            <div className="text-4xl font-black text-default mb-2">15+</div>
+            <div className="text-sm font-bold  text-default">Proyectos completados</div>
           </div>
-          <div className="text-center p-6 bg-white border-4 border-black rounded-2xl shadow-brutal">
-            <div className="text-4xl font-black text-black mb-2">10+</div>
-            <div className="text-sm font-bold  text-black">Tecnologías dominadas</div>
+          <div className="text-center p-6 bg-default border-4 border-default rounded-2xl shadow-brutal">
+            <div className="text-4xl font-black text-default mb-2">10+</div>
+            <div className="text-sm font-bold  text-default">Tecnologías dominadas</div>
           </div>
-          <div className="text-center p-6 bg-white border-4 border-black rounded-2xl shadow-brutal">
-            <div className="text-4xl font-black text-black mb-2">∞</div>
-            <div className="text-sm font-bold  text-black">Tazas de café</div>
+          <div className="text-center p-6 bg-default border-4 border-default rounded-2xl shadow-brutal">
+            <div className="text-4xl font-black text-default mb-2">∞</div>
+            <div className="text-sm font-bold  text-default">Tazas de café</div>
           </div>
         </motion.div>
 
@@ -203,7 +210,7 @@ function About() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mb-20"
         >
-          <h2 className="neo-subtitle mb-12 text-center">Habilidades Técnicas</h2>
+          <h2 className="neo-subtitle mb-12 text-center text-default">Habilidades Técnicas</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {skills.map((skill, index) => {
@@ -211,22 +218,22 @@ function About() {
               return (
                 <motion.div 
                   key={index}
-                  className="p-8 bg-white border-4 border-black rounded-2xl shadow-brutal hover-lift"
+                 className="p-8 bg-default border-4 border-default rounded-2xl shadow-brutal hover-lift"
                   whileHover={{ scale: 1.02 }}
                 >
                   <div className="flex items-center mb-6">
-                    <IconComponent className="text-3xl text-black mr-4" />
+                    <IconComponent className="text-3xl text-default mr-4" />
                     <div>
-                      <h3 className="text-lg font-black  text-black">{skill.category}</h3>
-                      <span className="text-sm font-bold text-black">{skill.level}</span>
+                      <h3 className="text-lg font-black  text-default">{skill.category}</h3>
+                      <span className="text-sm font-bold text-default">{skill.level}</span>
                     </div>
                   </div>
                   
                   <div className="space-y-2">
                     {skill.technologies.map((tech, techIndex) => (
                       <div key={techIndex} className="flex items-center">
-                        <div className="w-2 h-2 bg-black rounded-full mr-3"></div>
-                        <span className="text-black text-sm font-bold">{tech}</span>
+                        <div className="w-2 h-2 bg-current rounded-full mr-3"></div>
+                        <span className="text-default text-sm font-bold">{tech}</span>
                       </div>
                     ))}
                   </div>
@@ -244,25 +251,25 @@ function About() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <h2 className="text-3xl font-black  mb-8">Formación Académica</h2>
+            <h2 className="text-3xl font-black mb-8 text-default">Formación Académica</h2>
             
             {education.map((edu, index) => (
               <div 
                 key={index}
-                className="p-8 bg-white border-4 border-black rounded-2xl shadow-brutal"
+                className="p-8 bg-default border-4 border-default rounded-2xl shadow-brutal"
               >
                 <div className="flex items-start mb-4">
-                  <FaGraduationCap className="text-3xl text-black mr-4 mt-1" />
+                  <FaGraduationCap className="text-3xl text-default mr-4 mt-1" />
                   <div className="flex-1">
-                    <h3 className="text-xl font-black  text-black mb-2">{edu.degree}</h3>
-                    <p className="font-bold text-black mb-2">{edu.institution}</p>
-                    <p className="text-black text-sm font-bold mb-4">{edu.description}</p>
+                    <h3 className="text-xl font-black  text-default mb-2">{edu.degree}</h3>
+                    <p className="font-bold text-default mb-2">{edu.institution}</p>
+                    <p className="text-default text-sm font-bold mb-4">{edu.description}</p>
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center text-sm font-bold text-black">
+                      <div className="flex items-center text-sm font-bold text-default">
                         <FaCalendar className="mr-2" />
                         {edu.year}
                       </div>
-                      <span className="px-4 py-2 bg-primary border-4 border-black rounded-lg text-black text-sm font-black shadow-brutal-sm">
+                      <span className="px-4 py-2 bg-primary border-4 border-default rounded-lg text-black text-sm font-black shadow-brutal-sm">
                         {edu.status}
                       </span>
                     </div>
@@ -278,26 +285,26 @@ function About() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            <h2 className="text-3xl font-black  mb-8">Experiencia Profesional</h2>
+            <h2 className="text-3xl font-black mb-8 text-default">Experiencia Profesional</h2>
             
             <div className="space-y-6">
               {experience.map((exp, index) => (
                 <div 
                   key={index}
-                  className="p-8 bg-white border-4 border-black rounded-2xl shadow-brutal"
+                  className="p-8 bg-default border-4 border-default rounded-2xl shadow-brutal"
                 >
                   <div className="mb-4">
-                    <h3 className="text-xl font-black  text-black mb-2">{exp.role}</h3>
-                    <p className="font-bold text-black mb-4">{exp.company}</p>
-                    <p className="text-black font-bold leading-relaxed mb-6">{exp.description}</p>
+                    <h3 className="text-xl font-black  text-default mb-2">{exp.role}</h3>
+                    <p className="font-bold text-default mb-4">{exp.company}</p>
+                    <p className="text-default font-bold leading-relaxed mb-6">{exp.description}</p>
                     
                     {exp.achievements && (
                       <div>
-                        <h4 className="text-black font-black  mb-3 text-sm">Logros destacados:</h4>
+                        <h4 className="text-default font-black  mb-3 text-sm">Logros destacados:</h4>
                         <ul className="space-y-2">
                           {exp.achievements.map((achievement, achievementIndex) => (
                             <li key={achievementIndex} className="flex items-start text-black text-sm font-bold">
-                              <div className="w-2 h-2 bg-black rounded-full mr-3 mt-2 flex-shrink-0"></div>
+                              <div className="w-2 h-2 bg-current rounded-full mr-3 mt-2 flex-shrink-0"></div>
                               {achievement}
                             </li>
                           ))}
@@ -306,7 +313,7 @@ function About() {
                     )}
                   </div>
                   
-                  <div className="flex items-center text-sm font-bold text-black bg-gray-light border-4 border-black px-4 py-2 rounded-lg shadow-brutal-sm">
+                  <div className="flex items-center text-sm font-bold text-default bg-gray-light border-4 border-default px-4 py-2 rounded-lg shadow-brutal-sm">
                     <FaCalendar className="mr-2" />
                     {exp.period}
                   </div>
@@ -323,7 +330,7 @@ function About() {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="mb-20"
         >
-          <h2 className="neo-subtitle mb-12 text-center">Hobbies & Gustos Personales</h2>
+          <h2 className="neo-subtitle mb-12 text-center text-default">Hobbies & Gustos Personales</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
             {hobbies.map((hobby, index) => {
@@ -331,21 +338,21 @@ function About() {
               return (
                 <motion.div 
                   key={index}
-                  className="p-8 bg-white border-4 border-black rounded-2xl shadow-brutal hover-lift"
+                 className="p-8 bg-default border-4 border-default rounded-2xl shadow-brutal hover-lift"
                   whileHover={{ scale: 1.02 }}
                 >
                   <div className="flex items-center mb-4">
-                    <IconComponent className="text-3xl text-black mr-4" />
-                    <h3 className="text-lg font-black  text-black">{hobby.category}</h3>
+                    <IconComponent className="text-3xl text-default mr-4" />
+                    <h3 className="text-lg font-black  text-default">{hobby.category}</h3>
                   </div>
                   
-                  <p className="text-black text-sm font-bold mb-6">{hobby.description}</p>
+                  <p className="text-default text-sm font-bold mb-6">{hobby.description}</p>
                   
                   <div className="flex flex-wrap gap-2">
                     {hobby.items.map((item, itemIndex) => (
                       <span 
                         key={itemIndex}
-                        className="px-4 py-2 bg-gray-light border-4 border-black text-black text-sm font-bold rounded-lg shadow-brutal-sm"
+                        className="px-4 py-2 bg-gray-light border-4 border-default text-default text-sm font-bold rounded-lg shadow-brutal-sm"
                       >
                         {item}
                       </span>
@@ -360,26 +367,26 @@ function About() {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Anime Favoritos */}
             <div>
-              <h3 className="text-2xl font-black  mb-8 text-black flex items-center">
-                <FaStar className="mr-3 text-black" />
+              <h3 className="text-2xl font-black mb-8 text-default flex items-center">
+                <FaStar className="mr-3 text-default" />
                 Anime Favoritos
               </h3>
               <div className="space-y-4">
                 {favoriteAnime.map((anime, index) => (
                   <motion.div 
                     key={index}
-                    className="p-6 bg-white border-4 border-black rounded-xl shadow-brutal"
+                className="p-6 bg-default border-4 border-default rounded-xl shadow-brutal"
                     whileHover={{ scale: 1.02 }}
                   >
                     <div className="flex justify-between items-start mb-2">
-                      <h4 className="text-black font-black">{anime.title}</h4>
-                      <span className="text-xs font-bold text-black bg-gray-light px-3 py-1 rounded-lg border-2 border-black">
+                      <h4 className="text-default font-black">{anime.title}</h4>
+                      <span className="text-xs font-bold text-default bg-gray-light px-3 py-1 rounded-lg border-2 border-default">
                         {anime.genre}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <p className="text-black text-sm font-bold">{anime.description}</p>
-                      <span className="text-xs font-bold text-black ml-4">{anime.status}</span>
+                      <p className="text-default text-sm font-bold">{anime.description}</p>
+                      <span className="text-xs font-bold text-default ml-4">{anime.status}</span>
                     </div>
                   </motion.div>
                 ))}
@@ -388,26 +395,26 @@ function About() {
 
             {/* Series Favoritas */}
             <div>
-              <h3 className="text-2xl font-black  mb-8 text-black flex items-center">
-                <FaTv className="mr-3 text-black" />
+              <h3 className="text-2xl font-black mb-8 text-default flex items-center">
+                <FaTv className="mr-3 text-default" />
                 Series Favoritas
               </h3>
               <div className="space-y-4">
                 {favoriteSeries.map((series, index) => (
                   <motion.div 
                     key={index}
-                    className="p-6 bg-white border-4 border-black rounded-xl shadow-brutal"
+                className="p-6 bg-default border-4 border-default rounded-xl shadow-brutal"
                     whileHover={{ scale: 1.02 }}
                   >
                     <div className="flex justify-between items-start mb-2">
-                      <h4 className="text-black font-black">{series.title}</h4>
-                      <span className="text-xs font-bold text-black bg-gray-light px-3 py-1 rounded-lg border-2 border-black">
+                      <h4 className="text-default font-black">{series.title}</h4>
+                      <span className="text-xs font-bold text-default bg-gray-light px-3 py-1 rounded-lg border-2 border-default">
                         {series.platform}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <p className="text-black text-sm font-bold">{series.description}</p>
-                      <span className="text-xs font-bold text-black ml-4">{series.genre}</span>
+                      <p className="text-default text-sm font-bold">{series.description}</p>
+                      <span className="text-xs font-bold text-default ml-4">{series.genre}</span>
                     </div>
                   </motion.div>
                 ))}
