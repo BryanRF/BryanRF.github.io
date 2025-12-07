@@ -27,6 +27,28 @@ import { whatsappConfig } from '../data/projectData';
 import Header from '../components/Header';
 import { currentAge } from '../utils/ageCalculator';
 
+const getSeasonalAvatar = (date) => {
+  const month = date.getMonth(); // 0-11 (9=Oct, 11=Dec)
+  const day = date.getDate();
+
+  // Birthday: Dec 26
+  if (month === 11 && day === 26) {
+    return "/avatarHappy.svg";
+  }
+
+  // Christmas: Dec 1 - Dec 31
+  if (month === 11) {
+    return "/avatarNavidad.svg";
+  }
+
+  // Halloween: Oct 1 - Oct 31
+  if (month === 9) {
+    return "/avatarHalloween.svg";
+  }
+
+  return "/avatar.svg";
+};
+
 function Home() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isVisible, setIsVisible] = useState(false);
@@ -194,7 +216,7 @@ function Home() {
             <div className="flex justify-center mb-6 md:mb-8">
               <div className="w-24 h-24 md:w-32 md:h-32 border-4 border-default rounded-full overflow-hidden shadow-brutal bg-default">
                 <img 
-                  src="/avatar.svg" 
+                  src={getSeasonalAvatar(currentTime)} 
                   alt="Brayan Eduardo Rojas Freyre" 
                   className="w-full h-full object-cover"
                 />
@@ -329,7 +351,7 @@ function Home() {
             </div>
 
             {/* Availability Card - Secondary Color */}
-            <div className=" border-4 border-default rounded-2xl p-8 shadow-brutal">
+            <div className="bg-default border-4 border-default rounded-2xl p-8 shadow-brutal">
               <div className="flex items-center mb-6">
                 <div className={`w-5 h-5 rounded-full mr-4 ${isAvailable ? 'bg-green-700 animate-pulse' : 'bg-black'}`}></div>
                 <h3 className="text-2xl font-black  text-default">Disponibilidad</h3>

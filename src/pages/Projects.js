@@ -85,8 +85,8 @@ const Projects = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="bg-white border-4 border-black rounded-3xl p-12 shadow-brutal-xl text-center max-w-2xl">
+      <div className="min-h-screen bg-body flex items-center justify-center">
+        <div className="bg-default border-4 border-default rounded-3xl p-12 shadow-brutal-xl text-center max-w-2xl">
           <p className="text-2xl font-black mb-4">⚠️ Error al cargar proyectos</p>
           <p className="text-lg font-bold">{error}</p>
         </div>
