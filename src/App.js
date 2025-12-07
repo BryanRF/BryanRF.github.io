@@ -9,8 +9,8 @@ import FloatingWhatsApp from './components/FloatingWhatsApp';
 import ChatBot from './components/ChatBot';
 
 function App() {
-  // Configuración para GitHub Pages
-  const basename = process.env.NODE_ENV === 'production' ? '/porfolio' : '';
+  // Configuración para GitHub Pages - servido desde la raíz
+  const basename = '';
   
   return (
     <Router basename={basename}>
