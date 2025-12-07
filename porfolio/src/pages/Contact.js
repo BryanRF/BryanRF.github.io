@@ -157,7 +157,7 @@ function Contact() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="p-8 bg-white border-4 border-black rounded-3xl shadow-brutal-xl"
           >
-            <h2 className="text-2xl font-black uppercase mb-8 text-black flex items-center">
+            <h2 className="text-2xl font-black  mb-8 text-black flex items-center">
               <FaPaperPlane className="mr-3" />
               Envíame un mensaje
             </h2>
@@ -165,7 +165,7 @@ function Contact() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-black text-sm font-black uppercase mb-2">
+                  <label className="block text-black text-sm font-black  mb-2">
                     Nombre *
                   </label>
                   <input
@@ -180,7 +180,7 @@ function Contact() {
                 </div>
                 
                 <div>
-                  <label className="block text-black text-sm font-black uppercase mb-2">
+                  <label className="block text-black text-sm font-black  mb-2">
                     Email *
                   </label>
                   <input
@@ -196,7 +196,7 @@ function Contact() {
               </div>
               
               <div>
-                <label className="block text-black text-sm font-black uppercase mb-2">
+                <label className="block text-black text-sm font-black  mb-2">
                   Asunto
                 </label>
                 <input
@@ -210,7 +210,7 @@ function Contact() {
               </div>
               
               <div>
-                <label className="block text-black text-sm font-black uppercase mb-2">
+                <label className="block text-black text-sm font-black  mb-2">
                   Mensaje *
                 </label>
                 <textarea
@@ -246,7 +246,7 @@ function Contact() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="space-y-6"
           >
-            <h2 className="text-2xl font-black uppercase mb-8 text-black">
+            <h2 className="text-2xl font-black  mb-8 text-black">
               Otras formas de contacto
             </h2>
             
@@ -267,7 +267,7 @@ function Contact() {
                       <IconComponent className="text-2xl text-black" />
                     </div>
                     <div>
-                      <h3 className="text-black font-black uppercase">
+                      <h3 className="text-black font-black ">
                         {contact.platform}
                       </h3>
                       <p className="text-black text-sm font-bold">{contact.handle}</p>
@@ -288,7 +288,7 @@ function Contact() {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="mb-16 p-8 bg-white border-4 border-black rounded-3xl shadow-brutal-xl"
         >
-          <h3 className="text-xl font-black uppercase mb-6 text-black flex items-center">
+          <h3 className="text-xl font-black  mb-6 text-black flex items-center">
             <FaCalendarAlt className="mr-3" />
             Disponibilidad y tiempos de respuesta
           </h3>
@@ -297,7 +297,7 @@ function Contact() {
             <div className="flex items-center p-4 bg-gray-light border-4 border-black rounded-xl shadow-brutal-sm">
               <FaCheckCircle className="text-black mr-3 text-2xl" />
               <div>
-                <div className="text-black font-black text-sm uppercase">Estado</div>
+                <div className="text-black font-black text-sm ">Estado</div>
                 <div className="text-black text-sm font-bold">{availability.status}</div>
               </div>
             </div>
@@ -305,7 +305,7 @@ function Contact() {
             <div className="flex items-center p-4 bg-gray-light border-4 border-black rounded-xl shadow-brutal-sm">
               <FaGlobe className="text-black mr-3 text-2xl" />
               <div>
-                <div className="text-black font-black text-sm uppercase">Zona horaria</div>
+                <div className="text-black font-black text-sm ">Zona horaria</div>
                 <div className="text-black text-sm font-bold">{availability.timezone}</div>
               </div>
             </div>
@@ -313,7 +313,7 @@ function Contact() {
             <div className="flex items-center p-4 bg-gray-light border-4 border-black rounded-xl shadow-brutal-sm">
               <FaClock className="text-black mr-3 text-2xl" />
               <div>
-                <div className="text-black font-black text-sm uppercase">Mejor horario</div>
+                <div className="text-black font-black text-sm ">Mejor horario</div>
                 <div className="text-black text-sm font-bold">{availability.bestTime}</div>
               </div>
             </div>
@@ -327,7 +327,7 @@ function Contact() {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center"
         >
-          <h3 className="text-xl font-black uppercase mb-8 text-black">
+          <h3 className="text-xl font-black  mb-8 text-black">
             También me puedes encontrar en
           </h3>
           
@@ -352,7 +352,7 @@ function Contact() {
 
           {/* Final CTA */}
           <div className="p-8 bg-secondary border-4 border-black rounded-3xl shadow-brutal-xl">
-            <h3 className="text-3xl font-black uppercase mb-4 text-white">
+            <h3 className="text-3xl font-black  mb-4 text-white">
               ¿Listo para comenzar?
             </h3>
             <p className="text-white font-bold mb-6 max-w-2xl mx-auto text-lg">

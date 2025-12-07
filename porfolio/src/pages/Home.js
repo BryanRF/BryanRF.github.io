@@ -23,6 +23,8 @@ import {
   FaDocker,
 } from 'react-icons/fa';
 import { whatsappConfig } from '../data/projectData';
+import Header from '../components/Header';
+import { currentAge } from '../utils/ageCalculator';
 
 function Home() {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -179,7 +181,7 @@ function Home() {
             </div>
 
             {/* Nombre Completo - Montserrat */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase mb-6 leading-none text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black  mb-6 leading-none text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
               BRAYAN EDUARDO
               <br />
               ROJAS FREYRE
@@ -240,7 +242,7 @@ function Home() {
                   <div className="text-4xl md:text-5xl font-black mb-2 text-black">
                     {stat.value}
                   </div>
-                  <div className="text-sm font-bold uppercase text-black">
+                  <div className="text-sm font-bold  text-black">
                     {stat.label}
                   </div>
                 </motion.div>
@@ -267,7 +269,7 @@ function Home() {
             <div className="space-y-6 text-lg font-bold text-black">
               <p className="flex items-start gap-3">
                 <FaHeart className="text-2xl mt-1 flex-shrink-0" />
-                <span>Me apasiona programar y enseñar programación. Disfruto compartiendo conocimientos y ayudando a otros a crecer en este campo.</span>
+                <span>Me apasiona programar y enseñar programación. Disfruto compartiendo conocimientos y ayudando a otros a crecer en este campo, desde nivel básico hasta intermedio en cualquier lenguaje.</span>
               </p>
               <p className="flex items-start gap-3">
                 <FaLightbulb className="text-2xl mt-1 flex-shrink-0" />
@@ -291,7 +293,7 @@ function Home() {
             <div className="bg-white border-4 border-black rounded-2xl p-8 shadow-brutal">
               <div className="flex items-center mb-6">
                 <FaMapMarkerAlt className="text-3xl mr-4 text-black" />
-                <h3 className="text-2xl font-black uppercase">Ubicación</h3>
+                <h3 className="text-2xl font-black ">Ubicación</h3>
               </div>
               <p className="text-xl font-bold mb-6">Chiclayo, Perú 🇵🇪</p>
               <div className="flex items-center bg-gray-light border-4 border-black p-4 rounded-xl shadow-brutal-sm">
@@ -311,7 +313,7 @@ function Home() {
             <div className=" border-4 border-black rounded-2xl p-8 shadow-brutal">
               <div className="flex items-center mb-6">
                 <div className={`w-5 h-5 rounded-full mr-4 ${isAvailable ? 'bg-green-700 animate-pulse' : 'bg-black'}`}></div>
-                <h3 className="text-2xl font-black uppercase text-black">Disponibilidad</h3>
+                <h3 className="text-2xl font-black  text-black">Disponibilidad</h3>
               </div>
               <div className="space-y-4">
                 <div className="bg-white border-4 border-black p-4 rounded-xl shadow-brutal-sm">
@@ -351,7 +353,7 @@ function Home() {
                   >
                     <div className="flex items-center gap-3 mb-4">
                       <IconComponent className="text-3xl text-black" />
-                      <h4 className="text-lg font-black uppercase">{skillGroup.category}</h4>
+                      <h4 className="text-lg font-black ">{skillGroup.category}</h4>
                     </div>
                     <ul className="space-y-2">
                       {skillGroup.skills.map((skill, idx) => (
@@ -376,7 +378,7 @@ function Home() {
           >
             {/* Soft Skills */}
             <div className="md:col-span-2 bg-white border-4 border-black rounded-2xl p-8 shadow-brutal">
-              <h4 className="text-2xl font-black uppercase mb-6">Habilidades Blandas</h4>
+              <h4 className="text-2xl font-black  mb-6">Habilidades Blandas</h4>
               <div className="grid grid-cols-2 gap-3">
                 {softSkills.map((skill, idx) => (
                   <div key={idx} className="bg-gray-light border-4 border-black px-4 py-2 rounded-lg shadow-brutal-sm">
@@ -388,7 +390,7 @@ function Home() {
 
             {/* Languages */}
             <div className="bg-white border-4 border-black rounded-2xl p-8 shadow-brutal">
-              <h4 className="text-2xl font-black uppercase mb-6">Idiomas</h4>
+              <h4 className="text-2xl font-black  mb-6">Idiomas</h4>
               <div className="space-y-4">
                 {languages.map((lang, idx) => (
                   <div key={idx} className="bg-gray-light border-4 border-black p-4 rounded-xl shadow-brutal-sm">
@@ -442,7 +444,7 @@ function Home() {
           >
             <FaEnvelope className="text-6xl mx-auto mb-6 text-black" />
             
-            <h3 className="text-3xl md:text-5xl font-black uppercase mb-6">
+            <h3 className="text-3xl md:text-5xl font-black  mb-6">
               ¿Tienes un proyecto en mente?
             </h3>
             <p className="text-lg md:text-xl mb-10 max-w-2xl mx-auto font-bold">
@@ -458,14 +460,7 @@ function Home() {
                 Email
               </a>
 
-              <button
-                onClick={handleGeneralWhatsApp}
-                className="neo-button-secondary text-white"
-              >
-                <FaWhatsapp className="inline mr-3" />
-                WhatsApp
-                <FaArrowRight className="inline ml-3" />
-              </button>
+              
             </div>
           </motion.div>
         </div>

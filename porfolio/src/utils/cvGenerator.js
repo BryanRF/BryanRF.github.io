@@ -131,7 +131,7 @@ export const generateCV = (type = 'fullstack') => {
     // Descripción y ubicación
     addText(exp.description, 20, yPosition, {
       fontSize: 9,
-      color: [100, 100, 100]
+      color: [40, 40, 40]
     });
     yPosition += 5;
     
@@ -142,7 +142,7 @@ export const generateCV = (type = 'fullstack') => {
     });
     addText(exp.period, pageWidth - 70, yPosition, {
       fontSize: 9,
-      color: [100, 100, 100]
+      color: [40, 40, 40]
     });
     yPosition += 6;
     

@@ -109,13 +109,25 @@ const ProjectCard = ({ project, index }) => {
             </div>
           </div>
           
-          <h3 className="text-2xl font-black uppercase text-black mb-2">
+          <h3 className="text-2xl font-black  text-black mb-2">
             {project.title}
           </h3>
           
           {project.status && (
-            <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-white border-4 border-black shadow-brutal-sm">
-              <div className="w-2 h-2 bg-black rounded-full mr-2 animate-pulse" />
+            <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold border-4 border-black shadow-brutal-sm ${
+              project.status === 'En Proceso' 
+                ? 'bg-primary' 
+                : project.status === 'Completado' 
+                ? 'bg-green-400' 
+                : 'bg-white'
+            }`}>
+              <div className={`w-2 h-2 rounded-full mr-2 animate-pulse ${
+                project.status === 'En Proceso' 
+                  ? 'bg-black' 
+                  : project.status === 'Completado' 
+                  ? 'bg-green-700' 
+                  : 'bg-black'
+              }`} />
               {project.status}
             </div>
           )}
@@ -130,7 +142,7 @@ const ProjectCard = ({ project, index }) => {
           {/* Características destacadas */}
           {project.features && (
             <div className="mb-4">
-              <h4 className="text-sm font-black uppercase mb-3 text-black">Características:</h4>
+              <h4 className="text-sm font-black  mb-3 text-black">Características:</h4>
               <ul className="space-y-2">
                 {project.features.map((feature, idx) => (
                   <li key={idx} className="text-sm font-bold text-black flex items-start">
@@ -157,7 +169,7 @@ const ProjectCard = ({ project, index }) => {
               {Object.entries(project.metrics).map(([key, value]) => (
                 <div key={key} className="text-center bg-gray-100 border-4 border-black rounded-lg p-3 shadow-brutal-sm">
                   <div className="text-2xl font-black text-black">{value}</div>
-                  <div className="text-xs font-bold uppercase text-black">{key.replace('_', ' ')}</div>
+                  <div className="text-xs font-bold  text-black">{key.replace('_', ' ')}</div>
                 </div>
               ))}
             </div>
@@ -168,7 +180,7 @@ const ProjectCard = ({ project, index }) => {
         {project.progress !== undefined && (
           <div className="px-6 pb-6">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-xs font-black uppercase text-black">Progreso</span>
+              <span className="text-xs font-black  text-black">Progreso</span>
               <span className="text-xs font-black text-black">{project.progress}%</span>
             </div>
             <div className="w-full bg-gray-200 border-4 border-black rounded-full h-4 overflow-hidden">

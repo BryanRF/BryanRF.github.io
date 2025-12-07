@@ -86,7 +86,7 @@ export const staticProjects = [
     description: "Landing page auto-gestionable para venta de lotes y propiedades con panel administrativo completo.",
     technologies: ["React", "Laravel", "MySQL", "Tailwind CSS"],
     type: "web",
-    status: "Completado",
+    status: "En Proceso",
     icon: "FaHome",
     features: [
       "Catálogo de propiedades",
@@ -108,7 +108,7 @@ export const staticProjects = [
     description: "Sistema integral de gestión clínica con módulos de citas, historias clínicas, facturación y reportes.",
     technologies: ["NestJS", "Next.js", "PostgreSQL", "Docker", "AWS"],
     type: "web",
-    status: "En Desarrollo",
+    status: "En Proceso",
     icon: "FaHospital",
     features: [
       "Gestión de pacientes",

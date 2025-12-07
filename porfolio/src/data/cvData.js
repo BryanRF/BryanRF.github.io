@@ -93,7 +93,7 @@ export const cvData = {
     },
     mobile: {
       title: "Desarrollo Móvil",
-      items: ["Flutter", "Dart", "Android (Java/Kotlin)", "Firebase", "React Native"]
+      items: ["Flutter", "Dart", "Android (Java/Kotlin)", "Kotlin", "Firebase", "React Native"]
     },
     database: {
       title: "Base de Datos",

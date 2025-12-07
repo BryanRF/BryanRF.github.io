@@ -45,7 +45,7 @@ const Header = () => {
             {/* Logo */}
             <Link 
               to="/" 
-              className="text-2xl font-black uppercase text-black hover:text-gray-700 transition-colors duration-300"
+              className="text-2xl font-black  text-black hover:text-gray-700 transition-colors duration-300"
               style={{ fontFamily: 'Sora, sans-serif' }}
             >
               BryanRF
@@ -61,7 +61,7 @@ const Header = () => {
                   <Link
                     key={index}
                     to={item.path}
-                    className={`flex items-center space-x-2 px-5 py-3 rounded-xl border-4 border-black font-bold uppercase text-sm shadow-brutal-sm transition-all duration-200 ${
+                    className={`flex items-center space-x-2 px-5 py-3 rounded-xl border-4 border-black font-bold  text-sm shadow-brutal-sm transition-all duration-200 ${
                       isActive 
                         ? 'bg-primary text-black' 
                         : 'bg-white text-black hover:bg-gray-100'
@@ -112,7 +112,7 @@ const Header = () => {
                 <div className="flex items-center justify-between p-6 border-b-4 border-black">
                   <Link 
                     to="/" 
-                    className="text-xl font-black uppercase"
+                    className="text-xl font-black "
                     style={{ fontFamily: 'Sora, sans-serif' }}
                     onClick={() => setMobileMenuOpen(false)}
                   >
@@ -138,7 +138,7 @@ const Header = () => {
                         <Link
                           key={index}
                           to={item.path}
-                          className={`flex items-center space-x-4 p-4 rounded-xl border-4 border-black font-bold uppercase shadow-brutal-sm transition-all duration-200 ${
+                          className={`flex items-center space-x-4 p-4 rounded-xl border-4 border-black font-bold  shadow-brutal-sm transition-all duration-200 ${
                             isActive 
                               ? 'bg-primary text-black' 
                               : 'bg-white text-black hover:bg-gray-100'

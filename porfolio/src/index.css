@@ -13,7 +13,7 @@
   --color-primary-dark: #E5C435;
   
   /* Secondary Color - Blue */
-  --color-secondary: #6BB6FF;
+  --color-secondary: #026dd8;
   --color-secondary-light: #A3D5FF;
   
   /* Neutrals - Black & White Only */
@@ -221,7 +221,7 @@
   /* Typography */
   .neo-heading {
     font-family: 'Sora', sans-serif;
-    @apply font-black uppercase tracking-tight;
+    @apply font-black  tracking-tight;
     line-height: 1.1;
   }
   

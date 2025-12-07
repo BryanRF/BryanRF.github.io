@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useGitHubProjects } from '../hooks/useGitHubProjects';
+import { staticProjects } from '../data/projectData';
 import ProjectCard from '../components/ProjectCard';
-import { FaSearch, FaCode, FaDatabase, FaBrain, FaChartLine, FaRocket, FaCog, FaFilter, FaSort, FaGithub, FaSpinner } from 'react-icons/fa';
+import { FaSearch, FaCode, FaDatabase, FaBrain, FaChartLine, FaRocket, FaCog, FaFilter, FaSort, FaGithub } from 'react-icons/fa';
 
 const iconMap = {
   'FaCode': FaCode,
@@ -23,7 +23,10 @@ const filterCategories = [
 ];
 
 const Projects = () => {
-  const { projects: githubProjects, loading, error } = useGitHubProjects();
+  const githubProjects = staticProjects; // Usar proyectos estáticos
+  const loading = false;
+  const error = null;
+  
   const [filteredProjects, setFilteredProjects] = React.useState([]);
   const [activeFilter, setActiveFilter] = React.useState('all');
   const [searchTerm, setSearchTerm] = React.useState('');
@@ -80,17 +83,6 @@ const Projects = () => {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-center">
-          <FaSpinner className="text-6xl text-black animate-spin mx-auto mb-4" />
-          <p className="text-xl font-bold">Cargando proyectos desde GitHub...</p>
-        </div>
-      </div>
-    );
-  }
-
   if (error) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
@@ -126,25 +118,25 @@ const Projects = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 mb-12">
             <div className="bg-white border-4 border-black rounded-2xl p-6 text-center shadow-brutal">
               <div className="text-4xl font-black text-black mb-2">{githubProjects.length}</div>
-              <div className="text-sm font-bold uppercase text-black">Proyectos</div>
+              <div className="text-sm font-bold  text-black">Proyectos</div>
             </div>
             <div className="bg-white border-4 border-black rounded-2xl p-6 text-center shadow-brutal">
               <div className="text-4xl font-black text-black mb-2">
                 {githubProjects.filter(p => p.status === 'Activo').length}
               </div>
-              <div className="text-sm font-bold uppercase text-black">Activos</div>
+              <div className="text-sm font-bold  text-black">Activos</div>
             </div>
             <div className="bg-white border-4 border-black rounded-2xl p-6 text-center shadow-brutal">
               <div className="text-4xl font-black text-black mb-2">
                 {githubProjects.reduce((sum, p) => sum + p.stars, 0)}
               </div>
-              <div className="text-sm font-bold uppercase text-black">Stars</div>
+              <div className="text-sm font-bold  text-black">Stars</div>
             </div>
             <div className="bg-white border-4 border-black rounded-2xl p-6 text-center shadow-brutal">
               <div className="text-4xl font-black text-black mb-2">
                 {[...new Set(githubProjects.map(p => p.language).filter(Boolean))].length}
               </div>
-              <div className="text-sm font-bold uppercase text-black">Lenguajes</div>
+              <div className="text-sm font-bold  text-black">Lenguajes</div>
             </div>
           </div>
         </motion.div>
@@ -173,7 +165,7 @@ const Projects = () => {
             <div className="flex flex-wrap items-center gap-3">
               <div className="flex items-center mr-4">
                 <FaFilter className="mr-2 text-black" />
-                <span className="text-sm font-black uppercase">Filtrar:</span>
+                <span className="text-sm font-black ">Filtrar:</span>
               </div>
               {filterCategories.map((category) => {
                 const IconComponent = iconMap[category.icon] || FaRocket;
@@ -181,7 +173,7 @@ const Projects = () => {
                   <button
                     key={category.id}
                     onClick={() => handleFilterChange(category.id)}
-                    className={`flex items-center px-4 py-2 border-4 border-black rounded-lg font-bold uppercase text-sm shadow-brutal-sm transition-all duration-200 ${
+                    className={`flex items-center px-4 py-2 border-4 border-black rounded-lg font-bold  text-sm shadow-brutal-sm transition-all duration-200 ${
                       activeFilter === category.id
                         ? 'bg-primary text-black'
                         : 'bg-white text-black hover:bg-gray-100'
@@ -198,7 +190,7 @@ const Projects = () => {
             <div className="flex items-center gap-3">
               <div className="flex items-center">
                 <FaSort className="mr-2 text-black" />
-                <span className="text-sm font-black uppercase">Ordenar:</span>
+                <span className="text-sm font-black ">Ordenar:</span>
               </div>
               <select
                 value={sortBy}
@@ -257,7 +249,7 @@ const Projects = () => {
             >
               <div className="bg-white border-4 border-black rounded-3xl p-12 shadow-brutal-xl">
                 <div className="text-6xl mb-4">🔍</div>
-                <h3 className="text-2xl font-black uppercase mb-4">No se encontraron proyectos</h3>
+                <h3 className="text-2xl font-black  mb-4">No se encontraron proyectos</h3>
                 <p className="font-bold text-black">
                   Intenta con otros términos de búsqueda o cambia los filtros
                 </p>
@@ -275,7 +267,7 @@ const Projects = () => {
         >
           <FaGithub className="text-6xl mx-auto mb-6 text-black" />
           
-          <h3 className="text-3xl md:text-4xl font-black uppercase mb-6">
+          <h3 className="text-3xl md:text-4xl font-black  mb-6">
             ¿Quieres ver más?
           </h3>
           <p className="text-lg md:text-xl mb-10 max-w-2xl mx-auto font-bold text-black">

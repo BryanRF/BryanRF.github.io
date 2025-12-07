@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaRobot, FaTimes, FaPaperPlane } from 'react-icons/fa';
+import { FaRobot, FaTimes } from 'react-icons/fa';
 import { generateCV } from '../utils/cvGenerator';
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const messagesEndRef = useRef(null);
   const [messages, setMessages] = useState([
     {
       type: 'bot',
@@ -21,6 +22,11 @@ const ChatBot = () => {
     }
   ]);
   const [currentStep, setCurrentStep] = useState('initial');
+
+  // Auto-scroll al final cuando cambian los mensajes
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
   const responses = {
     'Landing Pages': {
@@ -45,11 +51,11 @@ const ChatBot = () => {
     },
     'Machine Learning / IA': {
       text: 'Increíble! Brayan ha desarrollado sistemas de IA para detección de plagas, cáncer de mama, placas vehiculares y chatbots inteligentes. ¿Qué te gustaría explorar?',
-      options: ['Ver proyectos', 'CV Machine Learning', 'Volver al inicio']
+      options: ['Ver proyectos', 'CV FullStack', 'Volver al inicio']
     },
     'Descargar CV': {
       text: '¿Qué tipo de CV te gustaría descargar?',
-      options: ['CV FullStack', 'CV Frontend', 'CV Backend', 'CV Mobile', 'CV Machine Learning', 'Volver al inicio']
+      options: ['CV FullStack', 'CV Frontend', 'CV Backend', 'CV Mobile', 'Volver al inicio']
     }
   };
 
@@ -116,7 +122,7 @@ const ChatBot = () => {
       setMessages(prev => [...prev, {
         type: 'bot',
         text: '¿Qué tipo de CV te gustaría descargar?',
-        options: ['CV FullStack', 'CV Frontend', 'CV Backend', 'CV Mobile', 'CV Machine Learning', 'Volver al inicio']
+        options: ['CV FullStack', 'CV Frontend', 'CV Backend', 'CV Mobile', 'Volver al inicio']
       }]);
       return;
     }
@@ -131,11 +137,32 @@ const ChatBot = () => {
     }
   };
 
+  const handleToggleChat = () => {
+    if (isOpen) {
+      // Limpiar mensajes al cerrar
+      setMessages([{
+        type: 'bot',
+        text: '¡Hola! 👋 Soy el asistente de Brayan. ¿En qué tipo de proyecto estás interesado?',
+        options: [
+          'Landing Pages',
+          'SaaS / Sistemas Administrativos',
+          'Apps Móviles',
+          'Aplicaciones Web',
+          'Aplicaciones Desktop',
+          'Machine Learning / IA',
+          'Descargar CV'
+        ]
+      }]);
+      setCurrentStep('initial');
+    }
+    setIsOpen(!isOpen);
+  };
+
   return (
     <>
       {/* Botón flotante */}
       <motion.button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleToggleChat}
         className="fixed bottom-8 right-32 z-50 flex items-center justify-center w-16 h-16 bg-secondary hover:bg-blue-600 text-white rounded-full border-4 border-black shadow-brutal hover-lift transition-all duration-200"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
@@ -161,8 +188,7 @@ const ChatBot = () => {
                 <div className="flex items-center">
                   <FaRobot className="text-2xl text-white mr-3" />
                   <div>
-                    <h3 className="font-black text-white uppercase">Asistente Virtual</h3>
-                    <p className="text-xs text-white font-bold">Brayan Rojas</p>
+                    <h3 className="font-black text-white ">Asistente Virtual</h3>
                   </div>
                 </div>
                 <button
@@ -197,12 +223,13 @@ const ChatBot = () => {
                   </div>
                 </div>
               ))}
+              <div ref={messagesEndRef} />
             </div>
 
             {/* Footer */}
             <div className="border-t-4 border-black p-3 bg-white">
               <p className="text-xs text-center font-bold text-black">
-                💬 Selecciona una opción arriba
+                Selecciona una opción arriba
               </p>
             </div>
           </motion.div>
@@ -224,8 +251,7 @@ const ChatBot = () => {
                 <div className="flex items-center">
                   <FaRobot className="text-2xl text-white mr-3" />
                   <div>
-                    <h3 className="font-black text-white uppercase">Asistente Virtual</h3>
-                    <p className="text-xs text-white font-bold">Brayan Rojas</p>
+                    <h3 className="font-black text-white ">Asistente Virtual</h3>
                   </div>
                 </div>
                 <button
@@ -260,6 +286,7 @@ const ChatBot = () => {
                   </div>
                 </div>
               ))}
+              <div ref={messagesEndRef} />
             </div>
           </motion.div>
         )}

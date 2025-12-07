@@ -180,19 +180,19 @@ function About() {
         >
           <div className="text-center p-6 bg-white border-4 border-black rounded-2xl shadow-brutal">
             <div className="text-4xl font-black text-black mb-2">{yearsOfExperience}+</div>
-            <div className="text-sm font-bold uppercase text-black">Años de experiencia</div>
+            <div className="text-sm font-bold  text-black">Años de experiencia</div>
           </div>
           <div className="text-center p-6 bg-white border-4 border-black rounded-2xl shadow-brutal">
             <div className="text-4xl font-black text-black mb-2">15+</div>
-            <div className="text-sm font-bold uppercase text-black">Proyectos completados</div>
+            <div className="text-sm font-bold  text-black">Proyectos completados</div>
           </div>
           <div className="text-center p-6 bg-white border-4 border-black rounded-2xl shadow-brutal">
             <div className="text-4xl font-black text-black mb-2">10+</div>
-            <div className="text-sm font-bold uppercase text-black">Tecnologías dominadas</div>
+            <div className="text-sm font-bold  text-black">Tecnologías dominadas</div>
           </div>
           <div className="text-center p-6 bg-white border-4 border-black rounded-2xl shadow-brutal">
             <div className="text-4xl font-black text-black mb-2">∞</div>
-            <div className="text-sm font-bold uppercase text-black">Tazas de café</div>
+            <div className="text-sm font-bold  text-black">Tazas de café</div>
           </div>
         </motion.div>
 
@@ -217,7 +217,7 @@ function About() {
                   <div className="flex items-center mb-6">
                     <IconComponent className="text-3xl text-black mr-4" />
                     <div>
-                      <h3 className="text-lg font-black uppercase text-black">{skill.category}</h3>
+                      <h3 className="text-lg font-black  text-black">{skill.category}</h3>
                       <span className="text-sm font-bold text-black">{skill.level}</span>
                     </div>
                   </div>
@@ -244,7 +244,7 @@ function About() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <h2 className="text-3xl font-black uppercase mb-8">Formación Académica</h2>
+            <h2 className="text-3xl font-black  mb-8">Formación Académica</h2>
             
             {education.map((edu, index) => (
               <div 
@@ -254,7 +254,7 @@ function About() {
                 <div className="flex items-start mb-4">
                   <FaGraduationCap className="text-3xl text-black mr-4 mt-1" />
                   <div className="flex-1">
-                    <h3 className="text-xl font-black uppercase text-black mb-2">{edu.degree}</h3>
+                    <h3 className="text-xl font-black  text-black mb-2">{edu.degree}</h3>
                     <p className="font-bold text-black mb-2">{edu.institution}</p>
                     <p className="text-black text-sm font-bold mb-4">{edu.description}</p>
                     <div className="flex items-center justify-between">
@@ -278,7 +278,7 @@ function About() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            <h2 className="text-3xl font-black uppercase mb-8">Experiencia Profesional</h2>
+            <h2 className="text-3xl font-black  mb-8">Experiencia Profesional</h2>
             
             <div className="space-y-6">
               {experience.map((exp, index) => (
@@ -287,13 +287,13 @@ function About() {
                   className="p-8 bg-white border-4 border-black rounded-2xl shadow-brutal"
                 >
                   <div className="mb-4">
-                    <h3 className="text-xl font-black uppercase text-black mb-2">{exp.role}</h3>
+                    <h3 className="text-xl font-black  text-black mb-2">{exp.role}</h3>
                     <p className="font-bold text-black mb-4">{exp.company}</p>
                     <p className="text-black font-bold leading-relaxed mb-6">{exp.description}</p>
                     
                     {exp.achievements && (
                       <div>
-                        <h4 className="text-black font-black uppercase mb-3 text-sm">Logros destacados:</h4>
+                        <h4 className="text-black font-black  mb-3 text-sm">Logros destacados:</h4>
                         <ul className="space-y-2">
                           {exp.achievements.map((achievement, achievementIndex) => (
                             <li key={achievementIndex} className="flex items-start text-black text-sm font-bold">
@@ -336,7 +336,7 @@ function About() {
                 >
                   <div className="flex items-center mb-4">
                     <IconComponent className="text-3xl text-black mr-4" />
-                    <h3 className="text-lg font-black uppercase text-black">{hobby.category}</h3>
+                    <h3 className="text-lg font-black  text-black">{hobby.category}</h3>
                   </div>
                   
                   <p className="text-black text-sm font-bold mb-6">{hobby.description}</p>
@@ -360,7 +360,7 @@ function About() {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Anime Favoritos */}
             <div>
-              <h3 className="text-2xl font-black uppercase mb-8 text-black flex items-center">
+              <h3 className="text-2xl font-black  mb-8 text-black flex items-center">
                 <FaStar className="mr-3 text-black" />
                 Anime Favoritos
               </h3>
@@ -388,7 +388,7 @@ function About() {
 
             {/* Series Favoritas */}
             <div>
-              <h3 className="text-2xl font-black uppercase mb-8 text-black flex items-center">
+              <h3 className="text-2xl font-black  mb-8 text-black flex items-center">
                 <FaTv className="mr-3 text-black" />
                 Series Favoritas
               </h3>
