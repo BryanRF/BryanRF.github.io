@@ -102,7 +102,7 @@ const Footer = () => {
               {techStack.map((tech, index) => (
                 <span
                   key={index}
-                  className="px-3 py-1 bg-gray-light text-black text-sm font-bold border-3 border-black rounded-lg shadow-brutal-sm hover-lift"
+                  className="px-3 py-1 bg-gray-light text-black text-sm font-bold border-4 border-black rounded-lg shadow-brutal-sm hover-lift"
                 >
                   {tech}
                 </span>

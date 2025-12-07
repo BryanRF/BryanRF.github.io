@@ -122,21 +122,21 @@ const Projects = () => {
             </div>
             <div className="bg-white border-4 border-black rounded-2xl p-6 text-center shadow-brutal">
               <div className="text-4xl font-black text-black mb-2">
-                {githubProjects.filter(p => p.status === 'Activo').length}
+                {filteredProjects.length}
               </div>
               <div className="text-sm font-bold  text-black">Activos</div>
             </div>
             <div className="bg-white border-4 border-black rounded-2xl p-6 text-center shadow-brutal">
               <div className="text-4xl font-black text-black mb-2">
-                {githubProjects.reduce((sum, p) => sum + p.stars, 0)}
+                {githubProjects.filter(p => p.status === 'Completado').length}
               </div>
-              <div className="text-sm font-bold  text-black">Stars</div>
+              <div className="text-sm font-bold  text-black">Completados</div>
             </div>
             <div className="bg-white border-4 border-black rounded-2xl p-6 text-center shadow-brutal">
               <div className="text-4xl font-black text-black mb-2">
-                {[...new Set(githubProjects.map(p => p.language).filter(Boolean))].length}
+                {new Set(githubProjects.flatMap(p => p.technologies || [])).size}
               </div>
-              <div className="text-sm font-bold  text-black">Lenguajes</div>
+              <div className="text-sm font-bold  text-black">Tecnologías</div>
             </div>
           </div>
         </motion.div>

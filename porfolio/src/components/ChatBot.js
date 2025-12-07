@@ -9,14 +9,10 @@ const ChatBot = () => {
   const [messages, setMessages] = useState([
     {
       type: 'bot',
-      text: '¡Hola! 👋 Soy el asistente de Brayan. ¿En qué tipo de proyecto estás interesado?',
+      text: '¡Hola! 👋 Soy el asistente de Brayan. ¿En qué puedo ayudarte?',
       options: [
-        'Landing Pages',
-        'SaaS / Sistemas Administrativos',
-        'Apps Móviles',
-        'Aplicaciones Web',
-        'Aplicaciones Desktop',
-        'Machine Learning / IA',
+        'Sobre Trabajo',
+        'Aprende Conmigo',
         'Descargar CV'
       ]
     }
@@ -29,6 +25,31 @@ const ChatBot = () => {
   }, [messages]);
 
   const responses = {
+    'Sobre Trabajo': {
+      text: '¡Genial! ¿Qué tipo de proyecto tienes en mente?',
+      options: [
+        'Landing Pages',
+        'SaaS / Sistemas Administrativos',
+        'Apps Móviles',
+        'Aplicaciones Web',
+        'Aplicaciones Desktop',
+        'Machine Learning / IA',
+        'Volver al inicio'
+      ]
+    },
+    'Aprende Conmigo': {
+      text: '¡Excelente! Me encanta enseñar programación. Ofrezco mentoría desde nivel básico hasta intermedio en cualquier lenguaje de programación. ¿Te gustaría saber más?',
+      options: [
+        'Ver proyectos',
+        'Contactar por WhatsApp',
+        'Descargar CV',
+        'Volver al inicio'
+      ]
+    },
+    'Descargar CV': {
+      text: '¿Qué tipo de CV te gustaría descargar?',
+      options: ['CV FullStack', 'CV Frontend', 'CV Backend', 'CV Mobile', 'Volver al inicio']
+    },
     'Landing Pages': {
       text: '¡Excelente! Brayan tiene experiencia creando landing pages modernas y auto-gestionables con React y Laravel. ¿Te gustaría ver ejemplos o descargar su CV Frontend?',
       options: ['Ver proyectos', 'CV Frontend', 'Volver al inicio']
@@ -52,10 +73,6 @@ const ChatBot = () => {
     'Machine Learning / IA': {
       text: 'Increíble! Brayan ha desarrollado sistemas de IA para detección de plagas, cáncer de mama, placas vehiculares y chatbots inteligentes. ¿Qué te gustaría explorar?',
       options: ['Ver proyectos', 'CV FullStack', 'Volver al inicio']
-    },
-    'Descargar CV': {
-      text: '¿Qué tipo de CV te gustaría descargar?',
-      options: ['CV FullStack', 'CV Frontend', 'CV Backend', 'CV Mobile', 'Volver al inicio']
     }
   };
 
@@ -103,14 +120,10 @@ const ChatBot = () => {
     if (option === 'Volver al inicio') {
       setMessages([{
         type: 'bot',
-        text: '¡Hola! 👋 Soy el asistente de Brayan. ¿En qué tipo de proyecto estás interesado?',
+        text: '¡Hola! 👋 Soy el asistente de Brayan. ¿En qué puedo ayudarte?',
         options: [
-          'Landing Pages',
-          'SaaS / Sistemas Administrativos',
-          'Apps Móviles',
-          'Aplicaciones Web',
-          'Aplicaciones Desktop',
-          'Machine Learning / IA',
+          'Sobre Trabajo',
+          'Aprende Conmigo',
           'Descargar CV'
         ]
       }]);
@@ -142,14 +155,10 @@ const ChatBot = () => {
       // Limpiar mensajes al cerrar
       setMessages([{
         type: 'bot',
-        text: '¡Hola! 👋 Soy el asistente de Brayan. ¿En qué tipo de proyecto estás interesado?',
+        text: '¡Hola! 👋 Soy el asistente de Brayan. ¿En qué puedo ayudarte?',
         options: [
-          'Landing Pages',
-          'SaaS / Sistemas Administrativos',
-          'Apps Móviles',
-          'Aplicaciones Web',
-          'Aplicaciones Desktop',
-          'Machine Learning / IA',
+          'Sobre Trabajo',
+          'Aprende Conmigo',
           'Descargar CV'
         ]
       }]);

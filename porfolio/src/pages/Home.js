@@ -29,6 +29,7 @@ import { currentAge } from '../utils/ageCalculator';
 function Home() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isVisible, setIsVisible] = useState(false);
+  const [showHeader, setShowHeader] = useState(false);
   
   const handleGeneralWhatsApp = () => {
     const message = "¡Hola! Me interesan tus proyectos y me gustaría conocer más sobre tu trabajo. ¿Podríamos conversar?";
@@ -46,7 +47,18 @@ function Home() {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
-    return () => clearInterval(timer);
+    
+    // Scroll handler para mostrar navbar
+    const handleScroll = () => {
+      setShowHeader(window.scrollY > 800);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      clearInterval(timer);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const socialLinks = [
@@ -156,7 +168,9 @@ function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white relative overflow-hidden">
+    <div className="min-h-screen bg-white">
+      {/* Header aparece solo después de scroll */}
+      {showHeader && <Header />}
       
       {/* Hero Section - Solo 2 colores */}
       <section className="py-20 px-4 bg-white relative">
