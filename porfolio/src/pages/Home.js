@@ -379,7 +379,7 @@ function Home() {
               <h4 className="text-2xl font-black uppercase mb-6">Habilidades Blandas</h4>
               <div className="grid grid-cols-2 gap-3">
                 {softSkills.map((skill, idx) => (
-                  <div key={idx} className="bg-gray-light border-3 border-black px-4 py-2 rounded-lg shadow-brutal-sm">
+                  <div key={idx} className="bg-gray-light border-4 border-black px-4 py-2 rounded-lg shadow-brutal-sm">
                     <span className="text-sm font-bold text-black">{skill}</span>
                   </div>
                 ))}
