@@ -2,12 +2,15 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaRobot, FaTimes } from 'react-icons/fa';
 import { generateCV } from '../utils/cvGenerator';
+import TextType from './TextType';
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [visibleOptions, setVisibleOptions] = useState({});
   const messagesEndRef = useRef(null);
   const [messages, setMessages] = useState([
     {
+      id: 1,
       type: 'bot',
       text: '¡Hola! 👋 Soy el asistente de Brayan. ¿En qué puedo ayudarte?',
       options: [
@@ -17,12 +20,31 @@ const ChatBot = () => {
       ]
     }
   ]);
-  const [currentStep, setCurrentStep] = useState('initial');
 
-  // Auto-scroll al final cuando cambian los mensajes
+  const handleTypingDone = (index) => {
+    setVisibleOptions(prev => ({ ...prev, [index]: true }));
+  };
+
+  // Auto-scroll al final cuando cambian los mensajes o las opciones visibles
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+  }, [messages, visibleOptions, isOpen]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2 // Small delay after typing finishes
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 10, scale: 0.95 },
+    visible: { opacity: 1, y: 0, scale: 1 }
+  };
 
   const responses = {
     'Sobre Trabajo': {
@@ -51,8 +73,8 @@ const ChatBot = () => {
       options: ['CV FullStack', 'CV Frontend', 'CV Backend', 'CV Mobile', 'Volver al inicio']
     },
     'Landing Pages': {
-      text: '¡Excelente! Brayan tiene experiencia creando landing pages modernas y auto-gestionables con React y Laravel. ¿Te gustaría ver ejemplos o descargar su CV Frontend?',
-      options: ['Ver proyectos', 'CV Frontend', 'Volver al inicio']
+      text: '¡Excelente! Desarrollo landing pages modernas, rápidas y optimizadas para conversión. Puedo trabajar con cualquier tecnología frontend según tus necesidades. ¿Cómo te gustaría contactarme?',
+      options: ['Contactar por Email (Frontend)', 'WhatsApp: Landing Pages', 'Ver proyectos', 'CV Frontend', 'Volver al inicio']
     },
     'SaaS / Sistemas Administrativos': {
       text: 'Perfecto! Brayan ha desarrollado sistemas SaaS completos con NestJS, Next.js y Laravel, incluyendo ERPs y sistemas de gestión clínica. ¿Qué te gustaría saber?',
@@ -78,7 +100,7 @@ const ChatBot = () => {
 
   const handleOptionClick = (option) => {
     // Agregar mensaje del usuario
-    setMessages(prev => [...prev, { type: 'user', text: option }]);
+    setMessages(prev => [...prev, { id: Date.now(), type: 'user', text: option }]);
 
     // Manejar descarga de CV
     if (option.startsWith('CV ')) {
@@ -94,6 +116,7 @@ const ChatBot = () => {
       generateCV(typeMap[cvType] || 'fullstack');
       
       setMessages(prev => [...prev, {
+        id: Date.now() + 1,
         type: 'bot',
         text: `✅ ¡Perfecto! Tu CV de ${option.replace('CV ', '')} se está descargando. ¿Necesitas algo más?`,
         options: ['Ver proyectos', 'Otro CV', 'Contactar por WhatsApp', 'Volver al inicio']
@@ -110,6 +133,7 @@ const ChatBot = () => {
     if (option === 'Contactar por WhatsApp') {
       window.open('https://wa.me/51998511769?text=¡Hola! Me interesa trabajar contigo.', '_blank');
       setMessages(prev => [...prev, {
+        id: Date.now() + 1,
         type: 'bot',
         text: '¡Genial! Te he redirigido a WhatsApp. ¿Hay algo más en lo que pueda ayudarte?',
         options: ['Ver proyectos', 'Descargar CV', 'Volver al inicio']
@@ -117,8 +141,31 @@ const ChatBot = () => {
       return;
     }
 
+    if (option === 'Contactar por Email (Frontend)') {
+      window.location.href = 'mailto:rfreyrebrayaned@gmail.com?subject=Interés%20en%20Desarrollo%20Frontend%2FLanding%20Page';
+      setMessages(prev => [...prev, {
+        id: Date.now() + 1,
+        type: 'bot',
+        text: '¡Perfecto! Se ha abierto tu cliente de correo. Estaré atento a tu mensaje.',
+        options: ['Ver proyectos', 'Volver al inicio']
+      }]);
+      return;
+    }
+
+    if (option === 'WhatsApp: Landing Pages') {
+      window.open('https://wa.me/51998511769?text=Hola,%20me%20interesa%20una%20Landing%20Page%20o%20servicio%20Frontend.', '_blank');
+      setMessages(prev => [...prev, {
+        id: Date.now() + 1,
+        type: 'bot',
+        text: '¡Genial! Continuemos la conversación por WhatsApp.',
+        options: ['Ver proyectos', 'Volver al inicio']
+      }]);
+      return;
+    }
+
     if (option === 'Volver al inicio') {
       setMessages([{
+        id: Date.now(),
         type: 'bot',
         text: '¡Hola! 👋 Soy el asistente de Brayan. ¿En qué puedo ayudarte?',
         options: [
@@ -127,12 +174,13 @@ const ChatBot = () => {
           'Descargar CV'
         ]
       }]);
-      setCurrentStep('initial');
+      setVisibleOptions({}); // Reset options visibility
       return;
     }
 
     if (option === 'Otro CV') {
       setMessages(prev => [...prev, {
+        id: Date.now() + 1,
         type: 'bot',
         text: '¿Qué tipo de CV te gustaría descargar?',
         options: ['CV FullStack', 'CV Frontend', 'CV Backend', 'CV Mobile', 'Volver al inicio']
@@ -143,6 +191,7 @@ const ChatBot = () => {
     // Respuestas predefinidas
     if (responses[option]) {
       setMessages(prev => [...prev, {
+        id: Date.now() + 1,
         type: 'bot',
         text: responses[option].text,
         options: responses[option].options
@@ -168,6 +217,7 @@ const ChatBot = () => {
     if (isOpen) {
       // Limpiar mensajes al cerrar
       setMessages([{
+        id: Date.now(),
         type: 'bot',
         text: '¡Hola! 👋 Soy el asistente de Brayan. ¿En qué puedo ayudarte?',
         options: [
@@ -176,7 +226,7 @@ const ChatBot = () => {
           'Descargar CV'
         ]
       }]);
-      setCurrentStep('initial');
+      setVisibleOptions({}); // Reset options visibility
     }
     setIsOpen(!isOpen);
   };
@@ -238,22 +288,41 @@ const ChatBot = () => {
             {/* Mensajes */}
             <div className="h-96 overflow-y-auto p-4 space-y-4 bg-default">
               {messages.map((message, index) => (
-                <div key={index} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
+                <div key={message.id || index} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`max-w-[80%] ${message.type === 'user' ? 'bg-primary' : 'bg-gray-light'} border-4 border-default rounded-xl p-3 shadow-brutal-sm`}>
-                    <p className={`text-sm font-bold ${message.type === 'user' ? 'text-black' : 'text-default'}`}>{message.text}</p>
+                    <p className={`text-sm font-bold ${message.type === 'user' ? 'text-black' : 'text-default'}`}>
+                      {message.type === 'bot' ? (
+                        <TextType 
+                          text={message.text}
+                          loop={false}
+                          typingSpeed={30}
+                          showCursor={index === messages.length - 1}
+                          cursorCharacter="|"
+                          onTypingDone={() => handleTypingDone(index)}
+                        />
+                      ) : (
+                        message.text
+                      )}
+                    </p>
                     
-                    {message.options && (
-                      <div className="mt-3 space-y-2">
+                    {message.options && visibleOptions[index] && (
+                      <motion.div 
+                        className="mt-3 space-y-2"
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="visible"
+                      >
                         {message.options.map((option, optIndex) => (
-                          <button
+                          <motion.button
                             key={optIndex}
+                            variants={itemVariants}
                             onClick={() => handleOptionClick(option)}
                             className="w-full text-left px-3 py-2 bg-gray-light border-4 border-default rounded-lg font-bold text-xs hover:bg-opacity-80 transition-all shadow-brutal-sm hover-lift text-default"
                           >
                             {option}
-                          </button>
+                          </motion.button>
                         ))}
-                      </div>
+                      </motion.div>
                     )}
                   </div>
                 </div>
@@ -301,22 +370,41 @@ const ChatBot = () => {
             {/* Mensajes móvil */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-default" style={{ height: 'calc(100vh - 8rem)' }}>
               {messages.map((message, index) => (
-                <div key={index} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
+                <div key={message.id || index} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`max-w-[85%] ${message.type === 'user' ? 'bg-primary' : 'bg-gray-light'} border-4 border-default rounded-xl p-4 shadow-brutal`}>
-                    <p className={`text-sm font-bold ${message.type === 'user' ? 'text-black' : 'text-default'}`}>{message.text}</p>
+                    <p className={`text-sm font-bold ${message.type === 'user' ? 'text-black' : 'text-default'}`}>
+                      {message.type === 'bot' ? (
+                        <TextType 
+                          text={message.text}
+                          loop={false}
+                          typingSpeed={30}
+                          showCursor={index === messages.length - 1}
+                          cursorCharacter="|"
+                          onTypingDone={() => handleTypingDone(index)}
+                        />
+                      ) : (
+                        message.text
+                      )}
+                    </p>
                     
-                    {message.options && (
-                      <div className="mt-4 space-y-3">
+                    {message.options && visibleOptions[index] && (
+                      <motion.div 
+                        className="mt-4 space-y-3"
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="visible"
+                      >
                         {message.options.map((option, optIndex) => (
-                          <button
+                          <motion.button
                             key={optIndex}
+                            variants={itemVariants}
                             onClick={() => handleOptionClick(option)}
                             className="w-full text-left px-4 py-3 bg-gray-light border-4 border-default rounded-lg font-bold text-sm hover:bg-opacity-80 transition-all shadow-brutal hover-lift text-default"
                           >
                             {option}
-                          </button>
+                          </motion.button>
                         ))}
-                      </div>
+                      </motion.div>
                     )}
                   </div>
                 </div>

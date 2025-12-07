@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Projects from './pages/Projects';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import NotFound from './pages/NotFound';
 import Layout from './components/Layout';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
 import ChatBot from './components/ChatBot';
@@ -28,7 +29,7 @@ function App() {
         </Route>
         
         {/* Ruta catch-all */}
-        <Route path="*" element={<Home />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
