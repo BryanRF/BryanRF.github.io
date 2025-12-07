@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useGitHubProjects } from '../hooks/useGitHubProjects';
 import ProjectCard from '../components/ProjectCard';
-import { FaSearch, FaCode, FaDatabase, FaBrain, FaChartLine, FaRocket, FaCog, FaWhatsapp, FaFilter, FaSort } from 'react-icons/fa';
-import { projects, filterCategories, whatsappConfig } from '../data/projectData';
+import { FaSearch, FaCode, FaDatabase, FaBrain, FaChartLine, FaRocket, FaCog, FaFilter, FaSort, FaGithub, FaSpinner } from 'react-icons/fa';
 
 const iconMap = {
   'FaCode': FaCode,
@@ -13,52 +13,51 @@ const iconMap = {
   'FaCog': FaCog
 };
 
-const Projects = () => {
-  const [filteredProjects, setFilteredProjects] = useState(projects);
-  const [activeFilter, setActiveFilter] = useState('all');
-  const [searchTerm, setSearchTerm] = useState('');
-  const [sortBy, setSortBy] = useState('recent');
+const filterCategories = [
+  { id: 'all', name: 'Todos', icon: 'FaRocket' },
+  { id: 'web', name: 'Web', icon: 'FaCode' },
+  { id: 'database', name: 'Bases de Datos', icon: 'FaDatabase' },
+  { id: 'ml', name: 'Machine Learning', icon: 'FaBrain' },
+  { id: 'analytics', name: 'Analytics', icon: 'FaChartLine' },
+  { id: 'automation', name: 'Automatización', icon: 'FaCog' }
+];
 
-  useEffect(() => {
-    let result = [...projects];
+const Projects = () => {
+  const { projects: githubProjects, loading, error } = useGitHubProjects();
+  const [filteredProjects, setFilteredProjects] = React.useState([]);
+  const [activeFilter, setActiveFilter] = React.useState('all');
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const [sortBy, setSortBy] = React.useState('recent');
+
+  React.useEffect(() => {
+    let result = [...githubProjects];
     
-    // Filtrar por categoría
     if (activeFilter !== 'all') {
       result = result.filter(project => project.type === activeFilter);
     }
     
-    // Filtrar por búsqueda
     if (searchTerm) {
       result = result.filter(project =>
         project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
         project.technologies?.some(tech => 
           tech.toLowerCase().includes(searchTerm.toLowerCase())
-        )
+        ) ||
+        project.language?.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
     
-    // Ordenar
     if (sortBy === 'recent') {
-      result.sort((a, b) => b.id - a.id);
-    } else if (sortBy === 'status') {
-      result.sort((a, b) => {
-        const statusOrder = { 'Completado': 3, 'Beta': 2, 'En desarrollo': 1 };
-        return (statusOrder[b.status] || 0) - (statusOrder[a.status] || 0);
-      });
+      result.sort((a, b) => new Date(b.updated) - new Date(a.updated));
+    } else if (sortBy === 'stars') {
+      result.sort((a, b) => b.stars - a.stars);
     }
     
     setFilteredProjects(result);
-  }, [activeFilter, searchTerm, sortBy]);
+  }, [githubProjects, activeFilter, searchTerm, sortBy]);
 
   const handleFilterChange = (filterId) => {
     setActiveFilter(filterId);
-  };
-
-  const handleGeneralWhatsApp = () => {
-    const message = "¡Hola! Me interesan tus proyectos y me gustaría conocer más sobre tu trabajo. ¿Podríamos conversar?";
-    const link = `https://wa.me/${whatsappConfig.defaultNumber}?text=${encodeURIComponent(message)}`;
-    window.open(link, '_blank');
   };
 
   const containerVariants = {
@@ -81,8 +80,30 @@ const Projects = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <FaSpinner className="text-6xl text-black animate-spin mx-auto mb-4" />
+          <p className="text-xl font-bold">Cargando proyectos desde GitHub...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="bg-white border-4 border-black rounded-3xl p-12 shadow-brutal-xl text-center max-w-2xl">
+          <p className="text-2xl font-black mb-4">⚠️ Error al cargar proyectos</p>
+          <p className="text-lg font-bold">{error}</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-white">
       <div className="max-w-6xl mx-auto px-6 py-12 md:py-20">
         
         {/* Header Section */}
@@ -90,40 +111,40 @@ const Projects = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="mb-16"
         >
-          <h1 className="text-5xl md:text-7xl font-light mb-6 tracking-tight">
-            Mis <span className="font-normal text-white">Proyectos</span>
+          <h1 className="neo-title mb-6">
+            Mis Proyectos
           </h1>
           
-          <p className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-4xl mx-auto mb-8">
-            Una colección de soluciones tecnológicas que combinan innovación 
-            con diseño funcional para resolver problemas reales del mundo empresarial.
+          <p className="text-lg md:text-xl leading-relaxed max-w-4xl mb-8 font-bold">
+            Proyectos reales desde mi GitHub. Explora mi trabajo en desarrollo web, bases de datos, 
+            machine learning y más.
           </p>
 
           {/* Estadísticas rápidas */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 mb-12">
-            <div className="text-center p-6 bg-gray-900/30 rounded-xl border border-gray-800">
-              <div className="text-3xl font-light text-white mb-2">{projects.length}</div>
-              <div className="text-sm text-gray-400">Proyectos totales</div>
+            <div className="bg-white border-4 border-black rounded-2xl p-6 text-center shadow-brutal">
+              <div className="text-4xl font-black text-black mb-2">{githubProjects.length}</div>
+              <div className="text-sm font-bold uppercase text-black">Proyectos</div>
             </div>
-            <div className="text-center p-6 bg-gray-900/30 rounded-xl border border-gray-800">
-              <div className="text-3xl font-light text-white mb-2">
-                {projects.filter(p => p.status === 'Completado').length}
+            <div className="bg-white border-4 border-black rounded-2xl p-6 text-center shadow-brutal">
+              <div className="text-4xl font-black text-black mb-2">
+                {githubProjects.filter(p => p.status === 'Activo').length}
               </div>
-              <div className="text-sm text-gray-400">Completados</div>
+              <div className="text-sm font-bold uppercase text-black">Activos</div>
             </div>
-            <div className="text-center p-6 bg-gray-900/30 rounded-xl border border-gray-800">
-              <div className="text-3xl font-light text-white mb-2">
-                {projects.filter(p => p.status === 'En desarrollo').length}
+            <div className="bg-white border-4 border-black rounded-2xl p-6 text-center shadow-brutal">
+              <div className="text-4xl font-black text-black mb-2">
+                {githubProjects.reduce((sum, p) => sum + p.stars, 0)}
               </div>
-              <div className="text-sm text-gray-400">En desarrollo</div>
+              <div className="text-sm font-bold uppercase text-black">Stars</div>
             </div>
-            <div className="text-center p-6 bg-gray-900/30 rounded-xl border border-gray-800">
-              <div className="text-3xl font-light text-white mb-2">
-                {[...new Set(projects.flatMap(p => p.technologies || []))].length}
+            <div className="bg-white border-4 border-black rounded-2xl p-6 text-center shadow-brutal">
+              <div className="text-4xl font-black text-black mb-2">
+                {[...new Set(githubProjects.map(p => p.language).filter(Boolean))].length}
               </div>
-              <div className="text-sm text-gray-400">Tecnologías</div>
+              <div className="text-sm font-bold uppercase text-black">Lenguajes</div>
             </div>
           </div>
         </motion.div>
@@ -137,22 +158,22 @@ const Projects = () => {
         >
           {/* Barra de búsqueda */}
           <div className="relative mb-8">
-            <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <FaSearch className="absolute left-6 top-1/2 transform -translate-y-1/2 text-black text-xl" />
             <input
               type="text"
-              placeholder="Buscar proyectos, tecnologías..."
+              placeholder="Buscar proyectos, tecnologías, lenguajes..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 bg-gray-900/50 border border-gray-800 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-gray-600 transition-colors"
+              className="neo-input w-full pl-16 pr-6 py-4 text-lg font-bold"
             />
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
             {/* Filtros por categoría */}
             <div className="flex flex-wrap items-center gap-3">
-              <div className="flex items-center text-gray-400 mr-4">
-                <FaFilter className="mr-2" />
-                <span className="text-sm font-medium">Filtrar:</span>
+              <div className="flex items-center mr-4">
+                <FaFilter className="mr-2 text-black" />
+                <span className="text-sm font-black uppercase">Filtrar:</span>
               </div>
               {filterCategories.map((category) => {
                 const IconComponent = iconMap[category.icon] || FaRocket;
@@ -160,14 +181,14 @@ const Projects = () => {
                   <button
                     key={category.id}
                     onClick={() => handleFilterChange(category.id)}
-                    className={`flex items-center px-4 py-2 rounded-lg border transition-all duration-200 ${
+                    className={`flex items-center px-4 py-2 border-4 border-black rounded-lg font-bold uppercase text-sm shadow-brutal-sm transition-all duration-200 ${
                       activeFilter === category.id
-                        ? 'bg-white text-black border-white'
-                        : 'bg-transparent text-gray-400 border-gray-700 hover:border-gray-600 hover:text-white'
+                        ? 'bg-primary text-black'
+                        : 'bg-white text-black hover:bg-gray-100'
                     }`}
                   >
-                    <IconComponent className="mr-2 text-sm" />
-                    <span className="text-sm font-medium">{category.name}</span>
+                    <IconComponent className="mr-2" />
+                    <span>{category.name}</span>
                   </button>
                 );
               })}
@@ -175,17 +196,17 @@ const Projects = () => {
 
             {/* Ordenamiento */}
             <div className="flex items-center gap-3">
-              <div className="flex items-center text-gray-400">
-                <FaSort className="mr-2" />
-                <span className="text-sm font-medium">Ordenar:</span>
+              <div className="flex items-center">
+                <FaSort className="mr-2 text-black" />
+                <span className="text-sm font-black uppercase">Ordenar:</span>
               </div>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-2 bg-gray-900/50 border border-gray-800 rounded-lg text-white focus:outline-none focus:border-gray-600"
+                className="px-4 py-2 border-4 border-black rounded-lg font-bold bg-white text-black shadow-brutal-sm"
               >
                 <option value="recent">Más recientes</option>
-                <option value="status">Por estado</option>
+                <option value="stars">Más estrellas</option>
               </select>
             </div>
           </div>
@@ -198,9 +219,9 @@ const Projects = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mb-8"
         >
-          <div className="flex items-center justify-between">
-            <p className="text-gray-400">
-              Mostrando {filteredProjects.length} de {projects.length} proyectos
+          <div className="bg-white border-4 border-black rounded-xl p-4 shadow-brutal-sm">
+            <p className="font-bold text-black">
+              Mostrando {filteredProjects.length} de {githubProjects.length} proyectos
               {searchTerm && ` para "${searchTerm}"`}
               {activeFilter !== 'all' && ` en ${filterCategories.find(f => f.id === activeFilter)?.name}`}
             </p>
@@ -214,35 +235,35 @@ const Projects = () => {
           animate="visible"
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
         >
-          <AnimatePresence mode="wait">
-            {filteredProjects.length > 0 ? (
-              filteredProjects.map((project) => (
-                <motion.div
-                  key={project.id}
-                  variants={itemVariants}
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <ProjectCard project={project} />
-                </motion.div>
-              ))
-            ) : (
+          {filteredProjects.length > 0 ? (
+            filteredProjects.map((project, index) => (
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="col-span-full text-center py-16"
+                key={project.id}
+                variants={itemVariants}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
               >
-                <div className="text-6xl text-gray-700 mb-4">🔍</div>
-                <h3 className="text-xl text-gray-400 mb-2">No se encontraron proyectos</h3>
-                <p className="text-gray-500">
+                <ProjectCard project={project} index={index} />
+              </motion.div>
+            ))
+          ) : (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="col-span-full text-center py-16"
+            >
+              <div className="bg-white border-4 border-black rounded-3xl p-12 shadow-brutal-xl">
+                <div className="text-6xl mb-4">🔍</div>
+                <h3 className="text-2xl font-black uppercase mb-4">No se encontraron proyectos</h3>
+                <p className="font-bold text-black">
                   Intenta con otros términos de búsqueda o cambia los filtros
                 </p>
-              </motion.div>
-            )}
-          </AnimatePresence>
+              </div>
+            </motion.div>
+          )}
         </motion.div>
 
         {/* Call to Action */}
@@ -250,32 +271,26 @@ const Projects = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-center p-12 rounded-3xl border border-gray-800 bg-gray-900/30 backdrop-blur-sm"
+          className="bg-primary border-4 border-black rounded-3xl p-12 shadow-brutal-xl text-center"
         >
-          <h3 className="text-3xl font-light mb-4 text-white">
-            ¿Te interesa algún proyecto?
+          <FaGithub className="text-6xl mx-auto mb-6 text-black" />
+          
+          <h3 className="text-3xl md:text-4xl font-black uppercase mb-6">
+            ¿Quieres ver más?
           </h3>
-          <p className="text-gray-400 mb-8 max-w-2xl mx-auto text-lg">
-            Me encanta hablar sobre tecnología y colaborar en nuevas ideas. 
-            Conversemos sobre cómo podemos trabajar juntos.
+          <p className="text-lg md:text-xl mb-10 max-w-2xl mx-auto font-bold text-black">
+            Visita mi perfil de GitHub para explorar todos mis repositorios y contribuciones.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={handleGeneralWhatsApp}
-              className="group flex items-center justify-center px-8 py-4 bg-white text-black rounded-xl hover:bg-gray-100 transition-all duration-300 font-medium hover:scale-105"
-            >
-              <FaWhatsapp className="mr-3 group-hover:scale-110 transition-transform" />
-              Conversemos por WhatsApp
-            </button>
-            
-            <a
-              href="mailto:rfreyrebrayaned@gmail.com"
-              className="flex items-center justify-center px-8 py-4 border-2 border-gray-600 text-white rounded-xl hover:border-gray-400 hover:bg-gray-900/50 transition-all duration-300"
-            >
-              Enviar email
-            </a>
-          </div>
+          <a
+            href="https://github.com/BryanRF"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="neo-button bg-black text-white hover:bg-gray-800 inline-flex items-center"
+          >
+            <FaGithub className="mr-3" />
+            Ver GitHub
+          </a>
         </motion.div>
       </div>
     </div>

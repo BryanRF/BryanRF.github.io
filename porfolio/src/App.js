@@ -5,6 +5,7 @@ import Projects from './pages/Projects';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Layout from './components/Layout';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
 
 function App() {
   // Configuración para GitHub Pages
@@ -12,6 +13,7 @@ function App() {
   
   return (
     <Router basename={basename}>
+      <FloatingWhatsApp />
       <Routes>
         {/* Ruta principal SIN Layout */}
         <Route path="/" element={<Home />} />

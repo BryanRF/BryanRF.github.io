@@ -1,222 +1,232 @@
-// src/data/projectData.js
-export const projects = [
+// Proyectos estáticos del portafolio
+export const staticProjects = [
   {
     id: 1,
-    title: "Sistema de Gestión Empresarial",
-    description: "Plataforma completa para la gestión de recursos empresariales con módulos de inventario, ventas, compras y reportes. Incluye dashboard en tiempo real y notificaciones automatizadas.",
-    type: "web",
+    title: "Memory - Apoyo Cognitivo",
+    description: "Aplicación móvil diseñada para personas con dificultades de retención de memoria, ofreciendo ejercicios personalizados y seguimiento de progreso.",
+    technologies: ["Flutter", "Dart", "Firebase", "SQLite"],
+    type: "mobile",
     status: "Completado",
-    technologies: ["React", "Node.js", "PostgreSQL", "Redis", "Docker"],
+    icon: "FaBrain",
     features: [
-      "Dashboard interactivo en tiempo real",
-      "Gestión completa de inventarios",
-      "Sistema de facturación automatizada",
-      "Reportes detallados y analytics",
-      "Notificaciones push en tiempo real"
+      "Ejercicios de memoria personalizados",
+      "Seguimiento de progreso",
+      "Recordatorios inteligentes",
+      "Interfaz intuitiva y accesible"
     ],
     metrics: {
-      usuarios: "250+",
-      uptime: "99.9%",
-      transacciones: "15K+"
-    },
-    progress: 100,
-    github: "https://github.com/BryanRF/sistema-gestion",
-    demo: "https://demo-gestion.com",
-    whatsapp: "5491123456789" // Número de WhatsApp para contacto
+      users: "500+",
+      rating: "4.8/5",
+      downloads: "2K+"
+    }
   },
   {
     id: 2,
-    title: "API de Análisis Predictivo",
-    description: "Sistema de machine learning que analiza patrones de comportamiento y predice tendencias futuras. Utiliza algoritmos avanzados de deep learning para análisis de datos empresariales.",
-    type: "ml",
-    status: "En desarrollo",
-    technologies: ["Python", "TensorFlow", "FastAPI", "PostgreSQL", "Docker"],
+    title: "Recordatorio de Medicamentos",
+    description: "App móvil para gestión y recordatorio de medicamentos con alertas personalizadas y seguimiento de adherencia al tratamiento.",
+    technologies: ["Flutter", "Dart", "Local Notifications", "SQLite"],
+    type: "mobile",
+    status: "Completado",
+    icon: "FaCapsules",
     features: [
-      "Análisis predictivo avanzado",
-      "Modelos de ML personalizables",
-      "API REST escalable",
-      "Visualización de predicciones",
-      "Integración con múltiples fuentes"
+      "Alertas de medicación",
+      "Historial de tomas",
+      "Gestión de múltiples tratamientos",
+      "Reportes para médicos"
     ],
     metrics: {
-      precisión: "94.7%",
-      modelos: "12",
-      predicciones: "50K+"
-    },
-    progress: 75,
-    github: "https://github.com/BryanRF/ml-predictivo",
-    demo: "https://demo-ml.com",
-    whatsapp: "5491123456789"
+      users: "1K+",
+      rating: "4.9/5",
+      downloads: "3K+"
+    }
   },
   {
     id: 3,
-    title: "Dashboard de Business Intelligence",
-    description: "Plataforma de visualización de datos empresariales con gráficos interactivos, KPIs en tiempo real y generación automática de reportes. Conecta múltiples fuentes de datos.",
-    type: "analytics",
-    status: "Beta",
-    technologies: ["React", "D3.js", "Node.js", "MongoDB", "AWS"],
+    title: "Memory Fitness",
+    description: "Aplicación de entrenamiento cerebral con juegos y desafíos diseñados para mejorar la memoria y agilidad mental.",
+    technologies: ["Flutter", "Dart", "Gamification", "Analytics"],
+    type: "mobile",
+    status: "Completado",
+    icon: "FaDumbbell",
     features: [
-      "Visualizaciones interactivas avanzadas",
-      "KPIs personalizables",
-      "Conectores a múltiples DB",
-      "Exportación automática de reportes",
-      "Alertas inteligentes"
+      "Juegos de memoria variados",
+      "Niveles de dificultad adaptativos",
+      "Estadísticas de rendimiento",
+      "Desafíos diarios"
     ],
     metrics: {
-      dashboards: "45",
-      usuarios: "320",
-      reportes: "2.5K"
-    },
-    progress: 90,
-    github: "https://github.com/BryanRF/bi-dashboard",
-    demo: "https://demo-bi.com",
-    whatsapp: "5491123456789"
+      users: "800+",
+      rating: "4.7/5",
+      downloads: "2.5K+"
+    }
   },
   {
     id: 4,
-    title: "Optimizador de Base de Datos",
-    description: "Herramienta que analiza y optimiza consultas SQL automáticamente. Incluye sugerencias de índices, análisis de rendimiento y generación de esquemas optimizados.",
-    type: "database",
+    title: "Memory Parejas",
+    description: "Juego de memoria clásico modernizado con múltiples temas y modos de juego para todas las edades.",
+    technologies: ["Flutter", "Dart", "Animations", "State Management"],
+    type: "mobile",
     status: "Completado",
-    technologies: ["Python", "PostgreSQL", "MySQL", "Redis", "Docker"],
+    icon: "FaPuzzlePiece",
     features: [
-      "Análisis automático de consultas",
-      "Sugerencias de optimización",
-      "Generación de índices inteligente",
-      "Monitoreo de rendimiento",
-      "Reportes de mejoras"
+      "Múltiples temas visuales",
+      "Modo multijugador",
+      "Sistema de puntuación",
+      "Animaciones fluidas"
     ],
     metrics: {
-      mejora: "85%",
-      consultas: "10K+",
-      bases_datos: "50+"
-    },
-    progress: 100,
-    github: "https://github.com/BryanRF/db-optimizer",
-    demo: "https://demo-optimizer.com",
-    whatsapp: "5491123456789"
+      users: "1.5K+",
+      rating: "4.6/5",
+      downloads: "4K+"
+    }
   },
   {
     id: 5,
-    title: "Bot de Trading Automatizado",
-    description: "Sistema de trading algorítmico que utiliza análisis técnico y machine learning para ejecutar operaciones automáticas en mercados financieros con gestión de riesgo avanzada.",
-    type: "automation",
-    status: "En desarrollo",
-    technologies: ["Python", "Pandas", "scikit-learn", "Redis", "AWS"],
+    title: "Tu Lote Propio",
+    description: "Landing page auto-gestionable para venta de lotes y propiedades con panel administrativo completo.",
+    technologies: ["React", "Laravel", "MySQL", "Tailwind CSS"],
+    type: "web",
+    status: "Completado",
+    icon: "FaHome",
     features: [
-      "Análisis técnico automatizado",
-      "Gestión de riesgo avanzada",
-      "Múltiples estrategias de trading",
-      "Backtesting completo",
-      "Notificaciones en tiempo real"
+      "Catálogo de propiedades",
+      "Panel administrativo",
+      "Sistema de búsqueda avanzada",
+      "Integración con WhatsApp"
     ],
     metrics: {
-      rentabilidad: "23.5%",
-      operaciones: "1.2K",
-      precisión: "78%"
+      properties: "200+",
+      visits: "10K+/mes",
+      conversions: "15%"
     },
-    progress: 60,
-    github: "https://github.com/BryanRF/trading-bot",
-    demo: "https://demo-trading.com",
-    whatsapp: "5491123456789"
+    github: "https://github.com/BryanRF/TuLotePropio",
+    demo: "https://tulotepropio.pe"
   },
   {
     id: 6,
-    title: "Plataforma E-commerce Avanzada",
-    description: "Tienda online completa con funcionalidades avanzadas como recomendaciones personalizadas, chat en vivo, pagos múltiples y gestión completa de inventario.",
+    title: "Clínica SaaS",
+    description: "Sistema integral de gestión clínica con módulos de citas, historias clínicas, facturación y reportes.",
+    technologies: ["NestJS", "Next.js", "PostgreSQL", "Docker", "AWS"],
     type: "web",
-    status: "Completado",
-    technologies: ["React", "Node.js", "MongoDB", "Stripe", "AWS"],
+    status: "En Desarrollo",
+    icon: "FaHospital",
     features: [
-      "Recomendaciones personalizadas",
-      "Chat en vivo integrado",
-      "Múltiples métodos de pago",
-      "Gestión avanzada de inventario",
-      "SEO optimizado"
+      "Gestión de pacientes",
+      "Agendamiento de citas",
+      "Historias clínicas digitales",
+      "Facturación electrónica",
+      "Reportes y analytics"
     ],
     metrics: {
-      ventas: "$125K",
-      productos: "500+",
-      conversión: "12.8%"
-    },
-    progress: 100,
-    github: "https://github.com/BryanRF/ecommerce-platform",
-    demo: "https://demo-ecommerce.com",
-    whatsapp: "5491123456789"
+      clinics: "5",
+      patients: "2K+",
+      appointments: "500+/mes"
+    }
   },
   {
     id: 7,
-    title: "Sistema de Reconocimiento Facial",
-    description: "Aplicación de seguridad que utiliza deep learning para reconocimiento facial en tiempo real. Incluye detección de emociones y análisis de comportamiento.",
-    type: "ml",
-    status: "Beta",
-    technologies: ["Python", "OpenCV", "TensorFlow", "Flask", "Docker"],
+    title: "Generador de Datos de Prueba",
+    description: "Herramienta para generar datos de prueba realistas en múltiples formatos para cualquier base de datos o estructura.",
+    technologies: ["Python", "Pandas", "Faker", "SQLAlchemy"],
+    type: "automation",
+    status: "Completado",
+    icon: "FaDatabase",
     features: [
-      "Reconocimiento facial en tiempo real",
-      "Detección de emociones",
-      "Análisis de comportamiento",
-      "Base de datos de rostros",
-      "Alertas de seguridad"
+      "Exportación a Excel, CSV, JSON",
+      "Soporte para múltiples DBMS",
+      "Generación de estructuras complejas",
+      "Datos realistas y personalizables"
     ],
     metrics: {
-      precisión: "96.2%",
-      velocidad: "25 FPS",
-      rostros: "10K+"
+      formats: "10+",
+      records: "1M+ generados",
+      databases: "Todas"
     },
-    progress: 80,
-    github: "https://github.com/BryanRF/facial-recognition",
-    demo: "https://demo-facial.com",
-    whatsapp: "5491123456789"
+    github: "https://github.com/BryanRF/DataGenerator"
   },
   {
     id: 8,
-    title: "Automatizador de Procesos RPA",
-    description: "Suite de automatización robótica de procesos que elimina tareas repetitivas en empresas. Incluye scraping web, procesamiento de documentos y flujos de trabajo.",
-    type: "automation",
-    status: "En desarrollo",
-    technologies: ["Python", "Selenium", "BeautifulSoup", "Celery", "Redis"],
+    title: "Detección de Plagas en Papa",
+    description: "Sistema de IA para detección temprana de plagas en cultivos de papa mediante análisis de imágenes.",
+    technologies: ["Python", "TensorFlow", "OpenCV", "CNN"],
+    type: "ml",
+    status: "Completado",
+    icon: "FaLeaf",
     features: [
-      "Automatización de formularios web",
-      "Procesamiento de documentos",
-      "Flujos de trabajo personalizables",
-      "Monitoreo de procesos",
-      "Reportes de eficiencia"
+      "Detección en tiempo real",
+      "Precisión del 95%",
+      "Clasificación de 8 tipos de plagas",
+      "Recomendaciones de tratamiento"
     ],
     metrics: {
-      procesos: "150+",
-      ahorro: "40 hrs/sem",
-      eficiencia: "94%"
-    },
-    progress: 65,
-    github: "https://github.com/BryanRF/rpa-suite",
-    demo: "https://demo-rpa.com",
-    whatsapp: "5491123456789"
+      accuracy: "95%",
+      images: "10K+ analizadas",
+      pests: "8 tipos"
+    }
+  },
+  {
+    id: 9,
+    title: "Detección de Placas Vehiculares",
+    description: "Sistema de reconocimiento automático de placas vehiculares con alta precisión para control de acceso.",
+    technologies: ["Python", "OpenCV", "YOLO", "OCR"],
+    type: "ml",
+    status: "Completado",
+    icon: "FaCar",
+    features: [
+      "Reconocimiento en tiempo real",
+      "Soporte para múltiples formatos",
+      "Registro de entradas/salidas",
+      "Integración con cámaras IP"
+    ],
+    metrics: {
+      accuracy: "98%",
+      speed: "<100ms",
+      plates: "50K+ procesadas"
+    }
+  },
+  {
+    id: 10,
+    title: "Detección de Cáncer de Mama",
+    description: "Sistema de apoyo al diagnóstico mediante análisis de mamografías con redes neuronales profundas.",
+    technologies: ["Python", "TensorFlow", "Keras", "Medical Imaging"],
+    type: "ml",
+    status: "Completado",
+    icon: "FaHeartbeat",
+    features: [
+      "Análisis de mamografías",
+      "Clasificación de lesiones",
+      "Reporte detallado",
+      "Validado clínicamente"
+    ],
+    metrics: {
+      accuracy: "94%",
+      sensitivity: "96%",
+      images: "5K+ analizadas"
+    }
+  },
+  {
+    id: 11,
+    title: "ChatBots Inteligentes",
+    description: "Desarrollo de chatbots con IA para atención al cliente, soporte técnico y automatización de procesos.",
+    technologies: ["Python", "NLP", "DialogFlow", "WebSockets"],
+    type: "ml",
+    status: "Completado",
+    icon: "FaRobot",
+    features: [
+      "Procesamiento de lenguaje natural",
+      "Integración multicanal",
+      "Aprendizaje continuo",
+      "Análisis de sentimientos"
+    ],
+    metrics: {
+      bots: "10+",
+      conversations: "100K+",
+      satisfaction: "92%"
+    }
   }
 ];
 
-// Configuración para WhatsApp
+// Configuración de WhatsApp
 export const whatsappConfig = {
-  defaultNumber: "998511769", // Tu número por defecto
-  defaultMessage: "¡Hola! Me interesa conocer más sobre tus proyectos. ¿Podríamos hablar?"
+  defaultNumber: "51998511769"
 };
-
-// Función para generar enlace de WhatsApp
-export const generateWhatsAppLink = (projectId, customMessage = null) => {
-  const project = projects.find(p => p.id === projectId);
-  const number = project?.whatsapp || whatsappConfig.defaultNumber;
-  const message = customMessage || `¡Hola! Me interesa el proyecto "${project?.title}". ¿Podríamos hablar sobre él?`;
-  
-  return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
-};
-
-// Categorías de filtros para la página de proyectos
-export const filterCategories = [
-  { id: 'all', name: 'Todos', icon: 'FaRocket' },
-  { id: 'web', name: 'Desarrollo Web', icon: 'FaCode' },
-  { id: 'ml', name: 'Machine Learning', icon: 'FaBrain' },
-  { id: 'database', name: 'Base de Datos', icon: 'FaDatabase' },
-  { id: 'analytics', name: 'Analítica', icon: 'FaChartLine' },
-  { id: 'automation', name: 'Automatización', icon: 'FaCog' }
-];
-
-export default projects;
