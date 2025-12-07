@@ -12,7 +12,7 @@ const FloatingWhatsApp = () => {
   };
 
   return (
-    <div className="fixed bottom-8 right-8 z-50">
+    <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 chatbot-floating-button">
       <div className="relative">
         {/* Tooltip */}
         {showTooltip && (
@@ -27,10 +27,10 @@ const FloatingWhatsApp = () => {
           onClick={handleClick}
           onMouseEnter={() => setShowTooltip(true)}
           onMouseLeave={() => setShowTooltip(false)}
-          className="flex items-center justify-center w-16 h-16 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-full border-4 border-black shadow-brutal hover-lift transition-all duration-200"
+          className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-full border-2 md:border-4 border-black shadow-brutal-sm md:shadow-brutal hover-lift transition-all duration-200"
           aria-label="Chat on WhatsApp"
         >
-          <FaWhatsapp className="text-3xl" />
+          <FaWhatsapp className="text-lg md:text-3xl" />
         </button>
       </div>
     </div>

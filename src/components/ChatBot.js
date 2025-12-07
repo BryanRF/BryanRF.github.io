@@ -150,6 +150,20 @@ const ChatBot = () => {
     }
   };
 
+  // Efecto para agregar/quitar clase al body cuando el chatbot está abierto en móvil
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add('chatbot-open-mobile');
+    } else {
+      document.body.classList.remove('chatbot-open-mobile');
+    }
+    
+    // Limpiar al desmontar
+    return () => {
+      document.body.classList.remove('chatbot-open-mobile');
+    };
+  }, [isOpen]);
+
   const handleToggleChat = () => {
     if (isOpen) {
       // Limpiar mensajes al cerrar
@@ -169,16 +183,28 @@ const ChatBot = () => {
 
   return (
     <>
-      {/* Botón flotante */}
+      {/* Botón flotante - Desktop */}
       <motion.button
         onClick={handleToggleChat}
-        className="fixed bottom-8 right-32 z-50 flex items-center justify-center w-16 h-16 bg-secondary hover:bg-blue-600 text-white rounded-full border-4 border-black shadow-brutal hover-lift transition-all duration-200"
+        className="fixed bottom-8 right-32 z-50 md:flex hidden items-center justify-center w-16 h-16 bg-secondary hover:bg-blue-600 text-white rounded-full border-4 border-black shadow-brutal hover-lift transition-all duration-200 chatbot-floating-button"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Abrir chatbot"
       >
         {isOpen ? <FaTimes className="text-2xl" /> : <FaRobot className="text-2xl" />}
       </motion.button>
+
+      {/* Botón flotante - Mobile (solo cuando está cerrado) */}
+      {!isOpen && (
+        <motion.button
+          onClick={handleToggleChat}
+          className="fixed bottom-6 right-20 z-50 md:hidden flex items-center justify-center w-12 h-12 bg-secondary text-white rounded-full border-2 border-black shadow-brutal-sm hover-lift transition-all duration-200"
+          whileTap={{ scale: 0.95 }}
+          aria-label="Abrir chatbot"
+        >
+          <FaRobot className="text-lg" />
+        </motion.button>
+      )}
 
       {/* Ventana del chatbot */}
       <AnimatePresence>
@@ -252,7 +278,7 @@ const ChatBot = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="md:hidden fixed inset-0 z-40 bg-white"
+            className="md:hidden fixed inset-0 z-[9999] bg-white flex flex-col"
           >
             {/* Header móvil */}
             <div className="bg-secondary border-b-4 border-black p-4">
@@ -273,7 +299,7 @@ const ChatBot = () => {
             </div>
 
             {/* Mensajes móvil */}
-            <div className="h-[calc(100vh-8rem)] overflow-y-auto p-4 space-y-4 bg-gray-light">
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-light" style={{ height: 'calc(100vh - 8rem)' }}>
               {messages.map((message, index) => (
                 <div key={index} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`max-w-[85%] ${message.type === 'user' ? 'bg-primary' : 'bg-white'} border-4 border-black rounded-xl p-4 shadow-brutal`}>
@@ -296,6 +322,13 @@ const ChatBot = () => {
                 </div>
               ))}
               <div ref={messagesEndRef} />
+            </div>
+
+            {/* Footer móvil */}
+            <div className="border-t-4 border-black p-3 bg-white">
+              <p className="text-xs text-center font-bold text-black">
+                Selecciona una opción arriba
+              </p>
             </div>
           </motion.div>
         )}

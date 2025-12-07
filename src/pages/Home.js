@@ -30,6 +30,7 @@ function Home() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isVisible, setIsVisible] = useState(false);
   const [showHeader, setShowHeader] = useState(false);
+  const [isTitleHovered, setIsTitleHovered] = useState(false);
   
   const handleGeneralWhatsApp = () => {
     const message = "¡Hola! Me interesan tus proyectos y me gustaría conocer más sobre tu trabajo. ¿Podríamos conversar?";
@@ -173,19 +174,19 @@ function Home() {
       {showHeader && <Header />}
       
       {/* Hero Section - Solo 2 colores */}
-      <section className="py-20 px-4 bg-white relative">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-2 md:py-2 px-4 bg-white relative md:min-h-screen md:flex md:items-center">
+        <div className="max-w-6xl mx-auto w-full">
           
           {/* Main Card */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="bg-white border-4 border-black rounded-3xl p-8 md:p-12 shadow-brutal-xl mb-8 relative z-10"
+            className="bg-white border-4 border-black rounded-3xl p-6 md:p-12 shadow-brutal-xl mb-8 relative z-10"
           >
             {/* Avatar */}
-            <div className="flex justify-center mb-8">
-              <div className="w-32 h-32 border-4 border-black rounded-full overflow-hidden shadow-brutal bg-white">
+            <div className="flex justify-center mb-6 md:mb-8">
+              <div className="w-24 h-24 md:w-32 md:h-32 border-4 border-black rounded-full overflow-hidden shadow-brutal bg-white">
                 <img 
                   src="/avatar.svg" 
                   alt="Brayan Eduardo Rojas Freyre" 
@@ -195,42 +196,40 @@ function Home() {
             </div>
 
             {/* Nombre Completo - Montserrat */}
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black  mb-6 leading-none text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            <h1 className="text-2xl sm:text-3xl md:text-6xl lg:text-6xl xl:text-7xl font-black mb-3 md:mb-6 leading-tight text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
               BRAYAN EDUARDO
               <br />
               ROJAS FREYRE
             </h1>
 
             {/* Título Profesional - Inclinado */}
-            <div className="flex justify-center mb-8">
+            <div className="flex justify-center mb-4 md:mb-8">
               <div 
-                className="inline-block px-6 py-3 border-4 border-black rounded-xl font-black text-base md:text-lg bg-primary shadow-brutal transform rotate-[-2deg] hover:rotate-0 transition-transform duration-300"
+                className="inline-block px-3 py-2 md:px-6 md:py-3 border-4 border-black rounded-xl font-black text-xs md:text-base lg:text-lg bg-primary shadow-brutal transform rotate-[-2deg] hover:rotate-0 transition-transform duration-300 text-center"
                 style={{ fontFamily: 'Montserrat, sans-serif' }}
+                onMouseEnter={() => setIsTitleHovered(true)}
+                onMouseLeave={() => setIsTitleHovered(false)}
               >
-                <FaGraduationCap className="inline mr-2" />
-                Ingeniero de Sistemas & Developer Full Stack
+                <motion.span
+                  animate={{ rotate: isTitleHovered ? 360 : 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="inline-block"
+                >
+                  <FaGraduationCap className="inline mr-1 md:mr-2 text-sm md:text-base" />
+                </motion.span>
+                <span className="inline text-xs sm:text-sm md:text-base lg:text-lg">Ingeniero de Sistemas</span>
               </div>
             </div>
 
             {/* Description */}
-            <p className="text-lg md:text-xl mb-10 max-w-4xl leading-relaxed font-medium">
+            <p className="text-sm md:text-lg lg:text-xl mb-4 md:mb-10 max-w-4xl mx-auto leading-relaxed font-medium text-center md:text-left px-2 md:px-0">
               Desarrollador Full-Stack con experiencia en soluciones digitales para web, móvil y escritorio. 
               Me adapto a distintos entornos y desafíos, con un enfoque en la <span className="font-black">eficiencia</span>, 
               la <span className="font-black">calidad</span> y 
               la <span className="font-black">experiencia del usuario</span>.
             </p>
 
-            {/* CTA Button */}
-            <div className="flex gap-4 flex-wrap">
-              <Link
-                to="/projects"
-                className="neo-button-primary inline-flex items-center text-lg"
-              >
-                <FaRocket className="mr-3" />
-                Ver Proyectos
-                <FaArrowRight className="ml-3" />
-              </Link>
-            </div>
+          
           </motion.div>
 
           {/* Stats Grid - Blanco y Negro con bordes */}

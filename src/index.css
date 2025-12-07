@@ -364,3 +364,12 @@
     @apply text-2xl;
   }
 }
+
+/* Ocultar botones flotantes cuando el chatbot está abierto en móvil */
+@media (max-width: 768px) {
+  body.chatbot-open-mobile .chatbot-floating-button,
+  body.chatbot-open-mobile [class*="floating"],
+  body.chatbot-open-mobile button[aria-label="Abrir chatbot"] {
+    display: none !important;
+  }
+}
