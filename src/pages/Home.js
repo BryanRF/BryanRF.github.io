@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { 
   FaGithub,
@@ -8,8 +7,6 @@ import {
   FaTiktok,
   FaMapMarkerAlt,
   FaClock,
-  FaWhatsapp,
-  FaArrowRight,
   FaEnvelope,
   FaCode,
   FaRocket,
@@ -23,9 +20,7 @@ import {
   FaDocker,
   FaShieldAlt,
 } from 'react-icons/fa';
-import { whatsappConfig } from '../data/projectData';
 import Header from '../components/Header';
-import { currentAge } from '../utils/ageCalculator';
 
 const getSeasonalAvatar = (date) => {
   const month = date.getMonth(); // 0-11 (9=Oct, 11=Dec)
@@ -51,15 +46,8 @@ const getSeasonalAvatar = (date) => {
 
 function Home() {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [isVisible, setIsVisible] = useState(false);
   const [showHeader, setShowHeader] = useState(false);
   const [isTitleHovered, setIsTitleHovered] = useState(false);
-  
-  const handleGeneralWhatsApp = () => {
-    const message = "¡Hola! Me interesan tus proyectos y me gustaría conocer más sobre tu trabajo. ¿Podríamos conversar?";
-    const link = `https://wa.me/${whatsappConfig.defaultNumber}?text=${encodeURIComponent(message)}`;
-    window.open(link, '_blank');
-  };
   
   const isAvailable = true;
   const startYear = 2021;
@@ -67,7 +55,6 @@ function Home() {
   const yearsOfExperience = currentYear - startYear;
 
   useEffect(() => {
-    setIsVisible(true);
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
@@ -139,7 +126,7 @@ function Home() {
   const technicalSkills = [
     {
       category: "Lenguajes y Frameworks",
-      skills: ["Python (Django)", "PHP (Laravel)", "Java (Android, Spring)", "JavaScript/TypeScript", "Vue.js", "Quasar", "Next.js", "Flutter (Dart)", "PrimeVue", "NestJS"],
+      skills: ["Python (Django)", "PHP (Laravel)", "Java (Android, Spring Boot)", "JavaScript/TypeScript", "React", "React Native", "Angular", "Vue.js", "Quasar", "Next.js", "Flutter (Dart)", "PrimeVue", "NestJS"],
       icon: FaCode,
     },
     {

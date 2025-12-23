@@ -9,8 +9,6 @@ import {
   FaCalendar,
   FaTools,
   FaMobileAlt,
-  FaLightbulb,
-  FaHeart,
   FaMapMarkerAlt,
   FaGamepad,
   FaMusic,
@@ -29,7 +27,7 @@ function About() {
     {
       category: "Frontend",
       icon: FaCode,
-      technologies: ["React", "Vue 2", "Vue 3", "JavaScript ES6+", "HTML5", "CSS3", "Tailwind CSS", "Framer Motion", "Flutter", "Dart"],
+      technologies: ["React", "React Native", "Angular", "Vue 2", "Vue 3", "JavaScript ES6+", "HTML5", "CSS3", "Tailwind CSS", "Framer Motion", "Flutter", "Dart"],
       level: "Avanzado"
     },
     {
@@ -41,7 +39,7 @@ function About() {
     {
       category: "Mobile & Desktop",
       icon: FaMobileAlt,
-      technologies: ["Flutter", "Dart", "Android (Java/Kotlin)", "Kotlin"],
+      technologies: ["React Native", "Flutter", "Dart", "Android (Java/Kotlin)", "Kotlin"],
       level: "Intermedio-Avanzado"
     },
     {

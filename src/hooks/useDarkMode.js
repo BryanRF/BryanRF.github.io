@@ -54,12 +54,31 @@ const useDarkMode = () => {
   }, []);
 
   const toggleDarkMode = () => {
-    setIsDarkMode(prevMode => {
-      const newMode = !prevMode;
-      // When user manually toggles, SAVE the preference
-      localStorage.setItem('darkMode', newMode.toString());
-      return newMode;
-    });
+    // Verificar si el navegador soporta View Transitions API
+    if (document.startViewTransition) {
+      document.startViewTransition(() => {
+        const root = document.documentElement;
+        const newMode = !isDarkMode;
+        
+        // Aplicar el cambio de clase directamente dentro de la transición
+        if (newMode) {
+          root.classList.add('dark');
+        } else {
+          root.classList.remove('dark');
+        }
+        
+        // Actualizar el estado y localStorage
+        setIsDarkMode(newMode);
+        localStorage.setItem('darkMode', newMode.toString());
+      });
+    } else {
+      // Fallback para navegadores que no soportan View Transitions
+      setIsDarkMode(prevMode => {
+        const newMode = !prevMode;
+        localStorage.setItem('darkMode', newMode.toString());
+        return newMode;
+      });
+    }
   };
 
   return [isDarkMode, toggleDarkMode];

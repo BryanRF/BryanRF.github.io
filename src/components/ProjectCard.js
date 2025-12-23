@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaCode, FaDatabase, FaBrain, FaChartLine, FaRocket, FaCog, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaGithub, FaCode, FaDatabase, FaBrain, FaChartLine, FaRocket, FaCog } from 'react-icons/fa';
 
 // Iconos para diferentes tipos de proyectos
 const getProjectIcon = (type) => {

@@ -24,7 +24,6 @@ const filterCategories = [
 
 const Projects = () => {
   const githubProjects = staticProjects; // Usar proyectos estáticos
-  const loading = false;
   const error = null;
   
   const [filteredProjects, setFilteredProjects] = React.useState([]);

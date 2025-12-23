@@ -85,11 +85,11 @@ export const cvData = {
   skills: {
     frontend: {
       title: "Frontend y Móvil",
-      items: ["Vue.js", "Quasar", "Next.js", "React", "Flutter (Dart)", "PrimeVue", "Tailwind CSS", "Framer Motion"]
+      items: ["React", "React Native", "Angular", "Vue.js", "Quasar", "Next.js", "Flutter (Dart)", "PrimeVue", "Tailwind CSS", "Framer Motion"]
     },
     backend: {
       title: "Lenguajes y Backend",
-      items: ["Python (Django, OpenCV, TensorFlow)", "PHP (Laravel)", "Java (Spring, Android)", "Node.js (NestJS)", "JavaScript/TypeScript"]
+      items: ["Python (Django, OpenCV, TensorFlow)", "PHP (Laravel)", "Java (Spring Boot, Android)", "Node.js (NestJS)", "JavaScript/TypeScript"]
     },
     mobile: {
       title: "Desarrollo Móvil",
