@@ -23,6 +23,58 @@ function About() {
   const startYear = 2022;
   const yearsOfExperience = currentYear - startYear;
 
+  const professionalProfile = "Ingeniero de Sistemas y Tech Lead con más de 4 años de experiencia en el ciclo completo de desarrollo de software. Perfil Semi-Senior versátil con dominio profundo en Desarrollo Móvil (Flutter y Nativo Kotlin), Backend escalable (NestJS, Python, Laravel) y Frontend Web moderno (React, Vue). Especialista en arquitectura de software (Clean Architecture, Microservicios), integración de Inteligencia Artificial en procesos de negocio y despliegue en infraestructura Cloud (AWS, Docker). Capacidad probada para gestionar múltiples proyectos tecnológicos simultáneamente y liderar equipos técnicos.";
+
+  const techStackSections = [
+    {
+      title: "Backend & APIs",
+      icon: FaServer,
+      items: [
+        "Node.js Ecosystem: NestJS (Avanzado, Microservicios, Shared Modules), Express, TypeScript.",
+        "Python Ecosystem: Django (Framework), FastAPI, scripting para automatización.",
+        "PHP Ecosystem: Laravel (Service Layer, Repository Pattern), Blade Templates.",
+        "Protocolos & API: RESTful APIs, GraphQL (Apollo Federation), WebSockets (Socket.io), gRPC.",
+        "Java: Spring Boot (mantenimiento de servicios legacy)."
+      ]
+    },
+    {
+      title: "Mobile Development",
+      icon: FaMobileAlt,
+      items: [
+        "Cross-Platform: Flutter (Riverpod 2.0, BLoC, Clean Architecture), React Native (TypeScript, Redux Toolkit).",
+        "Android Nativo: Kotlin (Coroutines, Flow, LiveData), Jetpack Compose, Dagger Hilt, WorkManager.",
+        "Seguridad Móvil: SSL Pinning, encriptación AES-256, autenticación biométrica, Keystore."
+      ]
+    },
+    {
+      title: "Frontend Web",
+      icon: FaCode,
+      items: [
+        "React: Next.js (SSR/SSG), React 18, Hooks, Zustand, Inertia.js.",
+        "Vue.js: Vue 3 (Composition API), Nuxt.js, Quasar Framework, PrimeVue.",
+        "UI/UX & Estilos: Tailwind CSS, Bootstrap 4/5, Sass, Material Design, Figma.",
+        "Visualización: ApexCharts, Chart.js, Recharts."
+      ]
+    },
+    {
+      title: "Cloud, DevOps & Bases de Datos",
+      icon: FaDatabase,
+      items: [
+        "Cloud: AWS (EC2, S3, DynamoDB, EKS), administración Linux (Nginx).",
+        "Contenedores: Docker, Docker Compose.",
+        "NoSQL: DynamoDB, MongoDB, Redis (caché/PubSub).",
+        "SQL: PostgreSQL, MySQL, SQLite, Room Database.",
+        "AI & Machine Learning: OpenCV, TensorFlow, NLP (análisis de sentimientos).",
+        "CI/CD & Tools: GitHub Actions, GitFlow, Postman, Jira."
+      ]
+    }
+  ];
+
+  const languages = [
+    { lang: "Español", level: "Nativo" },
+    { lang: "Inglés", level: "Intermedio" }
+  ];
+
   const skills = [
     {
       category: "Frontend",
@@ -198,6 +250,74 @@ function About() {
           <div className="text-center p-6 bg-default border-4 border-default rounded-2xl shadow-brutal">
             <div className="text-4xl font-black text-default mb-2">∞</div>
             <div className="text-sm font-bold  text-default">Tazas de café</div>
+          </div>
+        </motion.div>
+
+        {/* Professional Profile */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="mb-20"
+        >
+          <div className="p-8 bg-default border-4 border-default rounded-2xl shadow-brutal">
+            <h2 className="neo-subtitle mb-6 text-default">Perfil Profesional</h2>
+            <p className="text-default font-bold leading-relaxed">{professionalProfile}</p>
+          </div>
+        </motion.div>
+
+        {/* Tech Stack */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mb-20"
+        >
+          <h2 className="neo-subtitle mb-12 text-center text-default">Habilidades Técnicas (Tech Stack)</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {techStackSections.map((section, index) => {
+              const IconComponent = section.icon;
+              return (
+                <div
+                  key={index}
+                  className="p-8 bg-default border-4 border-default rounded-2xl shadow-brutal"
+                >
+                  <div className="flex items-center mb-6">
+                    <IconComponent className="text-3xl text-default mr-4" />
+                    <h3 className="text-lg font-black text-default">{section.title}</h3>
+                  </div>
+                  <ul className="space-y-3">
+                    {section.items.map((item, idx) => (
+                      <li key={idx} className="flex items-start text-default text-sm font-bold">
+                        <div className="w-2 h-2 bg-current rounded-full mr-3 mt-2 flex-shrink-0"></div>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </div>
+        </motion.div>
+
+        {/* Languages */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.35 }}
+          className="mb-20"
+        >
+          <h2 className="neo-subtitle mb-12 text-center text-default">Idiomas</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {languages.map((lang, idx) => (
+              <div
+                key={idx}
+                className="p-8 bg-default border-4 border-default rounded-2xl shadow-brutal"
+              >
+                <div className="text-2xl font-black text-default mb-2">{lang.lang}</div>
+                <div className="text-default font-bold">{lang.level}</div>
+              </div>
+            ))}
           </div>
         </motion.div>
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaCode, FaDatabase, FaBrain, FaChartLine, FaRocket, FaCog } from 'react-icons/fa';
+import { FaGithub, FaCode, FaDatabase, FaBrain, FaChartLine, FaRocket, FaCog, FaMobileAlt } from 'react-icons/fa';
 
 // Iconos para diferentes tipos de proyectos
 const getProjectIcon = (type) => {
@@ -8,6 +8,7 @@ const getProjectIcon = (type) => {
     'database': FaDatabase,
     'ml': FaBrain,
     'web': FaCode,
+    'mobile': FaMobileAlt,
     'analytics': FaChartLine,
     'automation': FaCog,
     'default': FaRocket
@@ -21,6 +22,7 @@ const getProjectColor = (type) => {
     'database': 'bg-celeste',
     'ml': 'bg-green',
     'web': 'bg-pink',
+    'mobile': 'bg-purple',
     'analytics': 'bg-purple',
     'automation': 'bg-yellow',
     'default': 'bg-orange'
@@ -55,7 +57,7 @@ const TechTag = ({ tech }) => {
   };
 
   const defaultColor = 'bg-gray-200';
-  
+
   return (
     <span className={`px-3 py-1 text-xs font-bold border-2 border-default rounded-lg ${techColors[tech] || defaultColor} text-black shadow-brutal-sm`}>
       {tech}
@@ -85,14 +87,14 @@ const ProjectCard = ({ project, index }) => {
         {/* Header con icono colorido */}
         <div className={`${colorClass} p-6 border-b-4 border-default`}>
           <div className="flex items-start justify-between mb-4">
-            <motion.div 
+            <motion.div
               animate={{ rotate: isHovered ? 360 : 0 }}
               transition={{ duration: 0.5 }}
               className={`flex items-center justify-center w-14 h-14 bg-default border-4 border-default rounded-xl shadow-brutal-sm`}
             >
               <IconComponent className="w-7 h-7 text-default" />
             </motion.div>
-            
+
             <div className="flex gap-2">
               {project.github && (
                 <motion.a
@@ -108,26 +110,24 @@ const ProjectCard = ({ project, index }) => {
               )}
             </div>
           </div>
-          
+
           <h3 className="text-2xl font-black  text-black mb-2">
             {project.title}
           </h3>
-          
+
           {project.status && (
-            <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold border-4 border-default shadow-brutal-sm text-black ${
-              project.status === 'En Proceso' 
-                ? 'bg-primary' 
-                : project.status === 'Completado' 
-                ? 'bg-green-400' 
-                : 'bg-white'
-            }`}>
-              <div className={`w-2 h-2 rounded-full mr-2 animate-pulse ${
-                project.status === 'En Proceso' 
-                  ? 'bg-black' 
-                  : project.status === 'Completado' 
-                  ? 'bg-green-700' 
-                  : 'bg-black'
-              }`} />
+            <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold border-4 border-default shadow-brutal-sm text-black ${project.status === 'En Proceso'
+                ? 'bg-primary'
+                : project.status === 'Completado'
+                  ? 'bg-green-400'
+                  : 'bg-white'
+              }`}>
+              <div className={`w-2 h-2 rounded-full mr-2 animate-pulse ${project.status === 'En Proceso'
+                  ? 'bg-black'
+                  : project.status === 'Completado'
+                    ? 'bg-green-700'
+                    : 'bg-black'
+                }`} />
               {project.status}
             </div>
           )}
@@ -138,7 +138,7 @@ const ProjectCard = ({ project, index }) => {
           <p className="text-default font-bold mb-4 leading-relaxed">
             {project.description}
           </p>
-          
+
           {/* Características destacadas */}
           {project.features && (
             <div className="mb-4">
@@ -153,7 +153,7 @@ const ProjectCard = ({ project, index }) => {
               </ul>
             </div>
           )}
-          
+
           {/* Tags de tecnologías */}
           {project.technologies && (
             <div className="flex flex-wrap gap-2 mb-4">
@@ -162,7 +162,7 @@ const ProjectCard = ({ project, index }) => {
               ))}
             </div>
           )}
-          
+
           {/* Métricas del proyecto */}
           {project.metrics && (
             <div className="grid grid-cols-2 gap-3 mt-4 pt-4 border-t-4 border-default">
@@ -172,6 +172,32 @@ const ProjectCard = ({ project, index }) => {
                   <div className="text-xs font-bold  text-default">{key.replace('_', ' ')}</div>
                 </div>
               ))}
+            </div>
+          )}
+
+          {/* Botones de acción */}
+          {(project.demo || project.downloadUrl) && (
+            <div className="flex flex-wrap gap-3 mt-4 pt-4 border-t-4 border-default">
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 bg-primary border-4 border-default rounded-lg font-bold text-sm shadow-brutal hover:translate-y-1 hover:shadow-none transition-all duration-200 text-black"
+                >
+                  🌐 Ver Demo
+                </a>
+              )}
+              {project.downloadUrl && (
+                <a
+                  href={project.downloadUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 bg-green border-4 border-default rounded-lg font-bold text-sm shadow-brutal hover:translate-y-1 hover:shadow-none transition-all duration-200 text-black"
+                >
+                  📥 Descargar APK
+                </a>
+              )}
             </div>
           )}
         </div>
@@ -184,7 +210,7 @@ const ProjectCard = ({ project, index }) => {
               <span className="text-xs font-black text-default">{project.progress}%</span>
             </div>
             <div className="w-full bg-gray-light border-4 border-default rounded-full h-4 overflow-hidden">
-              <motion.div 
+              <motion.div
                 className="bg-green h-full border-r-3 border-black"
                 initial={{ width: 0 }}
                 animate={{ width: `${project.progress}%` }}

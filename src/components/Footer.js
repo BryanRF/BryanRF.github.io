@@ -34,7 +34,7 @@ const Footer = () => {
     },
     { 
       icon: FaLinkedin, 
-      href: 'https://www.linkedin.com/in/brayan-eduardo-rojas-freyre-41255414a/', 
+      href: 'https://www.linkedin.com/in/brayan-rojas-freyre-48933834a/', 
       label: 'LinkedIn'
     },
     { 

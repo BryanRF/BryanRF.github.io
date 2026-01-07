@@ -7,6 +7,9 @@ import TextType from './TextType';
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [visibleOptions, setVisibleOptions] = useState({});
+  const [cvLang, setCvLang] = useState('es');
+  const messagesContainerRefDesktop = useRef(null);
+  const messagesContainerRefMobile = useRef(null);
   const messagesEndRef = useRef(null);
   const [messages, setMessages] = useState([
     {
@@ -15,6 +18,7 @@ const ChatBot = () => {
       text: '¡Hola! 👋 Soy el asistente de Brayan. ¿En qué puedo ayudarte?',
       options: [
         'Sobre Trabajo',
+        'Sobre mí / Mi Stack',
         'Aprende Conmigo',
         'Descargar CV'
       ]
@@ -25,10 +29,53 @@ const ChatBot = () => {
     setVisibleOptions(prev => ({ ...prev, [index]: true }));
   };
 
+  const getActiveContainer = () => {
+    if (typeof window !== 'undefined' && window.matchMedia) {
+      return window.matchMedia('(min-width: 768px)').matches
+        ? messagesContainerRefDesktop.current
+        : messagesContainerRefMobile.current;
+    }
+    return messagesContainerRefMobile.current || messagesContainerRefDesktop.current;
+  };
+
+  const scrollToBottom = (behavior = 'smooth') => {
+    const container = getActiveContainer();
+    if (!container) return;
+    container.scrollTo({ top: container.scrollHeight, behavior });
+  };
+
   // Auto-scroll al final cuando cambian los mensajes o las opciones visibles
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (!isOpen) return;
+    scrollToBottom('auto');
+    const t = setTimeout(() => scrollToBottom('smooth'), 0);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messages, visibleOptions, isOpen]);
+
+  // Seguir el crecimiento del contenido (typing) incluso si el estado padre no cambia
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const container = getActiveContainer();
+    if (!container) return;
+    if (typeof ResizeObserver === 'undefined') return;
+
+    const observer = new ResizeObserver(() => {
+      scrollToBottom('auto');
+    });
+
+    observer.observe(container);
+
+    const onResize = () => scrollToBottom('auto');
+    window.addEventListener('resize', onResize);
+
+    return () => {
+      window.removeEventListener('resize', onResize);
+      observer.disconnect();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -59,6 +106,38 @@ const ChatBot = () => {
         'Volver al inicio'
       ]
     },
+    'Sobre mí / Mi Stack': {
+      text: 'Soy Brayan Eduardo Rojas Freyre, Full Stack Tech Lead (4+ años). ¿Qué quieres que te explique?',
+      options: [
+        'Stack Frontend Web',
+        'Stack Backend & AI',
+        'Stack Mobile',
+        'Cloud / DevOps & Data',
+        'Experiencia Profesional',
+        'Contactar por WhatsApp',
+        'Volver al inicio'
+      ]
+    },
+    'Stack Frontend Web': {
+      text: 'Frontend Web: React 18 y Next.js (SSR), Zustand e Inertia.js. También Vue 3 (Composition API), Nuxt.js, Quasar y PrimeVue. UI/UX: Tailwind CSS, Bootstrap, Sass, Framer Motion, ApexCharts y Chart.js.',
+      options: ['Ver proyectos', 'Descargar CV', 'Volver al inicio']
+    },
+    'Stack Backend & AI': {
+      text: 'Backend & AI: Node.js y NestJS (microservicios), GraphQL (Apollo/Federation), WebSockets y gRPC. Python con Django/FastAPI, OpenCV (Computer Vision), TensorFlow y NLP (sentiment analysis). También Laravel y Spring Boot para proyectos enterprise.',
+      options: ['Ver proyectos', 'CV Backend', 'CV FullStack', 'Volver al inicio']
+    },
+    'Stack Mobile': {
+      text: 'Mobile: Flutter (Dart, Riverpod 2.0, BLoC, Method Channels, optimización de render/animaciones). Android nativo: Kotlin, Jetpack Compose, Coroutines/Flow, Dagger Hilt, WorkManager. React Native: TypeScript + Redux Toolkit. Seguridad móvil: SSL Pinning, AES-256, biometría.',
+      options: ['Ver proyectos', 'CV Mobile', 'Volver al inicio']
+    },
+    'Cloud / DevOps & Data': {
+      text: 'Cloud/DevOps & Data: AWS (EKS, S3, DynamoDB), Docker (Compose/Swarm), Nginx y Linux. Bases de datos: DynamoDB, MongoDB, PostgreSQL, MySQL, Redis, SQLite/Room. CI/CD y tools: GitHub Actions, GitFlow, Fastlane, Jira y Postman.',
+      options: ['Ver proyectos', 'CV FullStack', 'Volver al inicio']
+    },
+    'Experiencia Profesional': {
+      text: 'INNOVAHTEC (Ene 2024 - Presente): Full Stack Tech Lead liderando 4 devs. Arquitectura 360° con Clean Architecture (Flutter + Web + NestJS). Migración a microservicios, GraphQL, WebSockets y servicios de IA en Python. También dashboards en Vue/Quasar y optimización de performance móvil.',
+      options: ['Ver proyectos', 'Descargar CV', 'Volver al inicio']
+    },
     'Aprende Conmigo': {
       text: '¡Excelente! Me encanta enseñar programación. Ofrezco mentoría desde nivel básico hasta intermedio en cualquier lenguaje de programación. ¿Te gustaría saber más?',
       options: [
@@ -69,8 +148,8 @@ const ChatBot = () => {
       ]
     },
     'Descargar CV': {
-      text: '¿Qué tipo de CV te gustaría descargar?',
-      options: ['CV FullStack', 'CV Frontend', 'CV Backend', 'CV Mobile', 'Volver al inicio']
+      text: '¿En qué idioma te gustaría tu CV?',
+      options: ['Idioma: Español', 'Idioma: English', 'Volver al inicio']
     },
     'Landing Pages': {
       text: '¡Excelente! Desarrollo landing pages modernas, rápidas y optimizadas para conversión. Puedo trabajar con cualquier tecnología frontend según tus necesidades. ¿Cómo te gustaría contactarme?',
@@ -102,6 +181,19 @@ const ChatBot = () => {
     // Agregar mensaje del usuario
     setMessages(prev => [...prev, { id: Date.now(), type: 'user', text: option }]);
 
+    // Selección de idioma para CV
+    if (option === 'Idioma: Español' || option === 'Idioma: English') {
+      const selectedLang = option === 'Idioma: English' ? 'en' : 'es';
+      setCvLang(selectedLang);
+      setMessages(prev => [...prev, {
+        id: Date.now() + 1,
+        type: 'bot',
+        text: selectedLang === 'en' ? 'Great! Which CV would you like to download?' : '¡Perfecto! ¿Qué tipo de CV te gustaría descargar?',
+        options: ['CV FullStack', 'CV Frontend', 'CV Backend', 'CV Mobile', 'Volver al inicio']
+      }]);
+      return;
+    }
+
     // Manejar descarga de CV
     if (option.startsWith('CV ')) {
       const cvType = option.replace('CV ', '').toLowerCase().replace(' ', '');
@@ -113,12 +205,14 @@ const ChatBot = () => {
         'machinelearning': 'ml'
       };
       
-      generateCV(typeMap[cvType] || 'fullstack');
+      generateCV(typeMap[cvType] || 'fullstack', cvLang);
       
       setMessages(prev => [...prev, {
         id: Date.now() + 1,
         type: 'bot',
-        text: `✅ ¡Perfecto! Tu CV de ${option.replace('CV ', '')} se está descargando. ¿Necesitas algo más?`,
+        text: cvLang === 'en'
+          ? `✅ Done! Your ${option.replace('CV ', '')} CV is downloading. Anything else?`
+          : `✅ ¡Perfecto! Tu CV de ${option.replace('CV ', '')} se está descargando. ¿Necesitas algo más?`,
         options: ['Ver proyectos', 'Otro CV', 'Contactar por WhatsApp', 'Volver al inicio']
       }]);
       return;
@@ -170,6 +264,7 @@ const ChatBot = () => {
         text: '¡Hola! 👋 Soy el asistente de Brayan. ¿En qué puedo ayudarte?',
         options: [
           'Sobre Trabajo',
+          'Sobre mí / Mi Stack',
           'Aprende Conmigo',
           'Descargar CV'
         ]
@@ -182,7 +277,7 @@ const ChatBot = () => {
       setMessages(prev => [...prev, {
         id: Date.now() + 1,
         type: 'bot',
-        text: '¿Qué tipo de CV te gustaría descargar?',
+        text: cvLang === 'en' ? 'Which CV would you like to download?' : '¿Qué tipo de CV te gustaría descargar?',
         options: ['CV FullStack', 'CV Frontend', 'CV Backend', 'CV Mobile', 'Volver al inicio']
       }]);
       return;
@@ -222,6 +317,7 @@ const ChatBot = () => {
         text: '¡Hola! 👋 Soy el asistente de Brayan. ¿En qué puedo ayudarte?',
         options: [
           'Sobre Trabajo',
+          'Sobre mí / Mi Stack',
           'Aprende Conmigo',
           'Descargar CV'
         ]
@@ -264,7 +360,7 @@ const ChatBot = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-28 right-8 z-[100] w-96 max-w-[calc(100vw-2rem)] md:w-96 bg-default border-4 border-default rounded-3xl shadow-brutal-xl overflow-hidden"
+            className="hidden md:block fixed bottom-28 right-8 z-[100] w-96 max-w-[calc(100vw-2rem)] md:w-96 bg-default border-4 border-default rounded-3xl shadow-brutal-xl overflow-hidden"
             style={{ maxHeight: 'calc(100vh - 10rem)' }}
           >
             {/* Header */}
@@ -286,7 +382,7 @@ const ChatBot = () => {
             </div>
 
             {/* Mensajes */}
-            <div className="h-96 overflow-y-auto p-4 space-y-4 bg-default">
+            <div ref={messagesContainerRefDesktop} className="h-96 overflow-y-auto p-4 space-y-4 bg-default">
               {messages.map((message, index) => (
                 <div key={message.id || index} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`max-w-[80%] ${message.type === 'user' ? 'bg-primary' : 'bg-gray-light'} border-4 border-default rounded-xl p-3 shadow-brutal-sm`}>
@@ -368,7 +464,7 @@ const ChatBot = () => {
             </div>
 
             {/* Mensajes móvil */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-default" style={{ height: 'calc(100vh - 8rem)' }}>
+            <div ref={messagesContainerRefMobile} className="flex-1 overflow-y-auto p-4 space-y-4 bg-default" style={{ height: 'calc(100vh - 8rem)' }}>
               {messages.map((message, index) => (
                 <div key={message.id || index} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`max-w-[85%] ${message.type === 'user' ? 'bg-primary' : 'bg-gray-light'} border-4 border-default rounded-xl p-4 shadow-brutal`}>

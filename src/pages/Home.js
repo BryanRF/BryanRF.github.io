@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { 
+import {
   FaGithub,
   FaLinkedin,
   FaInstagram,
@@ -21,6 +21,7 @@ import {
   FaShieldAlt,
 } from 'react-icons/fa';
 import Header from '../components/Header';
+import NewAppBanner from '../components/FeaturedProject';
 
 const getSeasonalAvatar = (date) => {
   const month = date.getMonth(); // 0-11 (9=Oct, 11=Dec)
@@ -48,7 +49,7 @@ function Home() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [showHeader, setShowHeader] = useState(false);
   const [isTitleHovered, setIsTitleHovered] = useState(false);
-  
+
   const isAvailable = true;
   const startYear = 2021;
   const currentYear = new Date().getFullYear();
@@ -58,14 +59,14 @@ function Home() {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
-    
+
     // Scroll handler para mostrar navbar
     const handleScroll = () => {
       setShowHeader(window.scrollY > 800);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
-    
+
     return () => {
       clearInterval(timer);
       window.removeEventListener('scroll', handleScroll);
@@ -73,51 +74,51 @@ function Home() {
   }, []);
 
   const socialLinks = [
-    { 
-      platform: "GitHub", 
-      handle: "@BryanRF", 
-      url: "https://github.com/BryanRF", 
+    {
+      platform: "GitHub",
+      handle: "@BryanRF",
+      url: "https://github.com/BryanRF",
       icon: FaGithub,
     },
-    { 
-      platform: "LinkedIn", 
-      handle: "Brayan Rojas", 
-      url: "https://www.linkedin.com/in/brayan-eduardo-rojas-freyre-41255414a/", 
+    {
+      platform: "LinkedIn",
+      handle: "Brayan Rojas",
+      url: "https://www.linkedin.com/in/brayan-rojas-freyre-48933834a/",
       icon: FaLinkedin,
     },
-    { 
-      platform: "Instagram", 
-      handle: "@bryan.rfr", 
-      url: "https://www.instagram.com/bryan.rfr/", 
+    {
+      platform: "Instagram",
+      handle: "@bryan.rfr",
+      url: "https://www.instagram.com/bryan.rfr/",
       icon: FaInstagram,
     },
-    { 
-      platform: "TikTok", 
-      handle: "@edu_rf", 
-      url: "https://www.tiktok.com/@edu_rf", 
+    {
+      platform: "TikTok",
+      handle: "@edu_rf",
+      url: "https://www.tiktok.com/@edu_rf",
       icon: FaTiktok,
     }
   ];
 
 
   const stats = [
-    { 
-      label: "Años de experiencia", 
+    {
+      label: "Años de experiencia",
       value: `${yearsOfExperience}+`,
       icon: FaCode,
     },
-    { 
-      label: "Proyectos completados", 
+    {
+      label: "Proyectos completados",
       value: "30+",
       icon: FaRocket,
     },
-    { 
-      label: "Tecnologías dominadas", 
+    {
+      label: "Tecnologías dominadas",
       value: "10+",
       icon: FaLaptopCode,
     },
-    { 
-      label: "Tazas de café", 
+    {
+      label: "Tazas de café",
       value: "∞",
       icon: FaCoffee,
     }
@@ -187,11 +188,11 @@ function Home() {
     <div className="min-h-screen bg-body">
       {/* Header aparece solo después de scroll */}
       {showHeader && <Header />}
-      
+
       {/* Hero Section - Solo 2 colores */}
       <section className="py-2 md:py-2 px-4 bg-body relative md:min-h-screen md:flex md:items-center">
         <div className="max-w-6xl mx-auto w-full">
-          
+
           {/* Main Card */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -202,9 +203,9 @@ function Home() {
             {/* Avatar */}
             <div className="flex justify-center mb-6 md:mb-8">
               <div className="w-24 h-24 md:w-32 md:h-32 border-4 border-default rounded-full overflow-hidden shadow-brutal bg-default">
-                <img 
-                  src={getSeasonalAvatar(currentTime)} 
-                  alt="Brayan Eduardo Rojas Freyre" 
+                <img
+                  src={getSeasonalAvatar(currentTime)}
+                  alt="Brayan Eduardo Rojas Freyre"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -219,7 +220,7 @@ function Home() {
 
             {/* Título Profesional - Inclinado */}
             <div className="flex justify-center mb-4 md:mb-8">
-              <div 
+              <div
                 className="inline-block px-3 py-2 md:px-6 md:py-3 border-4 border-default rounded-xl font-black text-xs md:text-base lg:text-lg bg-primary shadow-brutal transform rotate-[-2deg] hover:rotate-0 transition-transform duration-300 text-center"
                 style={{ fontFamily: 'Montserrat, sans-serif' }}
                 onMouseEnter={() => setIsTitleHovered(true)}
@@ -238,13 +239,13 @@ function Home() {
 
             {/* Description */}
             <p className="text-sm md:text-lg lg:text-xl mb-4 md:mb-10 max-w-4xl mx-auto leading-relaxed font-medium text-center md:text-left px-2 md:px-0">
-              Desarrollador Full-Stack con experiencia en soluciones digitales para web, móvil y escritorio. 
-              Me adapto a distintos entornos y desafíos, con un enfoque en la <span className="font-black">eficiencia</span>, 
-              la <span className="font-black">calidad</span> y 
+              Desarrollador Full-Stack con experiencia en soluciones digitales para web, móvil y escritorio.
+              Me adapto a distintos entornos y desafíos, con un enfoque en la <span className="font-black">eficiencia</span>,
+              la <span className="font-black">calidad</span> y
               la <span className="font-black">experiencia del usuario</span>.
             </p>
 
-          
+
           </motion.div>
 
           {/* Stats Grid - Blanco y Negro con bordes */}
@@ -258,8 +259,8 @@ function Home() {
               const IconComponent = stat.icon;
               const tiltClass = index % 2 === 0 ? 'neo-card-tilted-left' : 'neo-card-tilted-right';
               return (
-                <motion.div 
-                  key={index} 
+                <motion.div
+                  key={index}
                   className={`bg-default neo-card-tilted ${tiltClass} p-6 text-center`}
                   initial={{ opacity: 0, scale: 0.8, rotate: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -293,7 +294,7 @@ function Home() {
               <FaGraduationCap className="text-5xl text-default" />
               <h3 className="neo-subtitle text-default">Sobre Mí</h3>
             </div>
-            
+
             <div className="space-y-6 text-lg font-bold text-default">
               <p className="flex items-start gap-3">
                 <FaHeart className="text-2xl mt-1 flex-shrink-0" />
@@ -327,8 +328,8 @@ function Home() {
               <div className="flex items-center bg-gray-light border-4 border-default p-4 rounded-xl shadow-brutal-sm">
                 <FaClock className="mr-3 text-xl" />
                 <span className="font-mono font-bold text-lg">
-                  {currentTime.toLocaleTimeString('es-PE', { 
-                    hour: '2-digit', 
+                  {currentTime.toLocaleTimeString('es-PE', {
+                    hour: '2-digit',
                     minute: '2-digit',
                     second: '2-digit',
                     timeZone: 'America/Lima'
@@ -360,6 +361,11 @@ function Home() {
             </div>
           </motion.div>
 
+          {/* MEMORY - Nueva App Banner */}
+          <div className="mb-12">
+            <NewAppBanner />
+          </div>
+
           {/* Technical Skills Section - Blanco y Negro */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -370,7 +376,7 @@ function Home() {
             <h3 className="neo-subtitle mb-10">
               Habilidades Técnicas
             </h3>
-            
+
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {technicalSkills.map((skillGroup, index) => {
                 const IconComponent = skillGroup.icon;
@@ -440,7 +446,7 @@ function Home() {
             <h3 className="neo-subtitle mb-10">
               Conecta Conmigo
             </h3>
-            
+
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {socialLinks.map((social, index) => {
                 const IconComponent = social.icon;
@@ -471,7 +477,7 @@ function Home() {
             className="bg-primary border-4 border-default rounded-3xl p-8 md:p-12 shadow-brutal-xl text-center"
           >
             <FaEnvelope className="text-6xl mx-auto mb-6 text-black" />
-            
+
             <h3 className="text-3xl md:text-5xl font-black  mb-6 text-black">
               ¿Tienes un proyecto en mente?
             </h3>
@@ -482,13 +488,13 @@ function Home() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <a
                 href="mailto:rfreyrebrayaned@gmail.com"
-                        className="neo-button bg-green-500 text-black dark:bg-black dark:text-white hover:opacity-80 inline-flex items-center transition-all duration-200"
+                className="neo-button bg-green-500 text-black dark:bg-black dark:text-white hover:opacity-80 inline-flex items-center transition-all duration-200"
               >
                 <FaEnvelope className="inline mr-3" />
                 Email
               </a>
 
-               
+
             </div>
           </motion.div>
         </div>

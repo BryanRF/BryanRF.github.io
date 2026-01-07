@@ -1,8 +1,9 @@
 import { jsPDF } from 'jspdf';
-import { cvData, filterExperienceByType, getSkillsByType } from '../data/cvData';
+import { getCvData, filterExperienceByType, getSkillsByType } from '../data/cvData';
 import { calculateAge } from '../utils/ageCalculator';
 
-export const generateCV = (type = 'fullstack') => {
+export const generateCV = (type = 'fullstack', lang = 'es') => {
+  const cvData = getCvData(lang);
   const doc = new jsPDF();
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
@@ -53,13 +54,23 @@ export const generateCV = (type = 'fullstack') => {
   });
   
   // Título según tipo
-  const titles = {
-    fullstack: 'INGENIERO DE SISTEMAS Y LÍDER TÉCNICO',
-    frontend: 'DESARROLLADOR FRONTEND',
-    backend: 'DESARROLLADOR BACKEND',
-    mobile: 'DESARROLLADOR MOBILE',
-    ml: 'ESPECIALISTA EN MACHINE LEARNING E IA'
+  const titlesByLang = {
+    es: {
+      fullstack: 'FULL STACK TECH LEAD',
+      frontend: 'DESARROLLADOR FRONTEND',
+      backend: 'DESARROLLADOR BACKEND',
+      mobile: 'DESARROLLADOR MOBILE',
+      ml: 'ESPECIALISTA EN MACHINE LEARNING E IA'
+    },
+    en: {
+      fullstack: 'FULL STACK TECH LEAD',
+      frontend: 'FRONTEND DEVELOPER',
+      backend: 'BACKEND DEVELOPER',
+      mobile: 'MOBILE DEVELOPER',
+      ml: 'MACHINE LEARNING & AI SPECIALIST'
+    }
   };
+  const titles = titlesByLang[lang] || titlesByLang.es;
   
   addText(titles[type] || titles.fullstack, pageWidth / 2, 28, {
     fontSize: 12,
@@ -67,9 +78,9 @@ export const generateCV = (type = 'fullstack') => {
     align: 'center'
   });
   
-  // Edad
+  // Age
   const age = calculateAge(cvData.personal.birthDate);
-  addText(`${age} años`, pageWidth / 2, 35, {
+  addText(lang === 'en' ? `${age} years` : `${age} años`, pageWidth / 2, 35, {
     fontSize: 10,
     align: 'center'
   });
@@ -83,8 +94,8 @@ export const generateCV = (type = 'fullstack') => {
   
   yPosition = 60;
   
-  // Perfil Profesional
-  addText('PERFIL PROFESIONAL', 20, yPosition, {
+  // Professional Profile
+  addText(lang === 'en' ? 'PROFESSIONAL PROFILE' : 'PERFIL PROFESIONAL', 20, yPosition, {
     fontSize: 14,
     fontStyle: 'bold'
   });
@@ -99,13 +110,13 @@ export const generateCV = (type = 'fullstack') => {
   });
   yPosition += profileLines.length * 5 + 10;
   
-  // Experiencia Profesional
+  // Professional Experience
   if (yPosition > pageHeight - 40) {
     doc.addPage();
     yPosition = 20;
   }
   
-  addText('EXPERIENCIA PROFESIONAL', 20, yPosition, {
+  addText(lang === 'en' ? 'PROFESSIONAL EXPERIENCE' : 'EXPERIENCIA PROFESIONAL', 20, yPosition, {
     fontSize: 14,
     fontStyle: 'bold'
   });
@@ -113,7 +124,7 @@ export const generateCV = (type = 'fullstack') => {
   addLine(yPosition);
   yPosition += 8;
   
-  const experiences = filterExperienceByType(type);
+  const experiences = filterExperienceByType(type, lang);
   
   experiences.forEach((exp, index) => {
     if (yPosition > pageHeight - 60) {
@@ -166,13 +177,13 @@ export const generateCV = (type = 'fullstack') => {
     yPosition += 5;
   });
   
-  // Educación
+  // Education
   if (yPosition > pageHeight - 40) {
     doc.addPage();
     yPosition = 20;
   }
   
-  addText('EDUCACIÓN', 20, yPosition, {
+  addText(lang === 'en' ? 'EDUCATION' : 'EDUCACIÓN', 20, yPosition, {
     fontSize: 14,
     fontStyle: 'bold'
   });
@@ -190,13 +201,13 @@ export const generateCV = (type = 'fullstack') => {
   });
   yPosition += 10;
   
-  // Habilidades Técnicas
+  // Technical Skills
   if (yPosition > pageHeight - 60) {
     doc.addPage();
     yPosition = 20;
   }
   
-  addText('HABILIDADES TÉCNICAS', 20, yPosition, {
+  addText(lang === 'en' ? 'TECHNICAL SKILLS' : 'HABILIDADES TÉCNICAS', 20, yPosition, {
     fontSize: 14,
     fontStyle: 'bold'
   });
@@ -204,7 +215,7 @@ export const generateCV = (type = 'fullstack') => {
   addLine(yPosition);
   yPosition += 8;
   
-  const skills = getSkillsByType(type);
+  const skills = getSkillsByType(type, lang);
   
   Object.values(skills).forEach(skillCategory => {
     if (yPosition > pageHeight - 30) {
@@ -230,12 +241,12 @@ export const generateCV = (type = 'fullstack') => {
   const footerY = pageHeight - 15;
   doc.setFillColor(...secondaryColor);
   doc.rect(0, footerY - 5, pageWidth, 20, 'F');
-  addText(`LinkedIn: ${cvData.personal.linkedin} | Portfolio: ${cvData.personal.portfolio}`, pageWidth / 2, footerY, {
+  addText(`LinkedIn: ${cvData.personal.linkedin} | ${lang === 'en' ? 'Portfolio' : 'Portfolio'}: ${cvData.personal.portfolio}`, pageWidth / 2, footerY, {
     fontSize: 8,
     align: 'center'
   });
   
   // Guardar PDF
-  const fileName = `CV_${cvData.personal.name.replace(/ /g, '_')}_${type.toUpperCase()}.pdf`;
+  const fileName = `CV_${cvData.personal.name.replace(/ /g, '_')}_${type.toUpperCase()}_${lang.toUpperCase()}.pdf`;
   doc.save(fileName);
 };

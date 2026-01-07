@@ -2,63 +2,63 @@
 export const cvData = {
   personal: {
     name: "Brayan Eduardo Rojas Freyre",
-    title: "Ingeniero de Sistemas y Líder Técnico",
+    title: "Full Stack Tech Lead | Mobile, Backend & Cloud Specialist",
     location: "Chiclayo, Perú",
     phone: "+51 998511769",
     email: "rfreyrebrayaned@gmail.com",
-    linkedin: "linkedin.com/in/brayan-rojas-freyre-48933834a",
+    linkedin: "https://www.linkedin.com/in/brayan-rojas-freyre-48933834a/",
     portfolio: "bryanrf.github.io",
     birthDate: "1999-12-26"
   },
   
   profile: {
-    fullstack: "Ingeniero de Sistemas y Líder Técnico con experiencia sólida en el ciclo completo de desarrollo de software (FullStack), arquitectura Cloud (AWS) e integración de Inteligencia Artificial. Especializado en escalar aplicaciones web y móviles, optimizar bases de datos y liderar equipos técnicos bajo metodologías ágiles. Enfocado en la entrega de código limpio (Clean Code) y soluciones de alto impacto.",
-    frontend: "Desarrollador Frontend especializado en crear interfaces modernas y responsivas con React, Vue.js, Next.js y Flutter. Experto en optimización de rendimiento y experiencia de usuario.",
-    backend: "Desarrollador Backend con amplia experiencia en arquitecturas escalables usando NestJS, Laravel, Django y Spring Boot. Especializado en APIs RESTful, bases de datos y servicios Cloud.",
-    mobile: "Desarrollador Mobile con Flutter y Dart, creando aplicaciones multiplataforma de alto rendimiento con interfaces nativas y sincronización en tiempo real.",
-    ml: "Especialista en Machine Learning e IA, desarrollando modelos predictivos con TensorFlow, OpenCV y Python para soluciones de visión por computadora y procesamiento de lenguaje natural."
+    fullstack: "Ingeniero de Sistemas y Tech Lead Semi-Senior con 4+ años de experiencia construyendo ecosistemas tecnológicos completos. Especialista en Desarrollo Móvil Híbrido y Nativo (Flutter/Kotlin), Arquitecturas Backend de Microservicios (NestJS/Python) y Frontend Web Moderno (React/Vue). Experto integrando IA en flujos de negocio, diseñando bases de datos escalables (SQL/NoSQL) y desplegando infraestructura en AWS/Docker.",
+    frontend: "Frontend Web moderno con React 18 y Next.js (SSR), Zustand e Inertia.js. También Vue 3 (Composition API), Nuxt.js, Quasar y PrimeVue. UI/UX: Tailwind CSS, Bootstrap, Sass, Framer Motion, ApexCharts y Chart.js.",
+    backend: "Backend y microservicios con Node.js y NestJS: GraphQL (Apollo/Federation), WebSockets, gRPC y módulos compartidos. Python para IA con Django/FastAPI, OpenCV y TensorFlow, además de NLP (análisis de sentimiento). Experiencia enterprise con Laravel y Spring Boot.",
+    mobile: "Desarrollo móvil experto: Flutter (Dart, Riverpod 2.0, BLoC, Method Channels, optimización de render y animaciones). Android nativo: Kotlin, Jetpack Compose, Coroutines/Flow, Dagger Hilt, WorkManager. React Native con TypeScript + Redux Toolkit. Seguridad móvil: SSL Pinning, AES-256 y biometría.",
+    ml: "Integración de IA en productos: Computer Vision con OpenCV, modelos con TensorFlow y NLP para moderación/automatización de procesos, conectando servicios Python con backends mediante colas y arquitectura escalable."
   },
   
   experience: [
     {
       company: "INNOVAHTEC",
       location: "Chiclayo, Perú",
-      role: "Líder Técnico / Semi-Senior FullStack Developer",
+      role: "Full Stack Tech Lead (Mobile, Web & Backend)",
       period: "Enero 2024 – Presente",
       description: "Empresa de desarrollo de software y soluciones tecnológicas",
       achievements: [
-        "Lidero un equipo de desarrolladores, supervisando la calidad del código mediante revisiones (Code Reviews) y asegurando la implementación de principios SOLID y Clean Code.",
-        "Diseño arquitecturas escalables para aplicaciones multiplataforma, transformando requerimientos de negocio en historias de usuario técnicas y priorizando entregables.",
-        "Desarrollé una red social multiplataforma utilizando NestJS y Flutter, integrando WebSockets para comunicación en tiempo real y reduciendo la latencia de interacción.",
-        "Implementé sistemas de moderación inteligente automatizada utilizando Python, OpenCV y TensorFlow para el análisis de imágenes y lenguaje natural."
+        "Liderazgo técnico transversal (4 devs) gestionando el ciclo completo: móvil, web, backend y cloud.",
+        "Arquitectura 360° con Clean Architecture unificando Flutter (mobile), Next.js/Vue (web) y NestJS (backend).",
+        "Migración a microservicios en NestJS + Docker, GraphQL para optimizar consumo de data y WebSockets para comunicación real-time.",
+        "Integración de IA en Python (NLP y OpenCV) conectada al core mediante colas/mensajería.",
+        "Seguridad móvil: implementación de SSL Pinning en capa nativa Kotlin expuesta a Flutter; optimización de performance reduciendo peso de la app ~35%.",
+        "Dashboards administrativos con Vue 3/Quasar y ApexCharts para métricas en tiempo real."
       ],
       tags: ["fullstack", "backend", "mobile", "ml"]
     },
     {
       company: "INNOVAHTEC",
       location: "Chiclayo, Perú",
-      role: "Programador FullStack",
+      role: "Full Stack Developer (Flutter, Node.js & React)",
       period: "Agosto 2023 – Diciembre 2023",
       description: "Empresa de desarrollo de software y soluciones tecnológicas",
       achievements: [
-        "Desarrollé módulos multiplataforma de alto rendimiento utilizando Quasar, Django y Android (Java).",
-        "Orquesté la infraestructura Cloud en AWS (S3, DynamoDB) y gestioné despliegues en servidores Linux con Nginx, asegurando una alta disponibilidad.",
-        "Implementé Firebase para la sincronización de datos en tiempo real, mejorando la experiencia de usuario en entornos móviles.",
-        "Creé agentes de Inteligencia Artificial para automatizar el soporte del sistema y personalizar la experiencia del usuario mediante algoritmos de recomendación."
+        "Desarrollo de features complejas en Flutter, integrando módulos nativos Kotlin (Coroutines, Dagger Hilt) vía Method Channels.",
+        "Backend y data: optimización de consultas y APIs seguras; trabajo con DynamoDB y estrategias de sincronización.",
+        "Sincronización offline-first con bases locales y tareas en background."
       ],
       tags: ["fullstack", "frontend", "backend", "mobile", "ml"]
     },
     {
       company: "DIGITALTEI",
       location: "Ferreñafe, Perú",
-      role: "Programador FullStack",
-      period: "Diciembre 2022 – Agosto 2023",
+      role: "Full Stack Developer (Laravel, Vue & Android)",
+      period: "Diciembre 2020 – Agosto 2023",
       description: "Consultora de tecnología y transformación digital",
       achievements: [
-        "Construí un sistema administrativo integral (ERP) con Laravel para la gestión de ventas, personal e inventarios, centralizando la data operativa de la empresa.",
-        "Integré pasarelas de pago y funcionalidades de comercio electrónico, optimizando el flujo de ventas digital.",
-        "Mejoré el rendimiento de la aplicación y fortalecí la seguridad en producción, reduciendo vulnerabilidades y tiempos de carga.",
-        "Redacté documentación técnica detallada para facilitar el mantenimiento futuro y la escalabilidad del sistema."
+        "Web enterprise: desarrollo de ERPs con Laravel (Blade) y componentes Vue.js/Bootstrap.",
+        "Android nativo: apps empresariales en Kotlin bajo MVVM y Clean Architecture, consumo de APIs con Retrofit.",
+        "Frontend e-commerce: personalización de temas y plugins (PrestaShop/Prestashop) y maquetación UI responsiva."
       ],
       tags: ["fullstack", "backend", "frontend"]
     },
@@ -77,31 +77,31 @@ export const cvData = {
   ],
   
   education: {
-    degree: "Bachiller en Ingeniería de Sistemas",
+    degree: "Ingeniería de Sistemas",
     institution: "Universidad Señor de Sipán",
     location: "Chiclayo, Perú"
   },
   
   skills: {
     frontend: {
-      title: "Frontend y Móvil",
-      items: ["React", "React Native", "Angular", "Vue.js", "Quasar", "Next.js", "Flutter (Dart)", "PrimeVue", "Tailwind CSS", "Framer Motion"]
+      title: "Frontend Web",
+      items: ["React 18", "Next.js (SSR)", "Zustand", "Inertia.js", "Vue 3 (Composition API)", "Nuxt.js", "Quasar", "PrimeVue", "Tailwind CSS", "Bootstrap", "Sass", "Framer Motion", "ApexCharts", "Chart.js"]
     },
     backend: {
-      title: "Lenguajes y Backend",
-      items: ["Python (Django, OpenCV, TensorFlow)", "PHP (Laravel)", "Java (Spring Boot, Android)", "Node.js (NestJS)", "JavaScript/TypeScript"]
+      title: "Backend & AI",
+      items: ["Node.js", "NestJS (Microservicios)", "GraphQL (Apollo/Federation)", "WebSockets", "gRPC", "Python (Django, FastAPI)", "OpenCV", "TensorFlow", "NLP (Sentiment Analysis)", "PHP (Laravel)", "Java (Spring Boot)", "JavaScript/TypeScript"]
     },
     mobile: {
       title: "Desarrollo Móvil",
-      items: ["Flutter", "Dart", "Android (Java/Kotlin)", "Kotlin", "Firebase", "React Native"]
+      items: ["Flutter (Dart)", "Riverpod 2.0", "BLoC", "Method Channels", "Android (Kotlin)", "Jetpack Compose", "Coroutines/Flow", "Dagger Hilt", "WorkManager", "React Native (TypeScript)", "Redux Toolkit", "SSL Pinning", "AES-256", "Biometría"]
     },
     database: {
       title: "Base de Datos",
-      items: ["PostgreSQL", "MySQL", "SQL Server", "DynamoDB (NoSQL)", "MongoDB", "Redis"]
+      items: ["PostgreSQL", "MySQL", "DynamoDB", "MongoDB", "Redis", "SQLite/Room"]
     },
     cloud: {
       title: "Cloud y DevOps",
-      items: ["AWS (S3, DynamoDB)", "Docker", "Nginx", "Linux", "Jenkins", "GitLab CI", "Firebase"]
+      items: ["AWS (EKS, S3, DynamoDB)", "Docker (Compose/Swarm)", "Nginx", "Linux", "GitHub Actions", "GitFlow", "Fastlane", "Jira", "Postman"]
     },
     ml: {
       title: "Machine Learning e IA",
@@ -118,13 +118,138 @@ export const cvData = {
   }
 };
 
+export const cvDataEn = {
+  personal: {
+    name: "Brayan Eduardo Rojas Freyre",
+    title: "Full Stack Tech Lead | Mobile, Backend & Cloud Specialist",
+    location: "Chiclayo, Peru",
+    phone: "+51 998511769",
+    email: "rfreyrebrayaned@gmail.com",
+    linkedin: "https://www.linkedin.com/in/brayan-rojas-freyre-48933834a/",
+    portfolio: "bryanrf.github.io",
+    birthDate: "1999-12-26"
+  },
+
+  profile: {
+    fullstack: "Systems Engineer and Semi-Senior Tech Lead with 4+ years of experience building end-to-end technology ecosystems. Specialist in hybrid and native mobile development (Flutter/Kotlin), scalable backend microservices (NestJS/Python) and modern web frontend (React/Vue). Strong background in software architecture (Clean Architecture, Microservices), AI integration into business processes, and cloud deployment (AWS, Docker).",
+    frontend: "Modern web frontend with React 18 and Next.js (SSR), Zustand and Inertia.js. Also Vue 3 (Composition API), Nuxt.js, Quasar and PrimeVue. UI/UX: Tailwind CSS, Bootstrap, Sass, Framer Motion, ApexCharts and Chart.js.",
+    backend: "Backend and microservices with Node.js and NestJS: GraphQL (Apollo/Federation), WebSockets, gRPC and shared modules. AI development with Python (Django/FastAPI), OpenCV and TensorFlow, plus NLP (sentiment analysis). Enterprise experience with Laravel and Spring Boot.",
+    mobile: "Expert mobile development: Flutter (Dart, Riverpod 2.0, BLoC, Method Channels, render and animation optimization). Native Android: Kotlin, Jetpack Compose, Coroutines/Flow, Dagger Hilt, WorkManager. React Native with TypeScript + Redux Toolkit. Mobile security: SSL Pinning, AES-256 and biometrics.",
+    ml: "AI integration in products: Computer Vision with OpenCV, TensorFlow models and NLP for moderation/automation, connecting Python services with backends through messaging/queues and scalable architecture."
+  },
+
+  experience: [
+    {
+      company: "INNOVAHTEC",
+      location: "Chiclayo, Peru",
+      role: "Full Stack Tech Lead (Mobile, Web & Backend)",
+      period: "Jan 2024 – Present",
+      description: "Software development company and technology solutions",
+      achievements: [
+        "Cross-functional technical leadership (4 devs) across mobile, web, backend and cloud.",
+        "360° architecture with Clean Architecture across Flutter (mobile), Next.js/Vue (web) and NestJS (backend).",
+        "Monolith-to-microservices migration with NestJS + Docker; GraphQL to optimize data consumption and WebSockets for real-time communication.",
+        "Python AI integration (NLP and OpenCV) connected to the core through messaging/queues.",
+        "Mobile security: implemented SSL Pinning in native Kotlin exposed to Flutter; improved performance and reduced app size by ~35%.",
+        "Admin dashboards built with Vue 3/Quasar and ApexCharts for real-time metrics."
+      ],
+      tags: ["fullstack", "backend", "mobile", "ml"]
+    },
+    {
+      company: "INNOVAHTEC",
+      location: "Chiclayo, Peru",
+      role: "Full Stack Developer (Flutter, Node.js & React)",
+      period: "Aug 2023 – Dec 2023",
+      description: "Software development company and technology solutions",
+      achievements: [
+        "Built complex features in Flutter, integrating native Kotlin modules (Coroutines, Dagger Hilt) via Method Channels.",
+        "Backend and data: query optimization and secure APIs; worked with DynamoDB and synchronization strategies.",
+        "Offline-first synchronization using local databases and background tasks."
+      ],
+      tags: ["fullstack", "frontend", "backend", "mobile", "ml"]
+    },
+    {
+      company: "DIGITALTEI",
+      location: "Ferreñafe, Peru",
+      role: "Full Stack Developer (Laravel, Vue & Android)",
+      period: "Dec 2020 – Aug 2023",
+      description: "Technology and digital transformation consultancy",
+      achievements: [
+        "Enterprise web: built ERPs with Laravel (Blade) and Vue.js/Bootstrap components.",
+        "Native Android: enterprise apps in Kotlin using MVVM and Clean Architecture, consuming APIs with Retrofit.",
+        "E-commerce frontend: customized themes and plugins (PrestaShop) and built responsive UI layouts."
+      ],
+      tags: ["fullstack", "backend", "frontend"]
+    },
+    {
+      company: "INTERIBERICA",
+      location: "Remote (Spain)",
+      role: "Frontend Developer",
+      period: "Jan 2021 – Mar 2021",
+      description: "E-commerce and web development company",
+      achievements: [
+        "Built custom plugins for Opencart and Prestashop, adapting platforms to European market needs.",
+        "Improved UI/UX to increase conversion rate and site usability."
+      ],
+      tags: ["frontend"]
+    }
+  ],
+
+  education: {
+    degree: "Systems Engineering",
+    institution: "Universidad Señor de Sipán",
+    location: "Chiclayo, Peru"
+  },
+
+  skills: {
+    frontend: {
+      title: "Web Frontend",
+      items: ["React 18", "Next.js (SSR)", "Zustand", "Inertia.js", "Vue 3 (Composition API)", "Nuxt.js", "Quasar", "PrimeVue", "Tailwind CSS", "Bootstrap", "Sass", "Framer Motion", "ApexCharts", "Chart.js"]
+    },
+    backend: {
+      title: "Backend & AI",
+      items: ["Node.js", "NestJS (Microservices)", "GraphQL (Apollo/Federation)", "WebSockets", "gRPC", "Python (Django, FastAPI)", "OpenCV", "TensorFlow", "NLP (Sentiment Analysis)", "PHP (Laravel)", "Java (Spring Boot)", "JavaScript/TypeScript"]
+    },
+    mobile: {
+      title: "Mobile Development",
+      items: ["Flutter (Dart)", "Riverpod 2.0", "BLoC", "Method Channels", "Android (Kotlin)", "Jetpack Compose", "Coroutines/Flow", "Dagger Hilt", "WorkManager", "React Native (TypeScript)", "Redux Toolkit", "SSL Pinning", "AES-256", "Biometrics"]
+    },
+    database: {
+      title: "Databases",
+      items: ["PostgreSQL", "MySQL", "DynamoDB", "MongoDB", "Redis", "SQLite/Room"]
+    },
+    cloud: {
+      title: "Cloud & DevOps",
+      items: ["AWS (EKS, S3, DynamoDB)", "Docker (Compose/Swarm)", "Nginx", "Linux", "GitHub Actions", "GitFlow", "Fastlane", "Jira", "Postman"]
+    },
+    ml: {
+      title: "Machine Learning & AI",
+      items: ["TensorFlow", "OpenCV", "scikit-learn", "Keras", "Python", "Computer Vision", "NLP"]
+    },
+    tools: {
+      title: "Tools & Practices",
+      items: ["Git", "GitHub", "Postman", "Agile (Scrum)", "Clean Code", "SOLID"]
+    },
+    security: {
+      title: "Security & Standards",
+      items: ["ISO Standards (27001)", "Information Security", "OWASP"]
+    }
+  }
+};
+
+export const getCvData = (lang = 'es') => {
+  return lang === 'en' ? cvDataEn : cvData;
+};
+
 // Función para filtrar experiencia por tipo
-export const filterExperienceByType = (type) => {
-  return cvData.experience.filter(exp => exp.tags.includes(type));
+export const filterExperienceByType = (type, lang = 'es') => {
+  const data = getCvData(lang);
+  return data.experience.filter(exp => exp.tags.includes(type));
 };
 
 // Función para obtener skills por tipo
-export const getSkillsByType = (type) => {
+export const getSkillsByType = (type, lang = 'es') => {
+  const data = getCvData(lang);
   const skillMap = {
     frontend: ['frontend', 'tools'],
     backend: ['backend', 'database', 'cloud', 'tools'],
@@ -137,8 +262,8 @@ export const getSkillsByType = (type) => {
   const result = {};
   
   relevantSkills.forEach(skillKey => {
-    if (cvData.skills[skillKey]) {
-      result[skillKey] = cvData.skills[skillKey];
+    if (data.skills[skillKey]) {
+      result[skillKey] = data.skills[skillKey];
     }
   });
   
