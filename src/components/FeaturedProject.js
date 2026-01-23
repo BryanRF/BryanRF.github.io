@@ -21,9 +21,9 @@ const NewAppBanner = () => {
                 <motion.div
                     animate={{ scale: [1, 1.05, 1] }}
                     transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                    className="px-3 py-1 bg-green border-4 border-default rounded-lg shadow-brutal-sm"
+                    className="px-3 py-1 bg-yellow border-4 border-default rounded-lg shadow-brutal-sm"
                 >
-                    <span className="font-black text-black text-xs">✨ NUEVA APP</span>
+                    <span className="font-black text-black text-xs">NUEVA APP</span>
                 </motion.div>
             </div>
 

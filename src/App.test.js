@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders home header content', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const avatarImg = screen.getByAltText(/brayan eduardo rojas freyre/i);
+  expect(avatarImg).toBeInTheDocument();
 });

@@ -56,14 +56,14 @@ export const generateCV = (type = 'fullstack', lang = 'es') => {
   // Título según tipo
   const titlesByLang = {
     es: {
-      fullstack: 'FULL STACK TECH LEAD',
+      fullstack: 'FULL STACK DEVELOPER',
       frontend: 'DESARROLLADOR FRONTEND',
       backend: 'DESARROLLADOR BACKEND',
       mobile: 'DESARROLLADOR MOBILE',
       ml: 'ESPECIALISTA EN MACHINE LEARNING E IA'
     },
     en: {
-      fullstack: 'FULL STACK TECH LEAD',
+      fullstack: 'FULL STACK DEVELOPER',
       frontend: 'FRONTEND DEVELOPER',
       backend: 'BACKEND DEVELOPER',
       mobile: 'MOBILE DEVELOPER',

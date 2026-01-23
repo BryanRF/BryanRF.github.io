@@ -8,10 +8,15 @@ import NotFound from './pages/NotFound';
 import Layout from './components/Layout';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
 import ChatBot from './components/ChatBot';
+import useDarkMode from './hooks/useDarkMode';
 
 function App() {
   // Configuración para GitHub Pages - servido desde la raíz
   const basename = '';
+
+  // Inicializa el tema (agrega/remueve la clase 'dark') desde el primer render,
+  // incluso si el Header se renderiza recién al hacer scroll en Home.
+  useDarkMode();
   
   return (
     <Router basename={basename}>

@@ -27,7 +27,7 @@ export const staticProjects = [
     description: "Plataforma web para venta de lotes y propiedades con panel administrativo completo, catálogo de proyectos y sistema de búsqueda avanzada.",
     technologies: ["React", "Laravel", "MySQL", "Tailwind CSS"],
     type: "web",
-    status: "En Proceso",
+    status: "Completado",
     icon: "FaHome",
     features: [
       "🏠 Catálogo de propiedades y lotes",

@@ -2,7 +2,7 @@
 export const cvData = {
   personal: {
     name: "Brayan Eduardo Rojas Freyre",
-    title: "Full Stack Tech Lead | Mobile, Backend & Cloud Specialist",
+    title: "Full Stack Developer | Mobile, Web & Backend | Tech Lead",
     location: "Chiclayo, Perú",
     phone: "+51 998511769",
     email: "rfreyrebrayaned@gmail.com",
@@ -12,11 +12,11 @@ export const cvData = {
   },
   
   profile: {
-    fullstack: "Ingeniero de Sistemas y Tech Lead Semi-Senior con 4+ años de experiencia construyendo ecosistemas tecnológicos completos. Especialista en Desarrollo Móvil Híbrido y Nativo (Flutter/Kotlin), Arquitecturas Backend de Microservicios (NestJS/Python) y Frontend Web Moderno (React/Vue). Experto integrando IA en flujos de negocio, diseñando bases de datos escalables (SQL/NoSQL) y desplegando infraestructura en AWS/Docker.",
-    frontend: "Frontend Web moderno con React 18 y Next.js (SSR), Zustand e Inertia.js. También Vue 3 (Composition API), Nuxt.js, Quasar y PrimeVue. UI/UX: Tailwind CSS, Bootstrap, Sass, Framer Motion, ApexCharts y Chart.js.",
-    backend: "Backend y microservicios con Node.js y NestJS: GraphQL (Apollo/Federation), WebSockets, gRPC y módulos compartidos. Python para IA con Django/FastAPI, OpenCV y TensorFlow, además de NLP (análisis de sentimiento). Experiencia enterprise con Laravel y Spring Boot.",
-    mobile: "Desarrollo móvil experto: Flutter (Dart, Riverpod 2.0, BLoC, Method Channels, optimización de render y animaciones). Android nativo: Kotlin, Jetpack Compose, Coroutines/Flow, Dagger Hilt, WorkManager. React Native con TypeScript + Redux Toolkit. Seguridad móvil: SSL Pinning, AES-256 y biometría.",
-    ml: "Integración de IA en productos: Computer Vision con OpenCV, modelos con TensorFlow y NLP para moderación/automatización de procesos, conectando servicios Python con backends mediante colas y arquitectura escalable."
+    fullstack: "Ingeniero de Sistemas y Full Stack Developer / Tech Lead Semi-Senior con 4+ años construyendo productos end-to-end (móvil, web y backend). Experiencia en arquitectura (Clean Architecture, Microservicios), buenas prácticas (Clean Code, SOLID), integración de IA y despliegue en entornos cloud. Trabajo con stacks modernos: Flutter y Android nativo (Kotlin), Frontend Web (React/Vue/Angular) y Backend (NestJS/Python/Java) con bases de datos SQL/NoSQL y pipelines CI/CD.",
+    frontend: "Frontend Web con React 18/Next.js (SSR/SSG), TypeScript, Zustand e Inertia.js. Vue 3 (Composition API) y Vue 2, Nuxt, Quasar, PrimeVue. También Angular. UI/UX: Tailwind CSS, Bootstrap, Sass, animaciones y gráficas con Framer Motion, ApexCharts y Chart.js; enfoque en performance, accesibilidad y componentes reutilizables.",
+    backend: "Backend y microservicios con Node.js y NestJS: módulos, providers, inyección de dependencias, guards/interceptors/pipes, validación, Swagger, WebSockets, GraphQL (Apollo/Federation) y gRPC. Python (Django/FastAPI) para servicios e IA; experiencia enterprise con Laravel y Java (Spring Boot). Enfoque en arquitectura, seguridad (JWT/OAuth2, OWASP), observabilidad y escalabilidad.",
+    mobile: "Desarrollo móvil: Flutter (Dart) con Riverpod/BLoC, arquitectura por capas, optimización de render/animaciones y Method Channels. Android nativo con Kotlin (Jetpack Compose, Coroutines/Flow, Hilt, WorkManager) y patrones MVVM/Clean Architecture. Experiencia con React Native (TypeScript). Seguridad: SSL Pinning, cifrado (AES-256) y biometría.",
+    ml: "Integración de IA en productos: Computer Vision con OpenCV, modelos con TensorFlow/Keras y NLP para automatización (por ejemplo, análisis de sentimiento), conectando servicios Python con el core mediante colas/mensajería y arquitectura escalable."
   },
   
   experience: [
@@ -27,7 +27,7 @@ export const cvData = {
       period: "Enero 2024 – Presente",
       description: "Empresa de desarrollo de software y soluciones tecnológicas",
       achievements: [
-        "Liderazgo técnico transversal (4 devs) gestionando el ciclo completo: móvil, web, backend y cloud.",
+        "Liderazgo técnico transversal  gestionando el ciclo completo: móvil, web, backend y cloud.",
         "Arquitectura 360° con Clean Architecture unificando Flutter (mobile), Next.js/Vue (web) y NestJS (backend).",
         "Migración a microservicios en NestJS + Docker, GraphQL para optimizar consumo de data y WebSockets para comunicación real-time.",
         "Integración de IA en Python (NLP y OpenCV) conectada al core mediante colas/mensajería.",
@@ -85,15 +85,27 @@ export const cvData = {
   skills: {
     frontend: {
       title: "Frontend Web",
-      items: ["React 18", "Next.js (SSR)", "Zustand", "Inertia.js", "Vue 3 (Composition API)", "Nuxt.js", "Quasar", "PrimeVue", "Tailwind CSS", "Bootstrap", "Sass", "Framer Motion", "ApexCharts", "Chart.js"]
+      items: ["React 18", "Next.js (SSR/SSG)", "TypeScript", "Vite", "Zustand", "Inertia.js", "Vue 3 (Composition API)", "Vue 2", "Pinia", "Vuex", "Nuxt.js", "Quasar", "PrimeVue", "Angular", "Tailwind CSS", "Bootstrap", "Sass", "Framer Motion", "ApexCharts", "Chart.js"]
     },
     backend: {
       title: "Backend & AI",
-      items: ["Node.js", "NestJS (Microservicios)", "GraphQL (Apollo/Federation)", "WebSockets", "gRPC", "Python (Django, FastAPI)", "OpenCV", "TensorFlow", "NLP (Sentiment Analysis)", "PHP (Laravel)", "Java (Spring Boot)", "JavaScript/TypeScript"]
+      items: ["Node.js", "TypeScript", "NestJS (Microservicios)", "NestJS Providers/DI", "Guards/Interceptors/Pipes", "REST APIs", "Swagger/OpenAPI", "GraphQL (Apollo/Federation)", "WebSockets", "gRPC", "Python (Django, FastAPI)", "OpenCV", "TensorFlow", "NLP (Sentiment Analysis)", "PHP (Laravel)", "Java (Spring Boot)", "JWT", "OAuth2", "OWASP"]
+    },
+    flutter: {
+      title: "Flutter (Dart)",
+      items: ["Dart", "Flutter", "Riverpod", "BLoC", "Arquitectura (Clean/Layered)", "State Management", "Dio/HTTP", "Freezed/JsonSerializable", "GoRouter", "Firebase (Auth/FCM)", "Method Channels", "Animaciones", "Optimización de performance"]
+    },
+    kotlin: {
+      title: "Android Nativo (Kotlin)",
+      items: ["Kotlin", "Jetpack Compose", "Coroutines", "Flow", "MVVM", "Clean Architecture", "Hilt (DI)", "WorkManager", "Retrofit/OkHttp", "Room", "Navigation", "Servicios/Background", "Testing (JUnit)"]
+    },
+    reactNative: {
+      title: "React Native",
+      items: ["React Native", "TypeScript", "Redux Toolkit", "Integración APIs", "Navegación", "Build/Release"]
     },
     mobile: {
-      title: "Desarrollo Móvil",
-      items: ["Flutter (Dart)", "Riverpod 2.0", "BLoC", "Method Channels", "Android (Kotlin)", "Jetpack Compose", "Coroutines/Flow", "Dagger Hilt", "WorkManager", "React Native (TypeScript)", "Redux Toolkit", "SSL Pinning", "AES-256", "Biometría"]
+      title: "Mobile (Resumen)",
+      items: ["Flutter", "Android (Kotlin)", "React Native", "Arquitectura móvil", "Seguridad móvil (SSL Pinning, biometría)"]
     },
     database: {
       title: "Base de Datos",
@@ -101,7 +113,11 @@ export const cvData = {
     },
     cloud: {
       title: "Cloud y DevOps",
-      items: ["AWS (EKS, S3, DynamoDB)", "Docker (Compose/Swarm)", "Nginx", "Linux", "GitHub Actions", "GitFlow", "Fastlane", "Jira", "Postman"]
+      items: ["AWS (EKS, S3, DynamoDB)", "Docker (Compose)", "Kubernetes", "Nginx", "Linux", "GitHub Actions", "CI/CD", "GitFlow", "Fastlane", "Jira", "Postman"]
+    },
+    architecture: {
+      title: "Arquitectura y Buenas Prácticas",
+      items: ["Clean Architecture", "Microservicios", "SOLID", "Clean Code", "DDD (conceptos)", "Patrones de diseño", "Testing (unit/integration)", "Code Review", "Documentación técnica"]
     },
     ml: {
       title: "Machine Learning e IA",
@@ -121,7 +137,7 @@ export const cvData = {
 export const cvDataEn = {
   personal: {
     name: "Brayan Eduardo Rojas Freyre",
-    title: "Full Stack Tech Lead | Mobile, Backend & Cloud Specialist",
+    title: "Full Stack Developer | Mobile, Web & Backend | Tech Lead",
     location: "Chiclayo, Peru",
     phone: "+51 998511769",
     email: "rfreyrebrayaned@gmail.com",
@@ -131,11 +147,11 @@ export const cvDataEn = {
   },
 
   profile: {
-    fullstack: "Systems Engineer and Semi-Senior Tech Lead with 4+ years of experience building end-to-end technology ecosystems. Specialist in hybrid and native mobile development (Flutter/Kotlin), scalable backend microservices (NestJS/Python) and modern web frontend (React/Vue). Strong background in software architecture (Clean Architecture, Microservices), AI integration into business processes, and cloud deployment (AWS, Docker).",
-    frontend: "Modern web frontend with React 18 and Next.js (SSR), Zustand and Inertia.js. Also Vue 3 (Composition API), Nuxt.js, Quasar and PrimeVue. UI/UX: Tailwind CSS, Bootstrap, Sass, Framer Motion, ApexCharts and Chart.js.",
-    backend: "Backend and microservices with Node.js and NestJS: GraphQL (Apollo/Federation), WebSockets, gRPC and shared modules. AI development with Python (Django/FastAPI), OpenCV and TensorFlow, plus NLP (sentiment analysis). Enterprise experience with Laravel and Spring Boot.",
-    mobile: "Expert mobile development: Flutter (Dart, Riverpod 2.0, BLoC, Method Channels, render and animation optimization). Native Android: Kotlin, Jetpack Compose, Coroutines/Flow, Dagger Hilt, WorkManager. React Native with TypeScript + Redux Toolkit. Mobile security: SSL Pinning, AES-256 and biometrics.",
-    ml: "AI integration in products: Computer Vision with OpenCV, TensorFlow models and NLP for moderation/automation, connecting Python services with backends through messaging/queues and scalable architecture."
+    fullstack: "Systems Engineer and Full Stack Developer / Semi-Senior Tech Lead with 4+ years building end-to-end products (mobile, web and backend). Experience in architecture (Clean Architecture, Microservices), best practices (Clean Code, SOLID), AI integration and cloud environments. Strong with modern stacks: Flutter and native Android (Kotlin), Web Frontend (React/Vue/Angular) and Backend (NestJS/Python/Java), using SQL/NoSQL databases and CI/CD pipelines.",
+    frontend: "Web frontend with React 18/Next.js (SSR/SSG), TypeScript, Zustand and Inertia.js. Vue 3 (Composition API) and Vue 2, Nuxt, Quasar, PrimeVue. Also Angular. UI/UX: Tailwind CSS, Bootstrap, Sass, animations and dashboards with Framer Motion, ApexCharts and Chart.js; focus on performance, accessibility and reusable components.",
+    backend: "Backend and microservices with Node.js and NestJS: modules, providers, dependency injection, guards/interceptors/pipes, validation, Swagger, WebSockets, GraphQL (Apollo/Federation) and gRPC. Python (Django/FastAPI) for services and AI; enterprise experience with Laravel and Java (Spring Boot). Focus on architecture, security (JWT/OAuth2, OWASP), observability and scalability.",
+    mobile: "Mobile development: Flutter (Dart) with Riverpod/BLoC, layered architecture, render/animation optimization and Method Channels. Native Android with Kotlin (Jetpack Compose, Coroutines/Flow, Hilt, WorkManager) using MVVM/Clean Architecture. Experience with React Native (TypeScript). Security: SSL Pinning, encryption (AES-256) and biometrics.",
+    ml: "AI integration in products: Computer Vision with OpenCV, TensorFlow/Keras models and NLP for automation (e.g., sentiment analysis), connecting Python services with the core through messaging/queues and scalable architecture."
   },
 
   experience: [
@@ -146,7 +162,7 @@ export const cvDataEn = {
       period: "Jan 2024 – Present",
       description: "Software development company and technology solutions",
       achievements: [
-        "Cross-functional technical leadership (4 devs) across mobile, web, backend and cloud.",
+        "Cross-functional technical leadership across mobile, web, backend and cloud.",
         "360° architecture with Clean Architecture across Flutter (mobile), Next.js/Vue (web) and NestJS (backend).",
         "Monolith-to-microservices migration with NestJS + Docker; GraphQL to optimize data consumption and WebSockets for real-time communication.",
         "Python AI integration (NLP and OpenCV) connected to the core through messaging/queues.",
@@ -204,15 +220,27 @@ export const cvDataEn = {
   skills: {
     frontend: {
       title: "Web Frontend",
-      items: ["React 18", "Next.js (SSR)", "Zustand", "Inertia.js", "Vue 3 (Composition API)", "Nuxt.js", "Quasar", "PrimeVue", "Tailwind CSS", "Bootstrap", "Sass", "Framer Motion", "ApexCharts", "Chart.js"]
+      items: ["React 18", "Next.js (SSR/SSG)", "TypeScript", "Vite", "Zustand", "Inertia.js", "Vue 3 (Composition API)", "Vue 2", "Pinia", "Vuex", "Nuxt.js", "Quasar", "PrimeVue", "Angular", "Tailwind CSS", "Bootstrap", "Sass", "Framer Motion", "ApexCharts", "Chart.js"]
     },
     backend: {
       title: "Backend & AI",
-      items: ["Node.js", "NestJS (Microservices)", "GraphQL (Apollo/Federation)", "WebSockets", "gRPC", "Python (Django, FastAPI)", "OpenCV", "TensorFlow", "NLP (Sentiment Analysis)", "PHP (Laravel)", "Java (Spring Boot)", "JavaScript/TypeScript"]
+      items: ["Node.js", "TypeScript", "NestJS (Microservices)", "NestJS Providers/DI", "Guards/Interceptors/Pipes", "REST APIs", "Swagger/OpenAPI", "GraphQL (Apollo/Federation)", "WebSockets", "gRPC", "Python (Django, FastAPI)", "OpenCV", "TensorFlow", "NLP (Sentiment Analysis)", "PHP (Laravel)", "Java (Spring Boot)", "JWT", "OAuth2", "OWASP"]
+    },
+    flutter: {
+      title: "Flutter (Dart)",
+      items: ["Dart", "Flutter", "Riverpod", "BLoC", "Architecture (Clean/Layered)", "State Management", "Dio/HTTP", "Freezed/JsonSerializable", "GoRouter", "Firebase (Auth/FCM)", "Method Channels", "Animations", "Performance optimization"]
+    },
+    kotlin: {
+      title: "Native Android (Kotlin)",
+      items: ["Kotlin", "Jetpack Compose", "Coroutines", "Flow", "MVVM", "Clean Architecture", "Hilt (DI)", "WorkManager", "Retrofit/OkHttp", "Room", "Navigation", "Background services", "Testing (JUnit)"]
+    },
+    reactNative: {
+      title: "React Native",
+      items: ["React Native", "TypeScript", "Redux Toolkit", "API integrations", "Navigation", "Build/Release"]
     },
     mobile: {
-      title: "Mobile Development",
-      items: ["Flutter (Dart)", "Riverpod 2.0", "BLoC", "Method Channels", "Android (Kotlin)", "Jetpack Compose", "Coroutines/Flow", "Dagger Hilt", "WorkManager", "React Native (TypeScript)", "Redux Toolkit", "SSL Pinning", "AES-256", "Biometrics"]
+      title: "Mobile (Summary)",
+      items: ["Flutter", "Android (Kotlin)", "React Native", "Mobile architecture", "Mobile security (SSL Pinning, biometrics)"]
     },
     database: {
       title: "Databases",
@@ -220,7 +248,11 @@ export const cvDataEn = {
     },
     cloud: {
       title: "Cloud & DevOps",
-      items: ["AWS (EKS, S3, DynamoDB)", "Docker (Compose/Swarm)", "Nginx", "Linux", "GitHub Actions", "GitFlow", "Fastlane", "Jira", "Postman"]
+      items: ["AWS (EKS, S3, DynamoDB)", "Docker (Compose)", "Kubernetes", "Nginx", "Linux", "GitHub Actions", "CI/CD", "GitFlow", "Fastlane", "Jira", "Postman"]
+    },
+    architecture: {
+      title: "Architecture & Best Practices",
+      items: ["Clean Architecture", "Microservices", "SOLID", "Clean Code", "DDD (concepts)", "Design patterns", "Testing (unit/integration)", "Code review", "Technical documentation"]
     },
     ml: {
       title: "Machine Learning & AI",
@@ -253,12 +285,12 @@ export const getSkillsByType = (type, lang = 'es') => {
   const skillMap = {
     frontend: ['frontend', 'tools'],
     backend: ['backend', 'database', 'cloud', 'tools'],
-    mobile: ['mobile', 'frontend', 'database', 'tools'],
-    fullstack: ['frontend', 'backend', 'mobile', 'database', 'cloud', 'ml', 'tools', 'security'],
+    mobile: ['flutter', 'kotlin', 'reactNative', 'mobile', 'frontend', 'database', 'tools', 'security'],
+    fullstack: ['frontend', 'backend', 'flutter', 'kotlin', 'reactNative', 'mobile', 'database', 'cloud', 'architecture', 'ml', 'tools', 'security'],
     ml: ['ml', 'backend', 'tools']
   };
   
-  const relevantSkills = skillMap[type] || ['frontend', 'backend', 'mobile', 'database', 'cloud', 'ml', 'tools'];
+  const relevantSkills = skillMap[type] || ['frontend', 'backend', 'flutter', 'kotlin', 'reactNative', 'mobile', 'database', 'cloud', 'architecture', 'ml', 'tools'];
   const result = {};
   
   relevantSkills.forEach(skillKey => {

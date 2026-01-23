@@ -185,7 +185,7 @@ const ProjectCard = ({ project, index }) => {
                   rel="noopener noreferrer"
                   className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 bg-primary border-4 border-default rounded-lg font-bold text-sm shadow-brutal hover:translate-y-1 hover:shadow-none transition-all duration-200 text-black"
                 >
-                  🌐 Ver Demo
+                  Cliente
                 </a>
               )}
               {project.downloadUrl && (

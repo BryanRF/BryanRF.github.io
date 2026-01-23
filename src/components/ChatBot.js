@@ -107,7 +107,7 @@ const ChatBot = () => {
       ]
     },
     'Sobre mí / Mi Stack': {
-      text: 'Soy Brayan Eduardo Rojas Freyre, Full Stack Tech Lead (4+ años). ¿Qué quieres que te explique?',
+      text: 'Soy Brayan Eduardo Rojas Freyre, Full Stack Developer (4+ años). ¿Qué quieres que te explique?',
       options: [
         'Stack Frontend Web',
         'Stack Backend & AI',
@@ -135,7 +135,7 @@ const ChatBot = () => {
       options: ['Ver proyectos', 'CV FullStack', 'Volver al inicio']
     },
     'Experiencia Profesional': {
-      text: 'INNOVAHTEC (Ene 2024 - Presente): Full Stack Tech Lead liderando 4 devs. Arquitectura 360° con Clean Architecture (Flutter + Web + NestJS). Migración a microservicios, GraphQL, WebSockets y servicios de IA en Python. También dashboards en Vue/Quasar y optimización de performance móvil.',
+      text: 'INNOVAHTEC (Ene 2024 - Presente): Full Stack Developer. Arquitectura 360° con Clean Architecture (Flutter + Web + NestJS). Migración a microservicios, GraphQL, WebSockets y servicios de IA en Python. También dashboards en Vue/Quasar y optimización de performance móvil.',
       options: ['Ver proyectos', 'Descargar CV', 'Volver al inicio']
     },
     'Aprende Conmigo': {

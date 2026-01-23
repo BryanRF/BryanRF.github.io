@@ -23,7 +23,7 @@ function About() {
   const startYear = 2022;
   const yearsOfExperience = currentYear - startYear;
 
-  const professionalProfile = "Ingeniero de Sistemas y Tech Lead con más de 4 años de experiencia en el ciclo completo de desarrollo de software. Perfil Semi-Senior versátil con dominio profundo en Desarrollo Móvil (Flutter y Nativo Kotlin), Backend escalable (NestJS, Python, Laravel) y Frontend Web moderno (React, Vue). Especialista en arquitectura de software (Clean Architecture, Microservicios), integración de Inteligencia Artificial en procesos de negocio y despliegue en infraestructura Cloud (AWS, Docker). Capacidad probada para gestionar múltiples proyectos tecnológicos simultáneamente y liderar equipos técnicos.";
+  const professionalProfile = "Ingeniero de Sistemas y FullStack Developer con más de 4 años de experiencia en el ciclo completo de desarrollo de software. Perfil Semi-Senior versátil con dominio profundo en Desarrollo Móvil (Flutter y Nativo Kotlin), Backend escalable (NestJS, Python, Laravel) y Frontend Web moderno (React, Vue). Especialista en arquitectura de software (Clean Architecture, Microservicios), integración de Inteligencia Artificial en procesos de negocio y despliegue en infraestructura Cloud (AWS, Docker). Capacidad probada para gestionar múltiples proyectos tecnológicos simultáneamente y liderar equipos técnicos.";
 
   const techStackSections = [
     {
