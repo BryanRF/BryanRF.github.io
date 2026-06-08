@@ -1,9 +1,22 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaCode, FaDatabase, FaBrain, FaChartLine, FaRocket, FaCog, FaMobileAlt } from 'react-icons/fa';
+import { FaGithub, FaCode, FaDatabase, FaBrain, FaChartLine, FaRocket, FaCog, FaMobileAlt, FaUtensils, FaCar, FaUserCheck, FaLayerGroup, FaHome } from 'react-icons/fa';
+
+// Icon mapping from string to component
+const iconMap = {
+  'FaBrain': FaBrain,
+  'FaHome': FaHome,
+  'FaUtensils': FaUtensils,
+  'FaCar': FaCar,
+  'FaUserCheck': FaUserCheck,
+  'FaCode': FaCode,
+  'FaLayerGroup': FaLayerGroup
+};
 
 // Iconos para diferentes tipos de proyectos
-const getProjectIcon = (type) => {
+const getProjectIcon = (type, iconName) => {
+  if (iconName && iconMap[iconName]) return iconMap[iconName];
+  
   const icons = {
     'database': FaDatabase,
     'ml': FaBrain,
@@ -11,23 +24,24 @@ const getProjectIcon = (type) => {
     'mobile': FaMobileAlt,
     'analytics': FaChartLine,
     'automation': FaCog,
+    'startup': FaRocket,
+    'landing': FaLayerGroup,
     'default': FaRocket
   };
   return icons[type] || icons['default'];
 };
 
-// Colores para diferentes tipos de proyectos
-const getProjectColor = (type) => {
-  const colors = {
-    'database': 'bg-celeste',
-    'ml': 'bg-green',
-    'web': 'bg-pink',
-    'mobile': 'bg-purple',
-    'analytics': 'bg-purple',
-    'automation': 'bg-yellow',
-    'default': 'bg-orange'
-  };
-  return colors[type] || colors['default'];
+// Colores para diferentes tipos de proyectos - Ahora rotativos para más variedad
+const getProjectColor = (index) => {
+  const colors = [
+    'bg-celeste',
+    'bg-purple',
+    'bg-pink',
+    'bg-green',
+    'bg-orange',
+    'bg-yellow'
+  ];
+  return colors[index % colors.length];
 };
 
 // Tags de tecnologías con colores Neo-Brutalism
@@ -53,7 +67,10 @@ const TechTag = ({ tech }) => {
     'Celery': 'bg-green',
     'Pandas': 'bg-purple',
     'scikit-learn': 'bg-orange',
-    'Stripe': 'bg-pink'
+    'Stripe': 'bg-pink',
+    'Flutter': 'bg-celeste',
+    'Dart': 'bg-orange',
+    'NestJS': 'bg-pink'
   };
 
   const defaultColor = 'bg-gray-200';
@@ -68,8 +85,8 @@ const TechTag = ({ tech }) => {
 const ProjectCard = ({ project, index }) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  const IconComponent = getProjectIcon(project.type);
-  const colorClass = getProjectColor(project.type);
+  const IconComponent = getProjectIcon(project.type, project.icon);
+  const colorClass = getProjectColor(index);
 
   return (
     <motion.div
@@ -85,8 +102,11 @@ const ProjectCard = ({ project, index }) => {
         className={`relative h-full bg-default border-4 border-default rounded-2xl overflow-hidden shadow-brutal hover-lift transition-all duration-200`}
       >
         {/* Header con icono colorido */}
-        <div className={`${colorClass} p-6 border-b-4 border-default`}>
-          <div className="flex items-start justify-between mb-4">
+        <div className={`${colorClass} p-6 border-b-4 border-default relative group`}>
+          {/* Fondo decorativo con puntos */}
+          <div className="absolute inset-0 opacity-10 dots-pattern pointer-events-none" />
+          
+          <div className="flex items-start justify-between mb-4 relative z-10">
             <motion.div
               animate={{ rotate: isHovered ? 360 : 0 }}
               transition={{ duration: 0.5 }}
@@ -111,26 +131,34 @@ const ProjectCard = ({ project, index }) => {
             </div>
           </div>
 
-          <h3 className="text-2xl font-black  text-black mb-2">
+          <h3 className="text-2xl font-black text-black mb-3 relative z-10 leading-tight">
             {project.title}
           </h3>
 
-          {project.status && (
-            <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-bold border-4 border-default shadow-brutal-sm text-black ${project.status === 'En Proceso'
-                ? 'bg-primary'
-                : project.status === 'Completado'
-                  ? 'bg-green-400'
-                  : 'bg-white'
-              }`}>
-              <div className={`w-2 h-2 rounded-full mr-2 animate-pulse ${project.status === 'En Proceso'
-                  ? 'bg-black'
+          <div className="flex flex-wrap gap-2 mb-2 relative z-10">
+            {project.category && (
+              <span className="px-3 py-1 rounded-lg text-xs font-black border-2 border-default bg-white shadow-brutal-sm text-black uppercase tracking-wider">
+                {project.category}
+              </span>
+            )}
+
+            {project.status && (
+              <div className={`inline-flex items-center px-3 py-1 rounded-lg text-xs font-bold border-4 border-default shadow-brutal-sm text-black ${project.status === 'En Proceso'
+                  ? 'bg-primary'
                   : project.status === 'Completado'
-                    ? 'bg-green-700'
-                    : 'bg-black'
-                }`} />
-              {project.status}
-            </div>
-          )}
+                    ? 'bg-green-400'
+                    : 'bg-white'
+                }`}>
+                <div className={`w-2 h-2 rounded-full mr-2 animate-pulse ${project.status === 'En Proceso'
+                    ? 'bg-black'
+                    : project.status === 'Completado'
+                      ? 'bg-green-700'
+                      : 'bg-black'
+                  }`} />
+                {project.status}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Contenido */}
@@ -185,7 +213,7 @@ const ProjectCard = ({ project, index }) => {
                   rel="noopener noreferrer"
                   className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 bg-primary border-4 border-default rounded-lg font-bold text-sm shadow-brutal hover:translate-y-1 hover:shadow-none transition-all duration-200 text-black"
                 >
-                  Cliente
+                  {project.demoText || "Cliente"}
                 </a>
               )}
               {project.downloadUrl && (

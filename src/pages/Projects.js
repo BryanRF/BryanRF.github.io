@@ -1,11 +1,19 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { staticProjects } from '../data/projectData';
 import ProjectCard from '../components/ProjectCard';
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaFilter } from 'react-icons/fa';
 
 const Projects = () => {
-  const projects = staticProjects;
+  const [filter, setFilter] = useState('Todos');
+  
+  const categories = ['Todos', 'Startup', 'Dinamica', 'Estatica', 'Landing Page'];
+  
+  const filteredProjects = filter === 'Todos' 
+    ? staticProjects 
+    : staticProjects.filter(p => 
+        p.category === filter || (filter === 'Startup' && p.type === 'startup')
+      );
 
   return (
     <div className="min-h-screen bg-body">
@@ -28,23 +36,51 @@ const Projects = () => {
           </p>
         </motion.div>
 
+        {/* Filter Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="flex flex-wrap items-center gap-3 mb-10"
+        >
+          <div className="flex items-center gap-2 mr-2 text-default font-black uppercase text-sm">
+            <FaFilter /> Filtrar:
+          </div>
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setFilter(cat)}
+              className={`px-4 py-2 rounded-xl border-4 border-default font-bold text-sm transition-all shadow-brutal-sm hover:translate-y-0.5 hover:shadow-none ${
+                filter === cat ? 'bg-primary text-black translate-y-0.5 shadow-none' : 'bg-default text-default'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </motion.div>
+
         {/* Grid de proyectos - 2 columnas desktop, 1 mobile */}
         <motion.div
+          layout
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"
         >
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <ProjectCard project={project} index={index} />
-            </motion.div>
-          ))}
+          <AnimatePresence mode='popLayout'>
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.4 }}
+              >
+                <ProjectCard project={project} index={index} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </motion.div>
 
         {/* Call to Action */}

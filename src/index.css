@@ -21,13 +21,13 @@
   --color-black: #000000;
   --color-gray-light: #F5F5F5;
   
-  /* Palette Extension */
-  --color-celeste: #4DE1C1;
-  --color-purple: #A29BFE;
-  --color-pink: #FF7675;
-  --color-green: #55EFC4;
-  --color-orange: #FAB1A0;
-  --color-yellow: #FFEAA7;
+  /* Palette Extension - More Vibrant & Premium */
+  --color-celeste: #00D2FF;   /* Deep Sky Blue */
+  --color-purple: #9288F8;    /* Modern Indigo */
+  --color-pink: #FF4D6D;      /* Vibrant Pink */
+  --color-green: #00FFAD;     /* Neon Mint */
+  --color-orange: #FF8C00;    /* Deep Orange */
+  --color-yellow: #FFD93D;    /* Bright Yellow */
   
   /* Light Mode Colors */
   --bg-primary: #FFFFFF;    /* Card/Component Background */

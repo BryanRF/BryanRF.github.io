@@ -5,7 +5,8 @@ import {
     FaBrain,
     FaGithub,
     FaDownload,
-    FaArrowRight
+    FaArrowRight,
+    FaExternalLinkAlt
 } from 'react-icons/fa';
 
 const NewAppBanner = () => {
@@ -53,7 +54,7 @@ const NewAppBanner = () => {
                     {/* Botones */}
                     <div className="flex flex-wrap items-center gap-3">
                         <a
-                            href="https://github.com/BryanRF/memory-pub"
+                            href="https://github.com/BryanRF/memory-releases"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 px-4 py-2 bg-default border-4 border-default rounded-lg font-bold text-sm shadow-brutal hover:translate-y-1 hover:shadow-none transition-all duration-200 text-default"
@@ -62,13 +63,22 @@ const NewAppBanner = () => {
                             GitHub
                         </a>
                         <a
-                            href="https://github.com/BryanRF/memory-pub/releases"
+                            href="https://github.com/BryanRF/memory-releases/releases"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 px-4 py-2 bg-green border-4 border-default rounded-lg font-bold text-sm shadow-brutal hover:translate-y-1 hover:shadow-none transition-all duration-200 text-black"
                         >
                             <FaDownload />
                             Descargar APK
+                        </a>
+                        <a
+                            href="https://memory-web-sand.vercel.app/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-4 py-2 bg-purple border-4 border-default rounded-lg font-bold text-sm shadow-brutal hover:translate-y-1 hover:shadow-none transition-all duration-200 text-black"
+                        >
+                            <FaExternalLinkAlt />
+                            Landing Page
                         </a>
                         <Link
                             to="/projects"
