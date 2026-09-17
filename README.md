@@ -28,6 +28,11 @@ Portfolio personal desarrollado con **React** y **Tailwind CSS**, implementando 
 - **Contraste máximo**: Fondo blanco con texto negro
 - **Sin gradientes suaves**: Diseño plano y directo
 
+### 🌗 Animación Dark/Light Mode
+- **View Transitions API**: Utiliza `document.startViewTransition` nativo del navegador.
+- **Efecto Visual**: Transición de máscara SVG expansiva circular (`mask-size: 350vmax`).
+- **Comportamiento**: Simula la expansión de luz/sombra desde la esquina superior izquierda con interpolación fluida (cubic-bezier).
+
 ### 📱 Proyectos Estáticos (11 proyectos)
 - **Apps Móviles** (Flutter/Dart): Memory, Memory Fitness, Memory Parejas, Recordatorio de Medicamentos
 - **Aplicaciones Web**: Tu Lote Propio, Clínica SaaS
