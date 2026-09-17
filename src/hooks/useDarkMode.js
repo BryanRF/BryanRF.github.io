@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { flushSync } from 'react-dom';
 
 const useDarkMode = () => {
   // Initialize state based on localStorage or system preference
@@ -56,20 +57,30 @@ const useDarkMode = () => {
   const toggleDarkMode = () => {
     // Verificar si el navegador soporta View Transitions API
     if (document.startViewTransition) {
-      document.startViewTransition(() => {
-        const root = document.documentElement;
-        const newMode = !isDarkMode;
-        
-        // Aplicar el cambio de clase directamente dentro de la transición
-        if (newMode) {
-          root.classList.add('dark');
-        } else {
-          root.classList.remove('dark');
-        }
-        
-        // Actualizar el estado y localStorage
-        setIsDarkMode(newMode);
-        localStorage.setItem('darkMode', newMode.toString());
+      // Desactivamos transiciones CSS globales para que no interfieran con View Transitions
+      document.documentElement.classList.add('view-transition-active');
+      
+      const transition = document.startViewTransition(() => {
+        flushSync(() => {
+          const root = document.documentElement;
+          const newMode = !isDarkMode;
+          
+          // Aplicar el cambio de clase directamente dentro de la transición
+          if (newMode) {
+            root.classList.add('dark');
+          } else {
+            root.classList.remove('dark');
+          }
+          
+          // Actualizar el estado y localStorage de forma síncrona
+          setIsDarkMode(newMode);
+          localStorage.setItem('darkMode', newMode.toString());
+        });
+      });
+      
+      // Limpiar la clase cuando la transición termine (ya sea éxito o error)
+      transition.finished.finally(() => {
+        document.documentElement.classList.remove('view-transition-active');
       });
     } else {
       // Fallback para navegadores que no soportan View Transitions
