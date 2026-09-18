@@ -19,10 +19,8 @@ export const staticProjects = [
       plataformas: "3+",
       seguridad: "AES-256"
     },
-    github: "https://github.com/BryanRF/memory-releases",
     demo: "https://memory-web-sand.vercel.app/",
-    demoText: "Landing Page",
-    downloadUrl: "https://github.com/BryanRF/memory-releases/releases"
+    demoText: "Landing Page"
   },
   {
     id: 2,

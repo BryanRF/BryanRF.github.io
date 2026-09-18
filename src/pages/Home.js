@@ -47,7 +47,6 @@ const getSeasonalAvatar = (date) => {
 
 function Home() {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [showHeader, setShowHeader] = useState(false);
   const [isTitleHovered, setIsTitleHovered] = useState(false);
 
   const isAvailable = true;
