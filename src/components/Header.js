@@ -32,14 +32,14 @@ const Header = () => {
   return (
     <>
       <motion.header
-        className={`fixed w-full z-50 transition-all duration-300 ${
+        className={`fixed w-full z-50 transition-all duration-300 border-b-4 ${
           scrolled 
-            ? 'border-b-4 shadow-brutal' 
+            ? 'shadow-brutal' 
             : 'backdrop-blur-sm'
         }`}
         style={{
           backgroundColor: scrolled ? (isDarkMode ? 'var(--bg-primary)' : 'white') : 'transparent',
-          borderColor: scrolled ? 'var(--border-color)' : 'transparent'
+          borderColor: 'var(--border-color)'
         }}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
