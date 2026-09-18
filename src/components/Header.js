@@ -38,8 +38,8 @@ const Header = () => {
             : 'backdrop-blur-sm'
         }`}
         style={{
-          backgroundColor: isDarkMode ? 'var(--bg-primary)' : 'white',
-          borderColor: 'var(--border-color)'
+          backgroundColor: scrolled ? (isDarkMode ? 'var(--bg-primary)' : 'white') : 'transparent',
+          borderColor: scrolled ? 'var(--border-color)' : 'transparent'
         }}
         initial={{ y: -100 }}
         animate={{ y: 0 }}

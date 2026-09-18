@@ -60,16 +60,8 @@ function Home() {
       setCurrentTime(new Date());
     }, 1000);
 
-    // Scroll handler para mostrar navbar
-    const handleScroll = () => {
-      setShowHeader(window.scrollY > 800);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
     return () => {
       clearInterval(timer);
-      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -185,12 +177,11 @@ function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-body">
-      {/* Header aparece solo después de scroll */}
-      {showHeader && <Header />}
+    <div className="bg-body">
+      <Header />
 
       {/* Hero Section - Solo 2 colores */}
-      <section className="py-2 md:py-2 px-4 bg-body relative md:min-h-screen md:flex md:items-center">
+      <section className="py-2 md:py-2 px-4 bg-body relative min-h-[calc(100vh-80px)] flex flex-col justify-center">
         <div className="max-w-6xl mx-auto w-full">
 
           {/* Main Card */}
